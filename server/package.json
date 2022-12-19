@@ -1,0 +1,19 @@
+{
+  "name": "filekeeper",
+  "version": "1.0.0",
+  "description": "app to storage your files in cloud",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanyloTrofymov/filekeeper.git"
+  },
+  "author": "DanyloTrofymov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DanyloTrofymov/filekeeper/issues"
+  },
+  "homepage": "https://github.com/DanyloTrofymov/filekeeper#readme"
+}
