@@ -1,0 +1,41 @@
+name: FileKeeper client
+
+on:
+  push:
+    branches: 
+    - dev
+  pull_request:
+    branches:
+    - dev
+    
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+      # Mobile folder working directory.
+        working-directory: client
+        
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            client:
+              - 'client/**' 
+      - name: Use Node.js 14
+        if: steps.filter.outputs.cleint == 'true'
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+          cache: 'npm'
+      - name: Install Eslint
+        if: steps.filter.outputs.cleint == 'true'
+        run: |
+          npm ci
+      - name: Eslint working flow
+        if: steps.filter.outputs.cleint == 'true'
+        run: |
+          npm run eslint
