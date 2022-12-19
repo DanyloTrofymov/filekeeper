@@ -29,6 +29,8 @@
         "mongoose": "^6.8.0"
     },
     "devDependencies": {
+        "@commitlint/cli": "^17.3.0",
+        "@commitlint/config-conventional": "^17.3.0",
         "eslint": "^8.30.0",
         "husky": "^8.0.2",
         "lint-staged": "^13.1.0",
