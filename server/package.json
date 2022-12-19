@@ -5,7 +5,12 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "eslint:fix": "eslint . --fix --ignore-path .gitignore",
+    "eslint": "eslint . --ignore-path .gitignore",
+    "prettier:fix": "prettier --write . --ignore-path .gitignore",
+    "prettier": "prettier --check . --ignore-path .gitignore",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -24,6 +29,10 @@
     "mongoose": "^6.8.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "eslint": "^8.30.0",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.1.0",
+    "nodemon": "^2.0.20",
+    "prettier": "2.8.1"
   }
 }

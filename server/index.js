@@ -4,7 +4,7 @@ import dotenv from 'dotenv'
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 
 const start = async () => {
     try{
@@ -13,9 +13,7 @@ const start = async () => {
         app.listen(PORT, () => {
             console.log('Server started on port ', PORT)
         })
-    } catch(e) {
-
-    }
+    } catch(e) { /* empty */ }
 }
 
 start();
