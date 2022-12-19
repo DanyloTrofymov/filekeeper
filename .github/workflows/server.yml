@@ -30,6 +30,7 @@ jobs:
         with:
           node-version: 14
           cache: 'npm'
+          cache-dependency-path: './server/package-lock.json'
       - name: Install Eslint
         if: steps.filter.outputs.server == 'true'
         run: |
