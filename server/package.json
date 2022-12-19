@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "app to storage your files in cloud",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node index.js"
   },
@@ -15,5 +16,14 @@
   "bugs": {
     "url": "https://github.com/DanyloTrofymov/filekeeper/issues"
   },
-  "homepage": "https://github.com/DanyloTrofymov/filekeeper#readme"
+  "homepage": "https://github.com/DanyloTrofymov/filekeeper#readme",
+  "dependencies": {
+    "config": "^3.3.8",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
 }
