@@ -1,4 +1,4 @@
-name: FileKeeper
+name: FileKeeper client
 
 on:
   push:

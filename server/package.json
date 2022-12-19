@@ -10,7 +10,7 @@
         "eslint": "eslint . --ignore-path .gitignore",
         "prettier:fix": "prettier --write . --ignore-path .gitignore",
         "prettier": "prettier --check . --ignore-path .gitignore",
-        "prepare": "husky install"
+        "prepare": "cd .. && husky install server/.husky"
     },
     "repository": {
         "type": "git",
