@@ -1,5 +1,4 @@
-name: FileKeeper server
-
+name: FileKeeper
 on:
   push:
     branches: 
