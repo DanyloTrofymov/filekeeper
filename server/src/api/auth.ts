@@ -4,7 +4,6 @@ import controllers from '../controllers';
 export const initAuthApi = () => {
     const router = Router();
     router.post('/registration', controllers.AuthController.registration);
-    //router.get("/login", controllers.AuthController.login);
-    //router.get("/refresh", controllers.AuthController.refresh);
+    router.post('/login', controllers.AuthController.login);
     return router;
 };

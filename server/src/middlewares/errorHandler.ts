@@ -1,7 +1,13 @@
-import { Request, Response } from 'express';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Request, Response, NextFunction } from 'express';
 import { HttpError } from '../utils/error';
 
-export function errorHandler(err: HttpError, req: Request, res: Response) {
+export function errorHandler(
+    err: HttpError,
+    req: Request,
+    res: Response,
+    next: NextFunction,
+) {
     if (err.status === 500) {
         return res.status(500).json({
             status: 0,

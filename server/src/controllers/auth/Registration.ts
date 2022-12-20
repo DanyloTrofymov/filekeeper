@@ -25,12 +25,12 @@ export async function RegistrationController(
     try {
         validate(data, validationRules);
 
-        const { user, ...tokens } = await AuthService.registration(data);
+        const { user, token } = await AuthService.registration(data);
 
         return res.json({
             data: {
                 ...dumpUser(user),
-                tokens,
+                token,
             },
             status: 1,
         });

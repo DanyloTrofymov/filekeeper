@@ -6,6 +6,6 @@ export interface IRegistrationBody {
 }
 
 export interface ILoginBody {
-    emailOrUsername: string;
+    username: string;
     password: string;
 }
