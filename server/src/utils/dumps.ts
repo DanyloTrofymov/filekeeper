@@ -22,6 +22,6 @@ export const dumpFile = (file: File) => {
         date: file.date,
         user: file.user,
         parent: file.parent,
-        childs: file.childs
+        childs: file.childs,
     };
 };
