@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './login.css';
+import './auth.css';
 import Input from '../../utils/input/Input';
 import { login } from '../../actions/user';
 
@@ -7,25 +7,25 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     return (
-        <div className="login" disabled>
-            <div className="login__header">Login</div>
+        <div className="auth" disabled>
+            <div className="auth__header">Login</div>
             <Input
                 value={username}
                 setValue={setUsername}
                 type="text"
-                placeholder="Username"
+                placeholder="Enter username"
             />
             <Input
                 value={password}
                 setValue={setPassword}
                 type="password"
-                placeholder="Password"
+                placeholder="Enter password"
             />
             <button
-                className="login__btn"
+                className="auth__btn"
                 onClick={() => login(username, password)}
             >
-                Sign In
+                Sign ip
             </button>
         </div>
     );

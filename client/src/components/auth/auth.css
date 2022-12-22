@@ -1,4 +1,4 @@
-.registration {
+.auth {
     display: flex;
     flex-direction: column;
     width: 500px;
@@ -9,14 +9,14 @@
     align-self: center;
     margin-top: 100px;
 }
-.registration__header {
+.auth__header {
     font-size: 30px;
     font-weight: 700;
 }
-.registration input {
+.auth input {
     margin: 10px 20px;
 }
-.registration__btn {
+.auth__btn {
     border: none;
     background-color: #1abc63;
     border-radius: 2px;
@@ -27,9 +27,9 @@
     margin-top: 10px;
     cursor: pointer;
 }
-.registration__btn:hover {
+.auth__btn:hover {
     background-color: #118846;
 }
-.registration__btn:active {
+.auth__btn:active {
     background-color: #165c35;
 }

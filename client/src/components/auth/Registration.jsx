@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './registration.css';
+import './auth.css';
 import Input from '../../utils/input/Input';
 import { registration } from '../../actions/user';
 
@@ -9,8 +9,8 @@ const Registration = () => {
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
     return (
-        <div className="registration" disabled>
-            <div className="registration__header">Registration</div>
+        <div className="auth" disabled>
+            <div className="auth__header">Registration</div>
             <Input
                 value={email}
                 setValue={setEmail}
@@ -36,7 +36,7 @@ const Registration = () => {
                 placeholder="Repeat password"
             />
             <button
-                className="registration__btn"
+                className="auth__btn"
                 onClick={() =>
                     registration(email, username, password, repeatPassword)
                 }
