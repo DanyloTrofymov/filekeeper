@@ -24,7 +24,9 @@ const start = async () => {
             console.log('Server started on port ', PORT);
         });
     } catch (e) {
-        /* empty */
+        console.log('Connection to DB failture');
+        console.log(e);
+        process.exit(1);
     }
 };
 

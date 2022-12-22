@@ -13,6 +13,8 @@ export async function LoginController(
     res: Response,
     next: NextFunction,
 ) {
+    console.log({ ...req.body });
+
     const data = { ...req.body };
 
     const validationRules = {
@@ -32,6 +34,7 @@ export async function LoginController(
             },
             status: 1,
         });
+        console.log('login returned');
     } catch (e: unknown) {
         return next(e);
     }

@@ -20,7 +20,7 @@ export default function validate(data: any, validationRules: any) {
 
     throw new HttpError(
         400,
-        'Validation error',
+        'Validation error: ' + JSON.stringify(tempValidator.getErrors()),
         ERRORS.VALIDATION_ERROR,
         tempValidator.getErrors(),
     );

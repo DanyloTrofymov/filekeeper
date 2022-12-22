@@ -25,9 +25,9 @@ export default function genetateToken(
     }
 
     const token = jwt.sign(
-        { id: user.id, email: user.email, username: user.username },
+        { _id: user._id, email: user.email, username: user.username },
         secret,
-        { expiresIn: 15 },
+        { expiresIn: '2h' },
     );
     return token;
 }

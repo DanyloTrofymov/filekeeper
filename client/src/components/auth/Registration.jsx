@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import './auth.css';
 import Input from '../../utils/input/Input';
 import { registration } from '../../actions/user';
+import { useDispatch } from 'react-redux';
 
 const Registration = () => {
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
+    const dispatch = useDispatch();
     return (
         <div className="auth" disabled>
             <div className="auth__header">Registration</div>
@@ -38,7 +40,7 @@ const Registration = () => {
             <button
                 className="auth__btn"
                 onClick={() =>
-                    registration(email, username, password, repeatPassword)
+                    dispatch(registration(email, username, password, repeatPassword))
                 }
             >
                 Sign up
