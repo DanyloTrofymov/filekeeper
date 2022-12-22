@@ -14,11 +14,19 @@ export async function createDirService(file: File) {
 
     const userPath = `${StoragePath}\\${file.user}\\${file.path}`;
     const exists = await fs.pathExists(userPath);
-
+    console.log(userPath);
     if (exists) {
         throw new HttpError(403, 'File exists', ERRORS.FILE_EXISTS, {
             file: file.name,
         });
     }
-    await fs.ensureDir(userPath);
+    try {
+        await fs.ensureDir(userPath);
+    } catch (e) {
+        throw new HttpError(
+            500,
+            'Internal server error',
+            ERRORS.INTERNAL_ERROR,
+        );
+    }
 }

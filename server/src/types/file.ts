@@ -5,3 +5,7 @@ export interface ICreateBody {
     type: string;
     parent: ObjectId;
 }
+
+export interface IFindBody {
+    parent: string;
+}
