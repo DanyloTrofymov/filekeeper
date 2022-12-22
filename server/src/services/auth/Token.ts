@@ -4,11 +4,11 @@ import User from '../../models/User';
 import genetateToken from '../../utils/jwt';
 
 export async function TokenService(data: ITokenBody) {
-    const user = await User.findOne({ _id: data._id });
+    const user = await User.findOne({ _id: data.userId });
     if (!user) {
         throw new HttpError(403, 'Auth error', ERRORS.NOT_FOUND('USER'));
     }
-    const secret = process.env.SECRET || '';
+    const secret = process.env.SECRET;
     if (!secret) {
         throw new HttpError(
             500,

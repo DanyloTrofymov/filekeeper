@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import { initAuthApi } from './auth';
-//import { initUserApi } from "./user.js";
+import { initFileApi } from "./file";
 
 export const initApi = () => {
     const router = Router();
     router.use('/auth', initAuthApi());
-    //router.use("/user", initUserApi());
+    router.use("/drive", initFileApi());
     return router;
 };

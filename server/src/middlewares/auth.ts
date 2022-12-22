@@ -24,12 +24,9 @@ export const getDataByToken = (
         }
 
         const decoded = jwt.verify(token.split(' ')[1], secret) as JwtPayload;
-        console.log({ ...decoded });
-        req.body = {
-            _id: decoded._id,
-            username: decoded.username,
-            email: decoded.email,
-        };
+        req.body.userId = decoded._id;
+        req.body.username = decoded.username;
+        req.body.userId = decoded._id;
 
         next();
     } catch (e: any) {

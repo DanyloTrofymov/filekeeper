@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import { User } from './User';
 
 export class File {
-    @prop()
+    @prop({ default: new mongoose.Types.ObjectId() })
     _id: mongoose.Types.ObjectId;
 
     @prop({ required: true })
@@ -28,7 +28,7 @@ export class File {
     parent: Ref<File>;
 
     @prop({ ref: () => File })
-    childs: Ref<File>;
+    childs: Ref<File>[];
 }
 
 const FileModel = getModelForClass(File);

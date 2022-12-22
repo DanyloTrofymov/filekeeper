@@ -1,3 +1,4 @@
+import { File } from '../models/File';
 import { User } from '../models/User';
 
 export const dumpUser = (user: User) => {
@@ -8,5 +9,19 @@ export const dumpUser = (user: User) => {
         files: user.files,
         disk_space: user.disk_space,
         used_space: user.used_space,
+    };
+};
+
+export const dumpFile = (file: File) => {
+    return {
+        _id: file._id,
+        name: file.name,
+        type: file.type,
+        size: file.size,
+        path: file.path,
+        date: file.date,
+        user: file.user,
+        parent: file.parent,
+        childs: file.childs
     };
 };
