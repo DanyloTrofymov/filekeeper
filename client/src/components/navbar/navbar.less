@@ -1,0 +1,44 @@
+@import '../../utils/colors';
+
+.navbar {
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    background-color: @navbar-color;
+    width: 100%;
+
+    &__header {
+        margin-left: 10px;
+        font-size: 24px;
+        font-weight: 700;
+    }
+
+    &__login {
+        margin-left: auto;
+        margin-right: 20px;
+    }
+    a {
+        color: white;
+        border: none;
+        background-color: @btn-background-color;
+        border-radius: 2px;
+        font-weight: 500;
+        padding: 7px 10px;
+        align-self: flex-end;
+        margin-top: 10px;
+    }
+}
+
+.container {
+    width: 1140px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar__logo {
+    font-family: Arial;
+    padding: 3px;
+    text-align: center;
+    color: white;
+    font-size: 30px;
+}

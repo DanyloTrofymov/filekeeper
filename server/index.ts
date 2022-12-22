@@ -4,12 +4,13 @@ import { initApi } from './src/api';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
-import { errorHandler } from './src/middlewares';
+import { cors, errorHandler } from './src/middlewares';
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+app.use(cors);
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use('/api/v1', initApi());

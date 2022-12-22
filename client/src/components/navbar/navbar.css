@@ -1,0 +1,38 @@
+.navbar {
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    background-color: #221f1f;
+    width: 100%;
+}
+.navbar__header {
+    margin-left: 10px;
+    font-size: 24px;
+    font-weight: 700;
+}
+.navbar__login {
+    margin-left: auto;
+    margin-right: 20px;
+}
+.navbar a {
+    color: white;
+    border: none;
+    background-color: #1abc63;
+    border-radius: 2px;
+    font-weight: 500;
+    padding: 7px 10px;
+    align-self: flex-end;
+    margin-top: 10px;
+}
+.container {
+    width: 1140px;
+    display: flex;
+    align-items: center;
+}
+.navbar__logo {
+    font-family: Arial;
+    padding: 3px;
+    text-align: center;
+    color: white;
+    font-size: 30px;
+}

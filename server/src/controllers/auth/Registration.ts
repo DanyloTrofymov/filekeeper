@@ -13,6 +13,7 @@ export async function RegistrationController(
     res: Response,
     next: NextFunction,
 ) {
+    console.log({...req.body})
     const data = { ...req.body };
 
     const validationRules = {
