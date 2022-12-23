@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { setUser } from '../../reducers/user';
+import { setErrorDisplay } from '../../reducers/modal';
 
 export const login = (username, password) => {
     return async (dispatch) => {
@@ -13,9 +14,8 @@ export const login = (username, password) => {
             dispatch(setUser(response.data.user));
             localStorage.setItem('token', response.data.data.token);
         } catch (e) {
-            alert(e.response.data.message);
+            dispatch(setErrorDisplay('flex', e.response.data.message));
+            //alert(e.response.data.message);
         }
     };
 };
-
-

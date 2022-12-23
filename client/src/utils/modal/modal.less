@@ -1,0 +1,48 @@
+.modal {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .create {
+        display: flex;
+    }
+
+    .error {
+        display: flex;
+    }
+
+    &__title {
+        &__error {
+            color: red;
+        }
+    }
+
+    &__content {
+        padding: 20px;
+        border-radius: 10px;
+        background-color: white;
+        width: 40vw;
+        display: flex;
+        flex-direction: column;
+    }
+
+    button {
+        align-self: flex-end;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    input {
+        margin: 20px 0px;
+    }
+}

@@ -1,12 +1,8 @@
 import axios from 'axios';
 import { setUser } from '../../reducers/user';
+import { setErrorDisplay } from '../../reducers/modal';
 
-export const registration = (
-    email,
-    username,
-    password,
-    repeatPassword,
-) => {
+export const registration = (email, username, password, repeatPassword) => {
     return async (dispatch) => {
         alert('123');
         try {
@@ -21,9 +17,7 @@ export const registration = (
             dispatch(setUser(response.data.user));
             localStorage.setItem('token', response.data.data.token);
         } catch (e) {
-            alert(e.response.data.message);
+            dispatch(setErrorDisplay('flex', e.response.data.message));
         }
     };
 };
-
-

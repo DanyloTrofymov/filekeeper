@@ -1,0 +1,39 @@
+.modal {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal .create {
+    display: flex;
+}
+.modal .error {
+    display: flex;
+}
+.modal__title__error {
+    color: red;
+}
+.modal__content {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: white;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+}
+.modal button {
+    align-self: flex-end;
+}
+.modal__header {
+    display: flex;
+    justify-content: space-between;
+}
+.modal input {
+    margin: 20px 0px;
+}

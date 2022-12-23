@@ -3,6 +3,7 @@ import './auth.css';
 import Input from '../../utils/input/Input';
 import actions from '../../actions';
 import { useDispatch } from 'react-redux';
+import ErrorModal from '../../utils/modal/ErrorModal';
 
 const Registration = () => {
     const [email, setEmail] = useState('');
@@ -39,10 +40,20 @@ const Registration = () => {
             />
             <button
                 className="auth__btn"
-                onClick={() => dispatch(actions.User.registration(email, username, password, repeatPassword))}
+                onClick={() =>
+                    dispatch(
+                        actions.User.registration(
+                            email,
+                            username,
+                            password,
+                            repeatPassword,
+                        ),
+                    )
+                }
             >
                 Sign up
             </button>
+            <ErrorModal />
         </div>
     );
 };
