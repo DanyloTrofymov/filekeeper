@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './auth.css';
 import Input from '../../utils/input/Input';
-import { login } from '../../actions/user';
+import actions from '../../actions';
 import { useDispatch } from 'react-redux';
 
 const Login = () => {
@@ -26,10 +26,11 @@ const Login = () => {
             />
             <button
                 className="auth__btn"
-                onClick={() => dispatch(login(username, password))}
+                onClick={() => dispatch(actions.User.login(username, password))}
             >
                 Sign in
             </button>
+
         </div>
     );
 };
