@@ -45,8 +45,8 @@ export function uploadFile(file, dirId) {
             });
             dispatch(addFile(response.data.data));
         } catch (e) {
-            console.log(e);
-            //dispatch(setErrorDisplay('flex', e));
+            //console.log(e);
+            dispatch(setErrorDisplay('flex', e.toString()));
         }
     };
 }

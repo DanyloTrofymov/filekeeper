@@ -2,9 +2,10 @@ import { Response, NextFunction, Request } from 'express';
 import FileService from '../../services/file';
 import { IDeleteQuery } from '../../types/file';
 import { ITokenBody } from '../../types/auth';
-import FileModel, { File } from '../../models/File';
 import { ERRORS, HttpError } from '../../utils/error';
 import User from '../../models/User';
+import { dumpFile } from '../../utils/dumps';
+import File from '../../models/File';
 
 interface downloadBody extends Request {
     body: ITokenBody;
@@ -20,7 +21,8 @@ export async function deleteFileController(
     const user = await User.findOne({ _id: data.userId });
 
     try {
-        const file = FileModel.findOne({ _id: data.id, user: data.userId });
+        console.log(data);
+        const file = await File.findOne({ _id: data.id, user: data.userId });
         if (!file) {
             throw new HttpError(
                 403,
@@ -36,12 +38,12 @@ export async function deleteFileController(
                 ERRORS.NOT_FOUND('USER'),
             );
         }
-
+        console.log(dumpFile(file));
         const childs: any = [];
         await getChilds(file, childs);
         console.log();
         childs.push(file);
-        await childs.forEach(async (child: File) => {
+        await childs.forEach(async (child: any) => {
             user.used_space -= child.size;
             await FileService.deleteFile(child);
         });
@@ -58,9 +60,9 @@ export async function deleteFileController(
         next(e);
     }
 }
-async function getChilds(file: any, childs: File[]) {
-    const childForThis = await FileModel.find({ childs: file.childs });
-    childForThis.forEach((child) => {
+async function getChilds(file: any, childs: any[]) {
+    const childForThis = await File.find({ childs: file.childs });
+    childForThis.forEach((child: any) => {
         getChilds(child, childs);
     });
 

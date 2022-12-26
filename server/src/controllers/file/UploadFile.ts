@@ -71,7 +71,7 @@ export async function uploadFileController(
         if (parent) {
             filePath = `${parent.path}\\${file.name}`;
         }
-        console.log(filePath);
+
         const dbFile = new File({
             name: file.name,
             type: type,

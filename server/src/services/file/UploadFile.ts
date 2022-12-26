@@ -19,7 +19,6 @@ export async function uploadFileService(dbFile: File, file: IFile) {
             file: dbFile.name,
         });
     }
-    console.log(path);
 
     try {
         file.mv(path);

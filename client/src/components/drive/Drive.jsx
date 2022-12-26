@@ -4,7 +4,7 @@ import { getFiles } from '../../actions/file/getFiles';
 import FileList from './fileList/FileList';
 import './drive.css';
 import CreateFolderModal from '../../utils/modal/CreateFolderModal';
-
+import YesNoModal from '../../utils/modal/YesNoModal';
 import { setCreateFolderDisplay } from '../../reducers/modal';
 import { setCurrentDir } from '../../reducers/file';
 import { uploadFile } from '../../actions/file/uploadFile';
@@ -80,6 +80,7 @@ const Drive = () => {
             </div>
             <FileList />
             <CreateFolderModal />
+            <YesNoModal />
         </div>
     );
 };

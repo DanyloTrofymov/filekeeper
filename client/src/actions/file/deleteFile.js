@@ -1,19 +1,19 @@
 import axios from 'axios';
-import { setFiles } from '../../reducers/file';
-import { setErrorDisplay } from '../../reducers/modal';
+//import { setErrorDisplay } from '../../reducers/modal';
+import { fileDelete } from '../../reducers/file';
 
-export function getFiles(dirId) {
+export function deleteFile(file) {
     return async (dispatch) => {
         try {
-            const params = dirId ? `?id=${dirId}` : '';
-            const URL = process.env.REACT_APP_API_URL + 'drive' + params;
+            const URL = process.env.REACT_APP_API_URL + `drive?id=${file._id}`;
             const token = localStorage.getItem('token');
-            const response = await axios.delete(URL, {
+            await axios.delete(URL, {
                 headers: { Authorization: `Bearer ${token}` },
             });
-            dispatch(setFiles(response.data.data.files));
+            dispatch(fileDelete(file._id));
         } catch (e) {
-            dispatch(setErrorDisplay('flex', e.response.data.message));
+            console.log(e);
+            //dispatch(setErrorDisplay('flex', e));
         }
     };
 }
