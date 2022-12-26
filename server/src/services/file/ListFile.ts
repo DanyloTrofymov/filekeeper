@@ -1,9 +1,9 @@
 import File from '../../models/File';
 import { ITokenBody } from '../../types/auth';
-import { IFindBody } from '../../types/file';
+import { IFindQuery } from '../../types/file';
 import { ERRORS, HttpError } from '../../utils/error';
 
-export async function listFileService(data: ITokenBody & IFindBody) {
+export async function listFileService(data: ITokenBody & IFindQuery) {
     if (data.parent == '') {
         throw new HttpError(
             400,

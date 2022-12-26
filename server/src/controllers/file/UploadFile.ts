@@ -7,6 +7,7 @@ import { ERRORS, HttpError } from '../../utils/error';
 import FileService from '../../services/file';
 import validate from '../../utils/validator';
 import { dumpFile } from '../../utils/dumps';
+import { Buffer } from 'buffer';
 
 interface FileBody extends Request {
     body: IUploadFileBody & ITokenBody;
@@ -39,8 +40,7 @@ export async function uploadFileController(
 
     try {
         validate(data, validationRules);
-        console.log(data);
-        const type = file.name.split('.').pop() || '';
+        const type = file.name.toLowerCase().split('.').pop() || '';
         if (!allowedTypes.includes(type)) {
             throw new HttpError(
                 400,
@@ -65,6 +65,9 @@ export async function uploadFileController(
 
         user.used_space = user.used_space + file.size;
 
+        file.name = Buffer.from(file.name, 'ascii').toString('utf8');
+
+        console.log(file.name);
         const dbFile = new File({
             name: file.name,
             type: type,

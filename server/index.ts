@@ -9,6 +9,13 @@ import fileUpload from 'express-fileupload';
 
 dotenv.config();
 
+const corsOptions = {
+    credentials: true,
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    preflightContinue: true,
+};
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 app.use(cors);

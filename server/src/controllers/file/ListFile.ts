@@ -1,6 +1,6 @@
 import { Response, NextFunction, Request } from 'express';
 import FileService from '../../services/file';
-import { IFindBody } from '../../types/file';
+import { IFindQuery } from '../../types/file';
 import { ITokenBody } from '../../types/auth';
 
 interface FindBody extends Request {
@@ -12,7 +12,7 @@ export async function listFileController(
     res: Response,
     next: NextFunction,
 ) {
-    const query = req.query as unknown as IFindBody;
+    const query = req.query as unknown as IFindQuery;
     const data = { ...req.body, ...query };
     try {
         const files = await FileService.listFile(data);

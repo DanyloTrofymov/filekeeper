@@ -7,7 +7,7 @@ interface TokenBody extends Request {
     body: ITokenBody;
 }
 
-export const getDataByToken = (
+export const authMiddleware = (
     req: TokenBody,
     res: Response,
     next: NextFunction,

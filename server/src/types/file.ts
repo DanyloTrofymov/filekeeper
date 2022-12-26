@@ -12,8 +12,12 @@ export interface IUploadFileBody {
 export interface IFileBody {
     file: string;
 }
-export interface IFindBody {
+export interface IFindQuery {
     parent: string;
+}
+
+export interface IDownloadQuery {
+    id: string;
 }
 
 export interface IFile {
