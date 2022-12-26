@@ -68,6 +68,7 @@ export async function uploadFileController(
         const dbFile = new File({
             name: file.name,
             type: type,
+            size: file.size,
             path: parent?.path,
             parent: parent?.id,
             user: user._id,

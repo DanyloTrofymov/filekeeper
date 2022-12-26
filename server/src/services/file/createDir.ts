@@ -15,7 +15,7 @@ export async function createDirService(file: File) {
     const userPath = `${StoragePath}\\${file.user}\\${file.path}`;
     const exists = await fs.pathExists(userPath);
     if (exists) {
-        throw new HttpError(403, 'File exists', ERRORS.FILE_EXISTS, {
+        throw new HttpError(403, 'Folder exists', ERRORS.FILE_EXISTS, {
             file: file.name,
         });
     }
