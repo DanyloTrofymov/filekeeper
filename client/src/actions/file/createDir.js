@@ -5,7 +5,7 @@ import { setErrorDisplay } from '../../reducers/modal';
 export function createDir(dirId, name) {
     return async (dispatch) => {
         try {
-            const URL = process.env.REACT_APP_API_URL + 'drive';
+            const URL = process.env.REACT_APP_API_URL + 'drive/';
             const token = localStorage.getItem('token');
             const response = await axios.post(
                 URL,

@@ -34,8 +34,8 @@ function App() {
                         </Switch>
                     ) : (
                         <Switch>
-                            <Route exact path="/disk" component={Drive} />
-                            <Redirect to="/disk" />
+                            <Route exact path="/drive" component={Drive} />
+                            <Redirect to="/drive" />
                         </Switch>
                     )}
                 </div>

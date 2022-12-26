@@ -1,11 +1,46 @@
+@import '../../utils/colors';
+
 .drive {
     margin-top: 20px;
 
     &__btns {
         display: flex;
+        padding-top: 30px;
+        padding-left: 10px;
     }
 
     &__create {
         margin-left: 10px;
     }
+
+    &__upload-input {
+        padding-top: 10px;
+        display: none;
+    }
+
+    &__upload-label {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 90px;
+        border: 2px dashed @navbar-color;
+        border-radius: 5px;
+        margin-top: 20px;
+        background-color: rgba(@btn-background-color, 0.5);
+        padding: 5px, 10px;
+        cursor: pointer;
+        margin-left: 10px;
+    }
+}
+
+.drop-area {
+    width: 100%;
+    height: calc(100vh - 50px - 40px);
+    margin: 20px;
+    border: dashed @font-color 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
 }

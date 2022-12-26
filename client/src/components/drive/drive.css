@@ -3,7 +3,37 @@
 }
 .drive__btns {
     display: flex;
+    padding-top: 30px;
+    padding-left: 10px;
 }
 .drive__create {
     margin-left: 10px;
+}
+.drive__upload-input {
+    padding-top: 10px;
+    display: none;
+}
+.drive__upload-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90px;
+    border: 2px dashed #221f1f;
+    border-radius: 5px;
+    margin-top: 20px;
+    background-color: rgba(26, 188, 99, 0.5);
+    padding: 5px, 10px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.drop-area {
+    width: 100%;
+    height: calc(100vh - 50px - 40px);
+    margin: 20px;
+    border: dashed #221f1f 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
 }
