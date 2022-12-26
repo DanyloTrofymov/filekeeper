@@ -63,16 +63,20 @@ export async function uploadFileController(
                 ERRORS.NO_SPACE_ON_DISK,
             );
 
-        user.used_space = user.used_space + file.size;
+        user.used_space += file.size;
 
         file.name = Buffer.from(file.name, 'ascii').toString('utf8');
 
-        console.log(file.name);
+        let filePath = file.name;
+        if (parent) {
+            filePath = `${parent.path}\\${file.name}`;
+        }
+        console.log(filePath);
         const dbFile = new File({
             name: file.name,
             type: type,
             size: file.size,
-            path: parent?.path,
+            path: filePath,
             parent: parent?.id,
             user: user._id,
         });

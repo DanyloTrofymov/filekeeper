@@ -12,23 +12,18 @@ export async function uploadFileService(dbFile: File, file: IFile) {
             ERRORS.INTERNAL_ERROR,
         );
     }
-    let filePath;
-    if (dbFile.path)
-        filePath = `${storagePath}\\${dbFile.user}\\${dbFile.path}\\${dbFile.name}`;
-    else filePath = `${storagePath}\\${dbFile.user}\\${dbFile.name}`;
-    const exists = await fs.pathExists(filePath);
-    console.log(filePath);
+    const path = `${process.env.STORAGE_PATH}\\${dbFile.user}\\${dbFile.path}`;
+    const exists = await fs.pathExists(path);
     if (exists) {
         throw new HttpError(403, 'File exists', ERRORS.FILE_EXISTS, {
             file: dbFile.name,
         });
     }
+    console.log(path);
+
     try {
-        console.log('creating model');
+        file.mv(path);
         const dbFileRes = await FileModel.create(dbFile);
-        console.log('model created');
-        file.mv(filePath);
-        console.log('file moved');
         return dbFileRes;
     } catch (e) {
         throw new HttpError(

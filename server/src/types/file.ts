@@ -20,6 +20,10 @@ export interface IDownloadQuery {
     id: string;
 }
 
+export interface IDeleteQuery {
+    id: string;
+}
+
 export interface IFile {
     name: string;
     mv(path: string, callback: (err: any) => void): void;

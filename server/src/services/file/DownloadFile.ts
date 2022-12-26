@@ -3,7 +3,7 @@ import fs from 'fs-extra';
 import File from '../../models/File';
 import { ITokenBody } from '../../types/auth';
 import { IDownloadQuery } from '../../types/file';
-import { HttpError } from '../../utils/error';
+import { ERRORS, HttpError } from '../../utils/error';
 
 export async function downloadFileService(
     data: ITokenBody & IDownloadQuery,
@@ -11,13 +11,12 @@ export async function downloadFileService(
 ) {
     const file = await File.findOne({ _id: data.id, user: data.userId });
     if (!file) {
-        throw new HttpError(500, 'Download error');
+        throw new HttpError(403, 'File not found', ERRORS.NOT_FOUND('FILE'));
     }
     const path = `${process.env.STORAGE_PATH}\\${data.userId}\\${file.path}`;
     const exists = await fs.pathExists(path);
     if (exists) {
-        console.log(123);
-        return res.download(path, file.name);
+        return res.download(path);
     }
     throw new HttpError(500, 'Download error');
 }

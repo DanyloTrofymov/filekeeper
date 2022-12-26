@@ -16,5 +16,6 @@ export const initFileApi = () => {
         authMiddleware,
         controllers.FileController.downloadFile,
     );
+    router.delete('/', authMiddleware, controllers.FileController.deleteFile);
     return router;
 };
