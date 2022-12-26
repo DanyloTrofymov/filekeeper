@@ -21,9 +21,10 @@ export function uploadFile(file, dirId) {
                 formData.append('parent', dirId);
             }
             const URL = `${process.env.REACT_APP_API_URL}drive/upload/`;
+            const token = localStorage.getItem('token');
             const response = await axios.post(URL, formData, {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    Authorization: `Bearer ${token}`,
                 },
                 onUploadProgress: (progressEvent) => {
                     const totalLength = progressEvent.lengthComputable
