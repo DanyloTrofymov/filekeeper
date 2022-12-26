@@ -4,6 +4,7 @@ import dirLogo from '../../../../assets/img/dir.svg';
 import fileLogo from '../../../../assets/img/file.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { pushToStack, setCurrentDir } from '../../../../reducers/file';
+import { downloadFile } from '../../../../actions/file/downloadFile';
 
 const File = ({ file }) => {
     const dispatch = useDispatch();
@@ -14,6 +15,11 @@ const File = ({ file }) => {
             dispatch(pushToStack(currentDir));
             dispatch(setCurrentDir(file._id));
         }
+    }
+
+    function downloadClickHandler(e) {
+        e.stopPropagation();
+        downloadFile(file);
     }
 
     return (
@@ -32,6 +38,15 @@ const File = ({ file }) => {
             <div className="file__size">
                 {file.type === 'dir' ? '' : convertSize(file.size)}
             </div>
+            {file.type !== 'dir' && (
+                <button
+                    onClick={(e) => downloadClickHandler(e)}
+                    className="file__btn file__download"
+                >
+                    Download
+                </button>
+            )}
+            <button className="file__btn file__delete">Delete</button>
         </div>
     );
 };

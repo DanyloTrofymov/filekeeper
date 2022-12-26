@@ -20,36 +20,28 @@ export function uploadFile(file, dirId) {
             if (dirId) {
                 formData.append('parent', dirId);
             }
-            console.log(file);
-            const response = await axios.post(
-                `${process.env.REACT_APP_API_URL}drive/upload/`,
-                formData,
-                {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            'token',
-                        )}`,
-                    },
-                    onUploadProgress: (progressEvent) => {
-                        const totalLength = progressEvent.lengthComputable
-                            ? progressEvent.total
-                            : progressEvent.target.getResponseHeader(
-                                  'content-length',
-                              ) ||
-                              progressEvent.target.getResponseHeader(
-                                  'x-decompressed-content-length',
-                              );
-                        console.log('total', totalLength);
-                        if (totalLength) {
-                            let progress = Math.round(
-                                (progressEvent.loaded * 100) / totalLength,
-                            );
-                            console.log(progress);
-                        }
-                    },
+            const URL = `${process.env.REACT_APP_API_URL}drive/upload/`;
+            const response = await axios.post(URL, formData, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
-            );
-            console.log(response.data.data);
+                onUploadProgress: (progressEvent) => {
+                    const totalLength = progressEvent.lengthComputable
+                        ? progressEvent.total
+                        : progressEvent.target.getResponseHeader(
+                              'content-length',
+                          ) ||
+                          progressEvent.target.getResponseHeader(
+                              'x-decompressed-content-length',
+                          );
+                    if (totalLength) {
+                        let progress = Math.round(
+                            (progressEvent.loaded * 100) / totalLength,
+                        );
+                        console.log(progress);
+                    }
+                },
+            });
             dispatch(addFile(response.data.data));
         } catch (e) {
             console.log(e);
