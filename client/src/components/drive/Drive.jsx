@@ -3,14 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getFiles } from '../../actions/file/getFiles';
 import FileList from './fileList/FileList';
 import './drive.css';
-import CreareFolderModal from '../../utils/modal/CreateFolderModal';
-import ErrorModal from '../../utils/modal/ErrorModal';
+import CreateFolderModal from '../../utils/modal/CreateFolderModal';
+
 import { setCreateFolderDisplay } from '../../reducers/modal';
+import { setCurrentDir } from '../../reducers/file';
 
 const Drive = () => {
     const dispatch = useDispatch();
     const currentDir = useSelector((state) => state.file.currentDir);
-
+    const dirStack = useSelector((state) => state.file.dirStack);
     useEffect(() => {
         dispatch(getFiles(currentDir));
     }, [currentDir]);
@@ -18,11 +19,19 @@ const Drive = () => {
     function showPopupHandler() {
         dispatch(setCreateFolderDisplay('flex'));
     }
-
+    function backClickHandler() {
+        const backDirId = dirStack.pop();
+        dispatch(setCurrentDir(backDirId));
+    }
     return (
         <div className="drive">
             <div className="drive__btns">
-                <button className="drive__back">Back</button>
+                <button
+                    className="drive__back"
+                    onClick={() => backClickHandler()}
+                >
+                    Back
+                </button>
                 <button
                     className="drive__create"
                     onClick={() => showPopupHandler()}
@@ -31,8 +40,7 @@ const Drive = () => {
                 </button>
             </div>
             <FileList />
-            <CreareFolderModal />
-            <ErrorModal />
+            <CreateFolderModal />
         </div>
     );
 };

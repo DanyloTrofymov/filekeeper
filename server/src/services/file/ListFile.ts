@@ -16,6 +16,7 @@ export async function listFileService(data: ITokenBody & IFindBody) {
             user: data.userId,
             parent: data.parent,
         });
+
         return files;
     } catch (e) {
         throw new HttpError(

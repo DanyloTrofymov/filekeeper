@@ -5,12 +5,14 @@ import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import { cors, errorHandler } from './src/middlewares';
+import fileUpload from 'express-fileupload';
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 app.use(cors);
+app.use(fileUpload({}));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use('/api/v1', initApi());

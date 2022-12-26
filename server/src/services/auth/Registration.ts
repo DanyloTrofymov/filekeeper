@@ -4,6 +4,8 @@ import { ERRORS, throwError } from '../../utils/error';
 import User from '../../models/User';
 import UserModel from '../../models/User';
 import genetateToken from '../../utils/jwt';
+import FileService from '../../services/file';
+import File from '../../models/File';
 
 export async function RegistrationService(data: IRegistrationBody) {
     const existingEmail = await User.findOne({ email: data.email });
@@ -28,6 +30,8 @@ export async function RegistrationService(data: IRegistrationBody) {
         username: data.username,
         password: hashPassword,
     });
+
+    await FileService.createDir(new File({ user: user.id, name: user.id }));
 
     const token = genetateToken(user);
 

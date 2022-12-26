@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { setFiles } from '../../reducers/file';
+import { setErrorDisplay } from '../../reducers/modal';
 
 export function getFiles(dirId) {
     return async (dispatch) => {
@@ -12,7 +13,7 @@ export function getFiles(dirId) {
             });
             dispatch(setFiles(response.data.data.files));
         } catch (e) {
-            alert(e.response.data.message);
+            dispatch(setErrorDisplay('flex', e.response.data.message));
         }
     };
 }

@@ -3,8 +3,7 @@ import validate from '../../utils/validator';
 import AuthService from '../../services/auth';
 import { dumpUser } from '../../utils/dumps';
 import { IRegistrationBody } from '../../types/auth';
-import FileService from '../../services/file';
-import File from '../../models/File';
+
 interface RegistrationBody extends Request {
     body: IRegistrationBody;
 }
@@ -27,7 +26,7 @@ export async function RegistrationController(
         validate(data, validationRules);
 
         const { user, token } = await AuthService.registration(data);
-        await FileService.createDir(new File({ user: user.id, name: user.id }));
+
         return res.json({
             data: {
                 ...dumpUser(user),

@@ -3,7 +3,9 @@ import './app.css';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 import components from './';
 import { useDispatch, useSelector } from 'react-redux';
-import actions from '../actions';
+import ErrorModal from '../utils/modal/ErrorModal';
+//import actions from '../actions';
+import { auth } from '../actions/user/auth';
 import Drive from './drive/Drive';
 //import {setPopupDisplay} from "../reducers/file";
 //import ErrorModal from '../utils/modal/ErrorModal';
@@ -13,7 +15,7 @@ function App() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(actions.User.auth());
+        dispatch(auth());
     }, []);
 
     return (
@@ -37,6 +39,7 @@ function App() {
                         </Switch>
                     )}
                 </div>
+                <ErrorModal />
             </div>
         </BrowserRouter>
     );

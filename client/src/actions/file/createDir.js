@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { addFile } from '../../reducers/file';
+import { setErrorDisplay } from '../../reducers/modal';
 
 export function createDir(dirId, name) {
     return async (dispatch) => {
@@ -19,7 +20,7 @@ export function createDir(dirId, name) {
             );
             dispatch(addFile(response.data.data));
         } catch (e) {
-            alert(e.response.data.message);
+            dispatch(setErrorDisplay('flex', e.response.data.message));
         }
     };
 }

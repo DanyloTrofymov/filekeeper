@@ -24,6 +24,7 @@
     "homepage": "https://github.com/DanyloTrofymov/filekeeper#readme",
     "dependencies": {
         "@typegoose/typegoose": "^10.0.0",
+        "@types/express-fileupload": "^1.4.1",
         "babel-cli": "^6.26.0",
         "bcrypt": "^5.1.0",
         "body-parser": "^1.20.1",
@@ -31,6 +32,7 @@
         "cookie-parser": "^1.4.6",
         "dotenv": "^16.0.3",
         "express": "^4.18.2",
+        "express-fileupload": "^1.4.0",
         "express-rate-limit": "^6.7.0",
         "fs-extra": "^11.1.0",
         "jsonwebtoken": "^8.5.1",
