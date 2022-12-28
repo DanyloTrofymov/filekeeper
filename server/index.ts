@@ -1,4 +1,3 @@
-import mongoose from 'mongoose';
 import express from 'express';
 import { initApi } from './src/api';
 import dotenv from 'dotenv';
@@ -6,6 +5,7 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import { cors, errorHandler } from './src/middlewares';
 import fileUpload from 'express-fileupload';
+import initDB from './src/utils/database';
 
 dotenv.config();
 
@@ -19,17 +19,11 @@ app.use('/api/v1', initApi());
 app.use(errorHandler);
 
 const start = async () => {
-    try {
-        await mongoose.connect(process.env.DB_URL ?? '');
+    await initDB();
 
-        app.listen(PORT, () => {
-            console.log('Server started on port ', PORT);
-        });
-    } catch (e) {
-        console.log('Connection to DB failture');
-        console.log(e);
-        process.exit(1);
-    }
+    app.listen(PORT, () => {
+        console.log('Server started on port ', PORT);
+    });
 };
 
 start();

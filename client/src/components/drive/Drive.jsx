@@ -8,11 +8,14 @@ import YesNoModal from '../../utils/modal/YesNoModal';
 import { setCreateFolderDisplay } from '../../reducers/modal';
 import { setCurrentDir } from '../../reducers/file';
 import { uploadFile } from '../../actions/file/uploadFile';
+import Uploader from '../../utils/modal/uploader/Uploader';
+import { deleteFile } from '../../actions/file/deleteFile';
 
 const Drive = () => {
     const dispatch = useDispatch();
     const currentDir = useSelector((state) => state.file.currentDir);
     const dirStack = useSelector((state) => state.file.dirStack);
+    const file = useSelector((state) => state.modal.file);
     const [dragEnter, setDragEnter] = useState(false);
     useEffect(() => {
         dispatch(getFiles(currentDir));
@@ -38,21 +41,24 @@ const Drive = () => {
         files.forEach((file) => dispatch(uploadFile(file, currentDir)));
         setDragEnter(false);
     }
-
+    function dragLeaveHandler(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        setDragEnter(false);
+    }
     function dragOverHandler(event) {
         event.preventDefault();
         event.stopPropagation();
         setDragEnter(true);
     }
     return (
-        <div className="drive">
-            <div
-                className={
-                    dragEnter ? 'drive__upload' : 'drive__upload__onDrag'
-                }
-                onDrop={dropHandler}
-                onDragOver={dragOverHandler}
-            >
+        <div
+            className={!dragEnter ? 'drive' : 'drive__on-drag'}
+            onDrop={dropHandler}
+            onDragOver={dragOverHandler}
+            onDragLeave={dragLeaveHandler}
+        >
+            <div className="drive__upload">
                 <label htmlFor="upload" className="drive__upload-label">
                     Upload file
                 </label>
@@ -80,7 +86,12 @@ const Drive = () => {
             </div>
             <FileList />
             <CreateFolderModal />
-            <YesNoModal />
+            <Uploader />
+            <YesNoModal
+                title="Do you want to delete?"
+                text="Folders can contain files that would be deleted"
+                func={deleteFile(file)}
+            />
         </div>
     );
 };

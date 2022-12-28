@@ -3,7 +3,11 @@
 }
 .filelist__header {
     display: grid;
-    grid-template-columns: 1fr 4fr repeat(4, 1fr);
+    grid-template-columns: 1fr 4fr repeat(4, 1fr) repeat(2, 1fr);
+    padding-bottom: 10px;
+    border-bottom: 2px solid;
+    border-color: rgba(34, 31, 31, 0.5);
+    font-weight: bold;
 }
 .filelist__name {
     grid-column-start: 2;
@@ -14,5 +18,13 @@
 }
 .filelist__size {
     grid-column-start: 6;
+    justify-self: center;
+}
+.filelist__download {
+    grid-column-start: 7;
+    justify-self: center;
+}
+.filelist__delete {
+    grid-column-start: 8;
     justify-self: center;
 }

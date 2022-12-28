@@ -6,6 +6,7 @@ import UserModel from '../../models/User';
 import genetateToken from '../../utils/jwt';
 import FileService from '../../services/file';
 import File from '../../models/File';
+import { mongoose } from '@typegoose/typegoose';
 
 export async function RegistrationService(data: IRegistrationBody) {
     const existingEmail = await User.findOne({ email: data.email });
@@ -26,6 +27,7 @@ export async function RegistrationService(data: IRegistrationBody) {
     const hashPassword = await hash(data.password, salt);
 
     const user = await UserModel.create({
+        _id: new mongoose.Types.ObjectId(),
         email: data.email,
         username: data.username,
         password: hashPassword,

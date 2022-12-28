@@ -14,6 +14,8 @@ const FileList = () => {
                 <div className="filelist__type">Type</div>
                 <div className="filelist__date">Date</div>
                 <div className="filelist__size">Size</div>
+                <div className="filelist__download">Download</div>
+                <div className="filelist__delete">Delete</div>
             </div>
             {files}
         </div>

@@ -1,15 +1,17 @@
 .file {
     margin: 10px 0;
-    border-bottom: solid 2px #221f1f;
+    padding-bottom: 5px;
+    border-bottom: solid 2px rgba(34, 31, 31, 0.5);
     display: grid;
-    grid-template-columns: 1fr 4fr repeat(4, 1fr);
+    grid-template-columns: 1fr 4fr repeat(4, 1fr) repeat(2, 1fr);
     align-items: center;
 }
 .file:hover {
-    transform: scale(1.02);
+    transform: scale(1.01);
 }
 .file__img {
     justify-self: center;
+    pointer-events: none;
 }
 .file__date {
     grid-column-start: 5;
@@ -22,17 +24,17 @@
 .file__btn {
     display: none;
 }
-.file:hover .file__date {
-    grid-column-start: 3;
-}
-.file:hover .file__size {
-    grid-column-start: 4;
-}
 .file:hover .file__download {
-    grid-column-start: 5;
+    grid-column-start: 7;
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
     display: block;
 }
 .file:hover .file__delete {
-    grid-column-start: 6;
+    grid-column-start: 8;
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
     display: block;
 }

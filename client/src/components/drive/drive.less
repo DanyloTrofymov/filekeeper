@@ -1,7 +1,22 @@
 @import '../../utils/colors';
 
 .drive {
-    margin-top: 20px;
+    min-height: calc(100vh - 50px);
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    z-index: 1;
+
+    &__on-drag {
+        border: 3px dashed rgba(@navbar-color, 0.4);
+        border-radius: 10px;
+        background-color: rgba(@navbar-color, 0.2);
+        min-height: calc(100vh - 50px);
+        padding-top: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        z-index: 5;
+    }
 
     &__btns {
         display: flex;
@@ -30,17 +45,8 @@
         background-color: rgba(@btn-background-color, 0.5);
         padding: 5px, 10px;
         cursor: pointer;
-        margin-left: 10px;
     }
-}
-
-.drop-area {
-    width: 100%;
-    height: calc(100vh - 50px - 40px);
-    margin: 20px;
-    border: dashed @font-color 2px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 40px;
+    button {
+        padding: 5px 20px;
+    }
 }

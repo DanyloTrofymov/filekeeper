@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { setUser } from '../../reducers/user';
-import { setErrorDisplay } from '../../reducers/modal';
 
 export const auth = () => {
     return async (dispatch) => {
@@ -17,7 +16,7 @@ export const auth = () => {
                 localStorage.setItem('token', response.data.data.token);
             }
         } catch (e) {
-            dispatch(setErrorDisplay('flex', e.response.data.message));
+            console.log(e.response.data.message);
             localStorage.removeItem('token');
         }
     };

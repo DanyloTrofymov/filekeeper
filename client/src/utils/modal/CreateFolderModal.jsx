@@ -29,29 +29,26 @@ const CreateFolderModal = () => {
             >
                 <div className="modal__header">
                     <div className="modal__title">Create new folder</div>
-                    <button
-                        className="modal__close"
-                        onClick={() => dispatch(setCreateFolderDisplay('none'))}
-                    >
-                        X
-                    </button>
                 </div>
+
                 <Input
                     type="text"
                     placeholder="Enter folder name"
                     value={dirName}
                     setValue={setDirName}
                 />
-                <button
-                    className="modal__create"
-                    onClick={() => {
-                        setDirName(''),
-                            createHandler(),
-                            dispatch(setCreateFolderDisplay('none'));
-                    }}
-                >
-                    Create
-                </button>
+                <div className="modal__buttons">
+                    <button
+                        className="modal__create"
+                        onClick={() => {
+                            setDirName(''),
+                                createHandler(),
+                                dispatch(setCreateFolderDisplay('none'));
+                        }}
+                    >
+                        Create
+                    </button>
+                </div>
             </div>
         </div>
     );

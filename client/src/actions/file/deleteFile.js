@@ -1,5 +1,5 @@
 import axios from 'axios';
-//import { setErrorDisplay } from '../../reducers/modal';
+import { setErrorDisplay } from '../../reducers/modal';
 import { fileDelete } from '../../reducers/file';
 
 export function deleteFile(file) {
@@ -12,8 +12,7 @@ export function deleteFile(file) {
             });
             dispatch(fileDelete(file._id));
         } catch (e) {
-            console.log(e);
-            //dispatch(setErrorDisplay('flex', e));
+            dispatch(setErrorDisplay('flex', e.response.data.message));
         }
     };
 }

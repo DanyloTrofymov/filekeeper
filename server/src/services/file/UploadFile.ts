@@ -21,8 +21,8 @@ export async function uploadFileService(dbFile: File, file: IFile) {
     }
 
     try {
-        file.mv(path);
         const dbFileRes = await FileModel.create(dbFile);
+        file.mv(path);
         return dbFileRes;
     } catch (e) {
         throw new HttpError(

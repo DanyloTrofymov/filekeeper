@@ -8,6 +8,7 @@ import FileService from '../../services/file';
 import validate from '../../utils/validator';
 import { dumpFile } from '../../utils/dumps';
 import { Buffer } from 'buffer';
+import { mongoose } from '@typegoose/typegoose';
 
 interface FileBody extends Request {
     body: IUploadFileBody & ITokenBody;
@@ -59,7 +60,7 @@ export async function uploadFileController(
         if (user.used_space + file.size > user.disk_space)
             throw new HttpError(
                 400,
-                `There is no space for this file on ypur disk`,
+                `There is no space for this file on your disk`,
                 ERRORS.NO_SPACE_ON_DISK,
             );
 
@@ -73,6 +74,7 @@ export async function uploadFileController(
         }
 
         const dbFile = new File({
+            _id: new mongoose.Types.ObjectId(),
             name: file.name,
             type: type,
             size: file.size,
@@ -90,7 +92,7 @@ export async function uploadFileController(
             },
             status: 1,
         });
-    } catch (e) {
+    } catch (e: unknown) {
         next(e);
     }
 }

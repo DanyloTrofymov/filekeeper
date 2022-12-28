@@ -22,7 +22,7 @@ export async function listFileController(
             },
             status: 1,
         });
-    } catch (e) {
+    } catch (e: unknown) {
         next(e);
     }
 }

@@ -2,11 +2,11 @@ import React from 'react';
 import './modal.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setYesNoDisplay } from '../../reducers/modal';
-import { deleteFile } from '../../actions/file/deleteFile';
+//import { deleteFile } from '../../actions/file/deleteFile';
 
-const YesNoModal = () => {
+const YesNoModal = ({ title, text, func, props }) => {
     const popupDisplay = useSelector((state) => state.modal.yesNoModalDisplay);
-    const file = useSelector((state) => state.modal.yesNoFile);
+    //const file = useSelector((state) => state.modal.yesNoFile);
     const dispatch = useDispatch();
     return (
         <div
@@ -19,21 +19,25 @@ const YesNoModal = () => {
                 onClick={(event) => event.stopPropagation()}
             >
                 <div className="modal__header">
-                    <div className="modal__title">Do you want to delete?</div>
-                    <div className="modal__text">
-                        Folders can contain files that will be deleted
-                    </div>
+                    <div className="modal__title">{title}</div>
                     <button
-                        className="modal__button"
+                        className="modal__close"
+                        onClick={() => dispatch(setYesNoDisplay('none', null))}
+                    >
+                        X
+                    </button>
+                </div>
+                <div className="modal__text">{text}</div>
+                <div className="modal__buttons">
+                    <button
                         onClick={() => {
-                            dispatch(deleteFile(file)),
+                            dispatch(func(props)),
                                 dispatch(setYesNoDisplay('none', null));
                         }}
                     >
                         Yes
                     </button>
                     <button
-                        className="modal__button"
                         onClick={() => {
                             dispatch(setYesNoDisplay('none', null));
                         }}

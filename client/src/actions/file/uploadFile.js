@@ -1,6 +1,11 @@
 import axios from 'axios';
 import { addFile } from '../../reducers/file';
 import { setErrorDisplay } from '../../reducers/modal';
+import {
+    changeUploadFile,
+    showUploader,
+    addUploadFile,
+} from '../../reducers/upload';
 
 export function uploadFile(file, dirId) {
     return async (dispatch) => {
@@ -20,6 +25,9 @@ export function uploadFile(file, dirId) {
             if (dirId) {
                 formData.append('parent', dirId);
             }
+            const upload = { name: file.name, progress: 0, id: Date.now() };
+            dispatch(showUploader());
+            dispatch(addUploadFile(upload));
             const URL = `${process.env.REACT_APP_API_URL}drive/upload/`;
             const token = localStorage.getItem('token');
             const response = await axios.post(URL, formData, {
@@ -36,17 +44,16 @@ export function uploadFile(file, dirId) {
                               'x-decompressed-content-length',
                           );
                     if (totalLength) {
-                        let progress = Math.round(
+                        upload.progress = Math.round(
                             (progressEvent.loaded * 100) / totalLength,
                         );
-                        console.log(progress);
+                        dispatch(changeUploadFile(upload));
                     }
                 },
             });
             dispatch(addFile(response.data.data));
         } catch (e) {
-            //console.log(e);
-            dispatch(setErrorDisplay('flex', e.toString()));
+            dispatch(setErrorDisplay('flex', e.response.data.message));
         }
     };
 }

@@ -1,9 +1,15 @@
+@import '../../../utils/colors';
+
 .filelist {
     margin: 20px 0;
 
     &__header {
         display: grid;
-        grid-template-columns: 1fr 4fr repeat(4, 1fr);
+        grid-template-columns: 1fr 4fr repeat(4, 1fr) repeat(2, 1fr);
+        padding-bottom: 10px;
+        border-bottom: 2px solid;
+        border-color: rgba(@font-color, 0.5);
+        font-weight: bold;
     }
 
     &__name {
@@ -15,6 +21,14 @@
     }
     &__size {
         grid-column-start: 6;
+        justify-self: center;
+    }
+    &__download {
+        grid-column-start: 7;
+        justify-self: center;
+    }
+    &__delete {
+        grid-column-start: 8;
         justify-self: center;
     }
 }

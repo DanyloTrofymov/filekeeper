@@ -18,15 +18,17 @@ const ErrorModal = () => {
                 onClick={(event) => event.stopPropagation()}
             >
                 <div className="modal__header">
-                    <div className="modal__title_error">Error</div>
-                    <button
-                        className="modal__close"
-                        onClick={() => dispatch(setErrorDisplay('none', ''))}
-                    >
-                        X
-                    </button>
+                    <div className="modal__title">Error</div>
                 </div>
                 <div className="modal__text">{message}</div>
+                <div className="modal__buttons">
+                    <button
+                        className="modal__create"
+                        onClick={() => dispatch(setErrorDisplay('none', ''))}
+                    >
+                        Ok
+                    </button>
+                </div>
             </div>
         </div>
     );

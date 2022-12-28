@@ -5,6 +5,7 @@ import fileLogo from '../../../../assets/img/file.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { pushToStack, setCurrentDir } from '../../../../reducers/file';
 import { downloadFile } from '../../../../actions/file/downloadFile';
+
 import { setYesNoDisplay } from '../../../../reducers/modal';
 
 const File = ({ file }) => {

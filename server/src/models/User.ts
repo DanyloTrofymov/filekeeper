@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import { File } from './File';
 
 export class User {
-    @prop({ default: new mongoose.Types.ObjectId() })
+    @prop()
     public _id: mongoose.Types.ObjectId;
 
     @prop({ required: true, unique: true })

@@ -6,6 +6,7 @@ import { ICreateDirBody } from '../../types/file';
 import { ITokenBody } from '../../types/auth';
 import { dumpFile } from '../../utils/dumps';
 import { ERRORS, HttpError } from '../../utils/error';
+import { mongoose } from '@typegoose/typegoose';
 
 interface CreateBody extends Request {
     body: ICreateDirBody & ITokenBody;
@@ -28,6 +29,7 @@ export async function createDirController(
     try {
         validate(data, validationRules);
         const file = new File({
+            _id: new mongoose.Types.ObjectId(),
             name: data.name,
             type: data.type,
             parent: data.parent || null,
