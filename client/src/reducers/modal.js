@@ -3,11 +3,11 @@ const SET_CREATE_FOLDER = 'CREATE_FOLDER';
 const SET_YES_NO = 'SET_YES_NO';
 
 const defaultState = {
-    errorDisplay: 'none',
+    errorDisplay: false,
     errorMessage: '',
-    createFolderDisplay: 'none',
-    yesNoModalDisplay: 'none',
-    yesNoFile: null,
+    createFolderDisplay: false,
+    yesNoModalDisplay: false,
+    yesNoProps: null,
 };
 
 export default function modalReducer(state = defaultState, action) {
@@ -24,7 +24,7 @@ export default function modalReducer(state = defaultState, action) {
             return {
                 ...state,
                 yesNoModalDisplay: action.payload,
-                yesNoFile: action.file,
+                yesNoProps: action.props,
             };
         default:
             return state;
@@ -40,8 +40,8 @@ export const setCreateFolderDisplay = (display) => ({
     type: SET_CREATE_FOLDER,
     payload: display,
 });
-export const setYesNoDisplay = (display, file) => ({
+export const setYesNoDisplay = (display, props) => ({
     type: SET_YES_NO,
     payload: display,
-    file,
+    props: props,
 });

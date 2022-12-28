@@ -26,7 +26,7 @@ const File = ({ file }) => {
 
     function deleteClickHandler(e) {
         e.stopPropagation();
-        dispatch(setYesNoDisplay('flex', file));
+        dispatch(setYesNoDisplay(true, file));
     }
 
     return (
@@ -64,8 +64,8 @@ const File = ({ file }) => {
 };
 
 function convertSize(size) {
-    if (size > 1024 ** 4) {
-        return `${(size / 1024 ** 4).toFixed(1)} gb`;
+    if (size > 1024 ** 3) {
+        return `${(size / 1024 ** 3).toFixed(1)} gb`;
     }
     if (size > 1024 ** 2) {
         return `${(size / 1024 ** 2).toFixed(1)} mb`;

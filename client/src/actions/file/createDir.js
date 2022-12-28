@@ -20,7 +20,7 @@ export function createDir(dirId, name) {
             );
             dispatch(addFile(response.data.data));
         } catch (e) {
-            dispatch(setErrorDisplay('flex', e.response.data.message));
+            dispatch(setErrorDisplay(true, e.response.data.message));
         }
     };
 }

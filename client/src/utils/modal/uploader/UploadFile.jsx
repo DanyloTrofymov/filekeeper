@@ -1,9 +1,10 @@
 import React from 'react';
 import './uploader.css';
-
+import { useSelector } from 'react-redux';
 const UploadFile = ({ file }) => {
+    const isVisible = useSelector((state) => state.upload.isVisible);
     return (
-        <div className="upload-file">
+        <div className={isVisible ? 'upload-file' : 'inactive'}>
             <div className="upload-file__header">
                 <div className="upload-file__name">{file.name}</div>
             </div>

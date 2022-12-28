@@ -15,14 +15,15 @@ const Drive = () => {
     const dispatch = useDispatch();
     const currentDir = useSelector((state) => state.file.currentDir);
     const dirStack = useSelector((state) => state.file.dirStack);
-    const file = useSelector((state) => state.modal.file);
+    const file = useSelector((state) => state.modal.yesNoProps);
+
     const [dragEnter, setDragEnter] = useState(false);
     useEffect(() => {
         dispatch(getFiles(currentDir));
     }, [currentDir]);
 
     function showPopupHandler() {
-        dispatch(setCreateFolderDisplay('flex'));
+        dispatch(setCreateFolderDisplay(true));
     }
     function backClickHandler() {
         const backDirId = dirStack.pop();
@@ -90,7 +91,8 @@ const Drive = () => {
             <YesNoModal
                 title="Do you want to delete?"
                 text="Folders can contain files that would be deleted"
-                func={deleteFile(file)}
+                func={deleteFile}
+                props={file}
             />
         </div>
     );

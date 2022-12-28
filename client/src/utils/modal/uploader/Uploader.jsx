@@ -10,24 +10,22 @@ const Uploader = () => {
     const dispatch = useDispatch();
 
     return (
-        isVisible && (
-            <div className="uploader">
-                <div className="uploader__header">
-                    <div className="uploader__title">Uploads</div>
-                    <button
-                        className="uploader__close"
-                        onClick={() => dispatch(hideUploader())}
-                    >
-                        X
-                    </button>
-                </div>
-                <div className="uploader__content">
-                    {files.map((file) => (
-                        <UploadFile key={file.id} file={file} />
-                    ))}
-                </div>
+        <div className={isVisible ? 'uploader' : 'inactive'}>
+            <div className="uploader__header">
+                <div className="uploader__title">Uploads</div>
+                <button
+                    className="uploader__close"
+                    onClick={() => dispatch(hideUploader())}
+                >
+                    X
+                </button>
             </div>
-        )
+            <div className="uploader__content">
+                {files.map((file) => (
+                    <UploadFile key={file.id} file={file} />
+                ))}
+            </div>
+        </div>
     );
 };
 

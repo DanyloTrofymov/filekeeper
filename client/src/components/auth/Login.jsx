@@ -3,7 +3,7 @@ import './auth.css';
 import Input from '../../utils/input/Input';
 import { login } from '../../actions/user/login';
 import { useDispatch } from 'react-redux';
-import ErrorModal from '../../utils/modal/ErrorModal';
+//import ErrorModal from '../../utils/modal/ErrorModal';
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -31,7 +31,6 @@ const Login = () => {
             >
                 Sign in
             </button>
-            <ErrorModal />
         </div>
     );
 };

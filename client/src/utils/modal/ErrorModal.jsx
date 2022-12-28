@@ -9,12 +9,16 @@ const ErrorModal = () => {
     const dispatch = useDispatch();
     return (
         <div
-            className="modal error"
-            onClick={() => dispatch(setErrorDisplay('none', ''))}
-            style={{ display: popupDisplay }}
+            className={popupDisplay ? 'modal create' : 'inactive'}
+            onClick={() => dispatch(setErrorDisplay(false, ''))}
+            style={{ display: popupDisplay ? 'flex' : 'none' }}
         >
             <div
-                className="modal__content"
+                className={
+                    popupDisplay
+                        ? 'modal__content '
+                        : 'modal__content__inacative'
+                }
                 onClick={(event) => event.stopPropagation()}
             >
                 <div className="modal__header">
@@ -23,8 +27,8 @@ const ErrorModal = () => {
                 <div className="modal__text">{message}</div>
                 <div className="modal__buttons">
                     <button
-                        className="modal__create"
-                        onClick={() => dispatch(setErrorDisplay('none', ''))}
+                        className="modal__button__negative"
+                        onClick={() => dispatch(setErrorDisplay(false, ''))}
                     >
                         Ok
                     </button>

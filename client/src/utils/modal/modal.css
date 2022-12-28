@@ -1,3 +1,10 @@
+.inactive {
+    opacity: 0;
+    pointer-events: none;
+    max-height: 0px;
+    padding: 0px;
+    margin: 0px;
+}
 .modal {
     height: 100vh;
     width: 100vw;
@@ -10,6 +17,9 @@
     align-items: center;
     justify-content: center;
     z-index: 99;
+    transition: 0.2s;
+    pointer-events: all;
+    opacity: 1;
 }
 .modal .create {
     display: flex;
@@ -30,13 +40,16 @@
     border-radius: 10px;
     background-color: white;
     min-width: 500px;
-    width: 40vw;
+    width: 30vw;
     display: flex;
     flex-direction: column;
+    transform: scale(1);
+    transition: 0.4s all;
 }
-.modal button {
-    align-self: flex-end;
-    padding: 5px 20px;
+.modal__content__inacative {
+    transform: scale(0.5);
+    max-height: 0px;
+    max-height: 1px;
 }
 .modal__close {
     align-self: flex-end;
@@ -47,6 +60,10 @@
 }
 .modal input {
     margin: 20px 0px;
+}
+.modal button {
+    margin-left: 9em;
+    margin-right: 9em;
 }
 .modal__buttons {
     display: flex;

@@ -6,43 +6,42 @@ import { setYesNoDisplay } from '../../reducers/modal';
 
 const YesNoModal = ({ title, text, func, props }) => {
     const popupDisplay = useSelector((state) => state.modal.yesNoModalDisplay);
-    //const file = useSelector((state) => state.modal.yesNoFile);
+    //const props = useSelector((state) => state.modal.yesNoProps);
     const dispatch = useDispatch();
     return (
         <div
-            className="modal"
-            onClick={() => dispatch(setYesNoDisplay('none', false))}
-            style={{ display: popupDisplay }}
+            className={popupDisplay ? 'modal create' : 'inactive'}
+            onClick={() => dispatch(setYesNoDisplay(false, null))}
         >
             <div
-                className="modal__content"
+                className={
+                    popupDisplay
+                        ? 'modal__content '
+                        : 'modal__content__inacative'
+                }
                 onClick={(event) => event.stopPropagation()}
             >
                 <div className="modal__header">
                     <div className="modal__title">{title}</div>
-                    <button
-                        className="modal__close"
-                        onClick={() => dispatch(setYesNoDisplay('none', null))}
-                    >
-                        X
-                    </button>
                 </div>
                 <div className="modal__text">{text}</div>
                 <div className="modal__buttons">
                     <button
+                        className="modal__button__negative"
+                        onClick={() => {
+                            dispatch(setYesNoDisplay(false, null));
+                        }}
+                    >
+                        No
+                    </button>
+                    <button
+                        className="modal__button__positive"
                         onClick={() => {
                             dispatch(func(props)),
                                 dispatch(setYesNoDisplay('none', null));
                         }}
                     >
                         Yes
-                    </button>
-                    <button
-                        onClick={() => {
-                            dispatch(setYesNoDisplay('none', null));
-                        }}
-                    >
-                        No
                     </button>
                 </div>
             </div>

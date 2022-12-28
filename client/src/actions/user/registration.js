@@ -17,7 +17,7 @@ export const registration = (email, username, password, repeatPassword) => {
             dispatch(setUser(response.data.user));
             localStorage.setItem('token', response.data.data.token);
         } catch (e) {
-            dispatch(setErrorDisplay('flex', e.response.data.message));
+            dispatch(setErrorDisplay(true, e.response.data.message));
         }
     };
 };

@@ -11,11 +11,10 @@ export const login = (username, password) => {
             };
             const URL = process.env.REACT_APP_API_URL + 'auth/login/';
             const response = await axios.post(URL, req);
-            dispatch(setUser(response.data.user));
             localStorage.setItem('token', response.data.data.token);
+            dispatch(setUser(response.data.user));
         } catch (e) {
-            dispatch(setErrorDisplay('flex', e.response.data.message));
-            //alert(e.response.data.message);
+            dispatch(setErrorDisplay(true, e.response.data.message));
         }
     };
 };

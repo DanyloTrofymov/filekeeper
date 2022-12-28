@@ -19,12 +19,15 @@ const CreateFolderModal = () => {
 
     return (
         <div
-            className="modal create"
-            onClick={() => dispatch(setCreateFolderDisplay('none'))}
-            style={{ display: popupDisplay }}
+            className={popupDisplay ? 'modal create' : 'inactive'}
+            onClick={() => dispatch(setCreateFolderDisplay(false, null))}
         >
             <div
-                className="modal__content"
+                className={
+                    popupDisplay
+                        ? 'modal__content '
+                        : 'modal__content__inacative'
+                }
                 onClick={(event) => event.stopPropagation()}
             >
                 <div className="modal__header">
@@ -37,13 +40,22 @@ const CreateFolderModal = () => {
                     value={dirName}
                     setValue={setDirName}
                 />
+
                 <div className="modal__buttons">
                     <button
-                        className="modal__create"
+                        className="modal__button__negative"
+                        onClick={() => {
+                            dispatch(setCreateFolderDisplay(false, null));
+                        }}
+                    >
+                        Close
+                    </button>
+                    <button
+                        className="modal__button__positive"
                         onClick={() => {
                             setDirName(''),
                                 createHandler(),
-                                dispatch(setCreateFolderDisplay('none'));
+                                dispatch(setCreateFolderDisplay(false));
                         }}
                     >
                         Create

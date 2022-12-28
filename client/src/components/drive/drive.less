@@ -50,3 +50,27 @@
         padding: 5px 20px;
     }
 }
+
+.modal.entering {
+    animation: modal-active 5000 forwards;
+}
+
+.modal.entered {
+    animation: modal-active 5000 forwards;
+}
+
+.modal.exiting {
+    opacity: 1;
+}
+.modal.exited {
+    opacity: 0;
+}
+
+@keyframes modal-active {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

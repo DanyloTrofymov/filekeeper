@@ -28,3 +28,14 @@
     grid-column-start: 8;
     justify-self: center;
 }
+.file-enter-active {
+    animation: file-enter 250ms forwards;
+}
+@keyframes file-enter {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
