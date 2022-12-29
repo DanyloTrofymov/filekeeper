@@ -3,12 +3,16 @@ const SET_CURRENT_DIR = 'SET_CURRENT_DIR';
 const ADD_FILE = 'ADD_FILE';
 const PUSH_TO_STACK = 'PUSH_TO_STACK';
 const DELETE_FILE = 'DELETE_FILE';
+const SET_SORT = 'SET_SORT';
+const SET_FILTER = 'SET_FILTER';
 
 const defaultState = {
     files: [],
     currentDir: null,
     popupDisplay: 'none',
     dirStack: [],
+    sort: 'date',
+    filter: [],
 };
 
 export default function fileReducer(state = defaultState, action) {
@@ -28,6 +32,22 @@ export default function fileReducer(state = defaultState, action) {
                     ...state.files.filter((file) => file._id != action.payload),
                 ],
             };
+        case SET_SORT:
+            return { ...state, sort: action.payload };
+        case SET_FILTER:
+            if (action.add) {
+                return {
+                    ...state,
+                    filter: [...state.filter, action.payload],
+                };
+            } else {
+                return {
+                    ...state,
+                    filter: [
+                        ...state.filter.filter((e) => e != action.payload),
+                    ],
+                };
+            }
 
         default:
             return state;
@@ -39,3 +59,9 @@ export const setCurrentDir = (dir) => ({ type: SET_CURRENT_DIR, payload: dir });
 export const addFile = (file) => ({ type: ADD_FILE, payload: file });
 export const pushToStack = (dir) => ({ type: PUSH_TO_STACK, payload: dir });
 export const fileDelete = (fileId) => ({ type: DELETE_FILE, payload: fileId });
+export const setSort = (sort) => ({ type: SET_SORT, payload: sort });
+export const setFilter = (filter, add) => ({
+    type: SET_FILTER,
+    payload: filter,
+    add,
+});

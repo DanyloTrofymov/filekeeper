@@ -39,7 +39,7 @@ const File = ({ file }) => {
             />
             <div className="file__name">{file.name}</div>
             <div className="file__type">
-                {file.type === 'dir' ? 'Folder' : file.type}
+                {file.type === 'dir' ? 'folder' : file.type}
             </div>
             <div className="file__date">{file.date.slice(0, 10)}</div>
             <div className="file__size">

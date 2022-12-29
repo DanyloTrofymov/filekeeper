@@ -1,0 +1,104 @@
+.left-aside {
+    padding-top: 50px;
+}
+.left-aside__content {
+    flex-direction: row;
+}
+.left-aside__fieldset {
+    border: 1px solid #221f1f;
+    width: 10vw;
+    min-width: 150px;
+    background-color: white;
+    box-shadow: 0px 0px 3px rgba(34, 31, 31, 0.5);
+}
+.left-aside__label {
+    display: block;
+    position: relative;
+    margin-top: 0.5em;
+    padding-left: 3em;
+    margin-bottom: 1em;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.left-aside__label input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+.left-aside__label:hover input ~ .left-aside__checkmark {
+    background-color: #ccc;
+}
+.left-aside__label input:checked ~ .left-aside__checkmark {
+    background-color: #2196f3;
+}
+.left-aside__label input:checked ~ .left-aside__checkmark::after {
+    display: block;
+}
+.left-aside__label .left-aside__checkmark::after {
+    left: 6px;
+    top: 3px;
+    width: 5px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.left-aside__label:hover input ~ .left-aside__radiomark {
+    background-color: #ccc;
+}
+.left-aside__label input:checked ~ .left-aside__radiomark {
+    background-color: #2196f3;
+}
+.left-aside__label input:checked ~ .left-aside__radiomark::after {
+    display: block;
+}
+.left-aside__label .left-aside__radiomark::after {
+    left: 6px;
+    top: 3px;
+    width: 5px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.left-aside__radiomark {
+    border: 1px solid #221f1f;
+    border-radius: 5px;
+    position: absolute;
+    left: 15px;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+}
+.left-aside__radiomark::after {
+    content: '';
+    position: absolute;
+    display: none;
+}
+.left-aside__checkmark {
+    border: 1px solid #221f1f;
+    border-radius: 5px;
+    position: absolute;
+    left: 15px;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+}
+.left-aside__checkmark::after {
+    content: '';
+    position: absolute;
+    display: none;
+}
+.left-aside__text {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

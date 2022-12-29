@@ -17,9 +17,7 @@ export function getFiles(dirId, sort, filter) {
                     URL += `filter=${value}&`;
                 });
             }
-            //console.log(filter);
             const token = localStorage.getItem('token');
-            console.log(token);
             const response = await axios.get(URL, {
                 headers: {
                     Authorization: `Bearer ${token}`,
