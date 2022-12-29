@@ -1,16 +1,16 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import './left-aside.css';
-import { setFilter } from '.././../../reducers/file';
+import './filter.css';
+import { setFilter } from '../../../../reducers/file';
 
 const FilterBox = () => {
     const dispatch = useDispatch();
     return (
-        <div className="left-aside__filter">
-            <div className="left-aside__text">Filters for files:</div>
-            <fieldset className="left-aside__fieldset">
+        <div className="filter">
+            <div className="text">Filters for files:</div>
+            <fieldset className="fieldset">
                 <div>
-                    <label className="left-aside__label">
+                    <label className="label">
                         Documents
                         <input
                             type="checkbox"
@@ -24,9 +24,9 @@ const FilterBox = () => {
                             }
                             name="doc"
                         />
-                        <span className="left-aside__checkmark"></span>
+                        <span className="checkmark"></span>
                     </label>
-                    <label className="left-aside__label">
+                    <label className="label">
                         Music
                         <input
                             type="checkbox"
@@ -40,9 +40,9 @@ const FilterBox = () => {
                             }
                             name="music"
                         />
-                        <span className="left-aside__checkmark"></span>
+                        <span className="checkmark"></span>
                     </label>
-                    <label className="left-aside__label">
+                    <label className="label">
                         Photo
                         <input
                             type="checkbox"
@@ -56,9 +56,9 @@ const FilterBox = () => {
                             }
                             name="pic"
                         />
-                        <span className="left-aside__checkmark"></span>
+                        <span className="checkmark"></span>
                     </label>
-                    <label className="left-aside__label">
+                    <label className="label">
                         Video
                         <input
                             type="checkbox"
@@ -72,7 +72,7 @@ const FilterBox = () => {
                             }
                             name="vid"
                         />
-                        <span className="left-aside__checkmark"></span>
+                        <span className="checkmark"></span>
                     </label>
                 </div>
             </fieldset>

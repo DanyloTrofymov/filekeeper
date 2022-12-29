@@ -12,6 +12,11 @@ export const initFileApi = () => {
     );
     router.get('/', authMiddleware, controllers.FileController.listFiles);
     router.get(
+        '/search',
+        authMiddleware,
+        controllers.FileController.searchFile,
+    );
+    router.get(
         '/download',
         authMiddleware,
         controllers.FileController.downloadFile,

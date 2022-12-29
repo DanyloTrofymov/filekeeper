@@ -1,27 +1,22 @@
 import { Response, NextFunction, Request } from 'express';
 import FileService from '../../services/file';
-import { IListQuery } from '../../types/file';
+import { ISearchQuery } from '../../types/file';
 import { ITokenBody } from '../../types/auth';
 
-interface ListBody extends Request {
+interface SearchBody extends Request {
     body: ITokenBody;
 }
 
-export async function listFileController(
-    req: ListBody,
+export async function searchFileController(
+    req: SearchBody,
     res: Response,
     next: NextFunction,
 ) {
-    const query = req.query as unknown as IListQuery;
-    if (query.filter && typeof query.filter == 'string') {
-        const paramArray = [query.filter];
-        query.filter = paramArray;
-    }
+    const query = req.query as unknown as ISearchQuery;
     const data = { ...req.body, ...query };
-    data.filter = query.filter;
 
     try {
-        const files = await FileService.listFile(data);
+        const files = await FileService.searchFile(data);
         res.json({
             data: {
                 files,

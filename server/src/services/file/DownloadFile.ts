@@ -1,6 +1,6 @@
 import { Response } from 'express';
 import fs from 'fs-extra';
-import File from '../../models/File';
+import FileModel from '../../models/File';
 import { ITokenBody } from '../../types/auth';
 import { IDownloadQuery } from '../../types/file';
 import { ERRORS, HttpError } from '../../utils/error';
@@ -9,7 +9,7 @@ export async function downloadFileService(
     data: ITokenBody & IDownloadQuery,
     res: Response,
 ) {
-    const file = await File.findOne({ _id: data.id, user: data.userId });
+    const file = await FileModel.findOne({ _id: data.id, user: data.userId });
     if (!file) {
         throw new HttpError(403, 'File not found', ERRORS.NOT_FOUND('FILE'));
     }

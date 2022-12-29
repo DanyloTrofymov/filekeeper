@@ -12,7 +12,7 @@ export interface IUploadFileBody {
 export interface IFileBody {
     file: string;
 }
-export interface IFindQuery {
+export interface IListQuery {
     parent: string;
     sort: string;
     filter: string[];
@@ -20,6 +20,10 @@ export interface IFindQuery {
 
 export interface IDownloadQuery {
     id: string;
+}
+
+export interface ISearchQuery {
+    search: string;
 }
 
 export interface IDeleteQuery {

@@ -1,0 +1,60 @@
+@import '../../../../utils/colors';
+
+.search {
+    width: 10vw;
+    height: 100hv;
+    position: relative;
+    display: flex;
+
+    &__term {
+        width: 100%;
+        border: 3px solid @navbar-color;
+        border-right: none;
+        padding: 5px;
+        height: 36px;
+        background: #fff;
+        border-radius: 5px 0 0 5px;
+        outline: none;
+        color: rgba(@navbar-color, 0.5);
+    }
+    &__term:focus {
+        color: @navbar-color;
+    }
+
+    &__button {
+        width: 40px;
+        height: 36px;
+        border: 1px solid @navbar-color;
+        background: @navbar-color;
+        text-align: center;
+        color: #fff;
+        border-radius: 0 5px 5px 0;
+        cursor: pointer;
+        font-size: 20px;
+    }
+    &__icon {
+        box-sizing: border-box;
+        position: relative;
+        display: block;
+        color: #fff;
+        width: 16px;
+        height: 16px;
+        border: 2px solid;
+        border-radius: 100%;
+        margin-left: 6px;
+        margin-top: 6px;
+    }
+    &__icon::after {
+        content: '';
+        display: block;
+        box-sizing: border-box;
+        position: absolute;
+        border-radius: 3px;
+        width: 2px;
+        height: 8px;
+        background: currentColor;
+        transform: rotate(-45deg);
+        top: 10px;
+        left: 12px;
+    }
+}

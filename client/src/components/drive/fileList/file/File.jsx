@@ -42,9 +42,7 @@ const File = ({ file }) => {
                 {file.type === 'dir' ? 'folder' : file.type}
             </div>
             <div className="file__date">{file.date.slice(0, 10)}</div>
-            <div className="file__size">
-                {file.type === 'dir' ? '' : convertSize(file.size)}
-            </div>
+            <div className="file__size">{convertSize(file.size)}</div>
             {file.type !== 'dir' && (
                 <button
                     onClick={(e) => downloadClickHandler(e)}

@@ -15,6 +15,13 @@ const FileList = () => {
             <File file={file} />
         </CSSTransition>
     ));
+    if (files.length == 0) {
+        return (
+            <div className="center">
+                <h1>Empty folder</h1>
+            </div>
+        );
+    }
     return (
         <div className="filelist">
             <div className="filelist__header">

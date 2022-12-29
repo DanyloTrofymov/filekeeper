@@ -3,7 +3,6 @@ import './auth.css';
 import Input from '../../utils/input/Input';
 import { registration } from '../../actions/user/registration';
 import { useDispatch } from 'react-redux';
-//import ErrorModal from '../../utils/modal/ErrorModal';
 
 const Registration = () => {
     const [email, setEmail] = useState('');

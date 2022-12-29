@@ -1,5 +1,4 @@
 const SHOW_LOADER = 'SHOW_LOADER';
-const HIDE_LOADER = 'HIDE_LOADER';
 
 const defaultState = {
     loader: false,
@@ -8,13 +7,10 @@ const defaultState = {
 export default function helperReducer(state = defaultState, action) {
     switch (action.type) {
         case SHOW_LOADER:
-            return { ...state, loader: true };
-        case HIDE_LOADER:
-            return { ...state, loader: false };
+            return { ...state, loader: action.state };
         default:
             return state;
     }
 }
 
-export const showLoader = () => ({ type: SHOW_LOADER });
-export const hideLoader = () => ({ type: HIDE_LOADER });
+export const showLoader = (state) => ({ type: SHOW_LOADER, state });

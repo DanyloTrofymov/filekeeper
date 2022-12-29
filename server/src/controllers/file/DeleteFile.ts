@@ -4,13 +4,12 @@ import { IDeleteQuery } from '../../types/file';
 import { ITokenBody } from '../../types/auth';
 import { ERRORS, HttpError } from '../../utils/error';
 import User from '../../models/User';
-import { dumpFile } from '../../utils/dumps';
-import File from '../../models/File';
+import FileModel, { File } from '../../models/File';
 
 interface downloadBody extends Request {
     body: ITokenBody;
 }
-
+const childs: any = [];
 export async function deleteFileController(
     req: downloadBody,
     res: Response,
@@ -21,8 +20,10 @@ export async function deleteFileController(
     const user = await User.findOne({ _id: data.userId });
 
     try {
-        console.log(data);
-        const file = await File.findOne({ _id: data.id, user: data.userId });
+        const file = await FileModel.findOne({
+            _id: data.id,
+            user: data.userId,
+        });
         if (!file) {
             throw new HttpError(
                 403,
@@ -38,10 +39,8 @@ export async function deleteFileController(
                 ERRORS.NOT_FOUND('USER'),
             );
         }
-        console.log(dumpFile(file));
-        const childs: any = [];
-        await getChilds(file, childs);
-        console.log();
+
+        await getChilds(file);
         childs.push(file);
         await childs.forEach(async (child: any) => {
             user.used_space -= child.size;
@@ -49,7 +48,6 @@ export async function deleteFileController(
         });
 
         await user.save();
-
         return res.json({
             data: {
                 ...childs,
@@ -60,11 +58,12 @@ export async function deleteFileController(
         next(e);
     }
 }
-async function getChilds(file: any, childs: any[]) {
-    const childForThis = await File.find({ childs: file.childs });
-    childForThis.forEach((child: any) => {
-        getChilds(child, childs);
-    });
-
-    return childs;
+async function getChilds(file: any) {
+    const childForThis: File[] = await FileModel.find({ _id: file.childs });
+    if (childForThis) {
+        childForThis.forEach((child) => {
+            childs.push(child);
+            getChilds(child);
+        });
+    }
 }

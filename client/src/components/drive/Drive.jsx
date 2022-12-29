@@ -9,19 +9,22 @@ import CreateFolderModal from '../../utils/modal/CreateFolderModal';
 import YesNoModal from '../../utils/modal/YesNoModal';
 import Uploader from '../../utils/modal/uploader/Uploader';
 import FileList from './fileList/FileList';
-import FilterBox from './leftAside/filterBox';
-import SortBox from './leftAside/sortBox';
+import FilterBox from './leftAside/filter/filterBox';
+import SortBox from './leftAside/sort/sortBox';
+import SearchBar from './leftAside/searchBar/searchBar';
 import './drive.css';
+import '../../utils/loader.css';
 
 const Drive = () => {
     const dispatch = useDispatch();
+    const user = useSelector((state) => state.user.currentUser);
     const currentDir = useSelector((state) => state.file.currentDir);
     const dirStack = useSelector((state) => state.file.dirStack);
     const file = useSelector((state) => state.modal.yesNoProps);
     const loader = useSelector((state) => state.hepler.loader);
-
     const sort = useSelector((state) => state.file.sort);
     const filter = useSelector((state) => state.file.filter);
+    const search = useSelector((state) => state.file.search);
     const [dragEnter, setDragEnter] = useState(false);
 
     useEffect(() => {
@@ -58,16 +61,27 @@ const Drive = () => {
         event.stopPropagation();
         setDragEnter(true);
     }
+    /*function getPath(){
+        let path = '';
+        let dirs = useSelector((state) => state.file.dirStack)
+        dirs.forEach(dir => path+=dir + '/')
+        return path;
+                <div>{getPath()}</div>
 
-    if (loader === true) {
-        return <div></div>;
-    }
+    }*/
     return (
         <div className="window">
             <div className="left-aside">
                 <div className="left-aside__content">
-                    <SortBox />
-                    <FilterBox />
+                    <SearchBar />
+                    {!search.length ? (
+                        <div>
+                            <SortBox />
+                            <FilterBox />
+                        </div>
+                    ) : (
+                        <div></div>
+                    )}
                 </div>
             </div>
             <div
@@ -89,12 +103,16 @@ const Drive = () => {
                     />
                 </div>
                 <div className="drive__btns">
-                    <button
-                        className="drive__back"
-                        onClick={() => backClickHandler()}
-                    >
-                        Back
-                    </button>
+                    {currentDir != user.id ? (
+                        <button
+                            className="drive__back"
+                            onClick={() => backClickHandler()}
+                        >
+                            Back
+                        </button>
+                    ) : (
+                        <div></div>
+                    )}
                     <button
                         className="drive__create"
                         onClick={() => showPopupHandler()}
@@ -102,7 +120,13 @@ const Drive = () => {
                         Create folder
                     </button>
                 </div>
-                <FileList />
+                {loader ? (
+                    <div className="center">
+                        <span className="loader"></span>
+                    </div>
+                ) : (
+                    <FileList />
+                )}
                 <CreateFolderModal />
                 <Uploader />
                 <YesNoModal

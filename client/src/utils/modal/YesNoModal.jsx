@@ -2,11 +2,9 @@ import React from 'react';
 import './modal.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setYesNoDisplay } from '../../reducers/modal';
-//import { deleteFile } from '../../actions/file/deleteFile';
 
 const YesNoModal = ({ title, text, func, props }) => {
     const popupDisplay = useSelector((state) => state.modal.yesNoModalDisplay);
-    //const props = useSelector((state) => state.modal.yesNoProps);
     const dispatch = useDispatch();
     return (
         <div
@@ -37,8 +35,8 @@ const YesNoModal = ({ title, text, func, props }) => {
                     <button
                         className="modal__button__positive"
                         onClick={() => {
-                            dispatch(func(props)),
-                                dispatch(setYesNoDisplay('none', null));
+                            dispatch(func(props));
+                            dispatch(setYesNoDisplay(false, null));
                         }}
                     >
                         Yes

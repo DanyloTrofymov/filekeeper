@@ -1,10 +1,10 @@
-import File from '../../models/File';
+import FileModel from '../../models/File';
 import { ITokenBody } from '../../types/auth';
-import { IFindQuery } from '../../types/file';
+import { IListQuery } from '../../types/file';
 import { ERRORS, HttpError } from '../../utils/error';
 import { allowedSort, allowedFilter } from '../../types/file';
 
-export async function listFileService(data: ITokenBody & IFindQuery) {
+export async function listFileService(data: ITokenBody & IListQuery) {
     if (data.parent == '') {
         throw new HttpError(
             400,
@@ -34,25 +34,25 @@ export async function listFileService(data: ITokenBody & IFindQuery) {
         let files;
         if (data.sort && data.filter) {
             const filter = filterProperty(data.filter);
-            files = await File.find({
+            files = await FileModel.find({
                 user: data.userId,
                 parent: data.parent,
                 type: filter,
             }).sort(data.sort);
         } else if (data.filter) {
             const filter = filterProperty(data.filter);
-            files = await File.find({
+            files = await FileModel.find({
                 user: data.userId,
                 parent: data.parent,
                 type: filter,
             });
         } else if (data.sort) {
-            files = await File.find({
+            files = await FileModel.find({
                 user: data.userId,
                 parent: data.parent,
             }).sort(data.sort);
         } else {
-            files = await File.find({
+            files = await FileModel.find({
                 user: data.userId,
                 parent: data.parent,
             });
@@ -65,9 +65,9 @@ export async function listFileService(data: ITokenBody & IFindQuery) {
         return sorted;
     } catch (e) {
         throw new HttpError(
-            400,
-            `Files for user ${data.userId} with parentId ${data.parent} not found`,
-            ERRORS.NOT_FOUND('FILES'),
+            500,
+            `Internal server error`,
+            ERRORS.INTERNAL_ERROR,
         );
     }
 }

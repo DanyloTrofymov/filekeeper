@@ -6,8 +6,8 @@ import { logout } from '../../reducers/user';
 
 const Navbar = () => {
     const isAuth = useSelector((state) => state.user.isAuth);
+    const user = useSelector((state) => state.user.currentUser);
     const dispatch = useDispatch();
-
     return (
         <div className="navbar">
             <div className="container">
@@ -16,20 +16,23 @@ const Navbar = () => {
                 </div>
                 {!isAuth && (
                     <div className="navbar__login">
-                        <NavLink to="/login">Sign in</NavLink>
-                    </div>
-                )}
-                {!isAuth && (
-                    <div className="navbar__registration">
-                        <NavLink to="/registration">Sign up</NavLink>
+                        <div className="navbar__login__link">
+                            <NavLink to="/registration">Sign up</NavLink>
+                        </div>
+                        <div className="navbar__login__link">
+                            <NavLink to="/login">Sign in</NavLink>
+                        </div>
                     </div>
                 )}
                 {isAuth && (
-                    <div
-                        className="navbar__login"
-                        onClick={() => dispatch(logout())}
-                    >
-                        <NavLink to="/login">Log out</NavLink>
+                    <div className="navbar__login">
+                        <div className="navbar__username">{user.username}</div>
+                        <div
+                            className="navbar__login__link"
+                            onClick={() => dispatch(logout())}
+                        >
+                            <NavLink to="/login">Log out</NavLink>
+                        </div>
                     </div>
                 )}
             </div>

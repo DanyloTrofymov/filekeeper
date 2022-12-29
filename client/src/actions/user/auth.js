@@ -13,11 +13,10 @@ export const auth = () => {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-                dispatch(setUser(response.data.user));
+                dispatch(setUser(response.data.data));
                 localStorage.setItem('token', response.data.data.token);
             }
         } catch (e) {
-            console.log(e);
             localStorage.removeItem('token');
             dispatch(logout());
         }

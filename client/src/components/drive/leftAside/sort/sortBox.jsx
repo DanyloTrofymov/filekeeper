@@ -1,15 +1,15 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import './left-aside.css';
-import { setSort } from '.././../../reducers/file';
+import './sort.css';
+import { setSort } from '../../../../reducers/file';
 const SortBox = () => {
     const dispatch = useDispatch();
     return (
-        <div className="left-aside__select-sort">
-            <div className="left-aside__text">Sort files by:</div>
-            <fieldset className="left-aside__fieldset">
+        <div className="select-sort">
+            <div className="text">Sort files by:</div>
+            <fieldset className="fieldset">
                 <div>
-                    <label className="left-aside__label">
+                    <label className="abel">
                         Date
                         <input
                             type="radio"
@@ -17,34 +17,34 @@ const SortBox = () => {
                             name="sort"
                             defaultChecked
                         />
-                        <span className="left-aside__radiomark"></span>
+                        <span className="radiomark"></span>
                     </label>
-                    <label className="left-aside__label">
+                    <label className="label">
                         Type
                         <input
                             type="radio"
                             onChange={() => dispatch(setSort('type'))}
                             name="sort"
                         />
-                        <span className="left-aside__radiomark"></span>
+                        <span className="radiomark"></span>
                     </label>
-                    <label className="left-aside__label">
+                    <label className="label">
                         Name
                         <input
                             type="radio"
                             onChange={() => dispatch(setSort('name'))}
                             name="sort"
                         />
-                        <span className="left-aside__radiomark"></span>
+                        <span className="radiomark"></span>
                     </label>
-                    <label className="left-aside__label">
+                    <label className="label">
                         Size
                         <input
                             type="radio"
                             onChange={() => dispatch(setSort('size'))}
                             name="sort"
                         />
-                        <span className="left-aside__radiomark"></span>
+                        <span className="radiomark"></span>
                     </label>
                 </div>
             </fieldset>

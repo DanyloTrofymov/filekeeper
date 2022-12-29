@@ -64,8 +64,6 @@ export async function uploadFileController(
                 ERRORS.NO_SPACE_ON_DISK,
             );
 
-        user.used_space += file.size;
-
         file.name = Buffer.from(file.name, 'ascii').toString('utf8');
 
         let filePath = file.name;
@@ -84,6 +82,14 @@ export async function uploadFileController(
         });
 
         const dbFileRes = await FileService.uploadFile(dbFile, file);
+
+        if (parent) {
+            parent.size += dbFileRes.size;
+            parent.childs.push(dbFileRes.id);
+            await parent.save();
+        }
+
+        user.used_space += dbFileRes.size;
         await user.save();
 
         return res.json({

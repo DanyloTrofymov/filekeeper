@@ -11,8 +11,17 @@
     font-weight: 700;
 }
 .navbar__login {
+    display: flex;
     margin-left: auto;
     margin-right: 20px;
+    flex-direction: row;
+}
+.navbar__login__link {
+    padding-left: 20px;
+}
+.navbar__username {
+    margin-left: auto;
+    color: white;
 }
 .navbar a {
     color: white;
@@ -25,7 +34,7 @@
     margin-top: 10px;
 }
 .container {
-    width: 1140px;
+    width: 80vw;
     display: flex;
     align-items: center;
 }

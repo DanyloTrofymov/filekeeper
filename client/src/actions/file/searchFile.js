@@ -3,22 +3,13 @@ import { setFiles } from '../../reducers/file';
 import { showLoader } from '../../reducers/helper';
 import { setErrorDisplay } from '../../reducers/modal';
 
-export function getFiles(dirId, sort, filter) {
+export function searchFiles(search) {
     return async (dispatch) => {
         try {
             dispatch(showLoader(true));
-            let URL = process.env.REACT_APP_API_URL + 'drive?';
-            if (dirId) {
-                URL += `parent=${dirId}&`;
-            }
-            if (sort) {
-                URL += `sort=${sort}&`;
-            }
-            if (filter) {
-                filter.forEach((value) => {
-                    URL += `filter=${value}&`;
-                });
-            }
+
+            const query = `?search=${search}`;
+            let URL = process.env.REACT_APP_API_URL + 'drive/search' + query;
             const token = localStorage.getItem('token');
             const response = await axios.get(URL, {
                 headers: {

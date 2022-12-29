@@ -1,6 +1,6 @@
 import { Response, NextFunction, Request } from 'express';
 import FileService from '../../services/file';
-import File from '../../models/File';
+import FileModel from '../../models/File';
 import validate from '../../utils/validator';
 import { ICreateDirBody } from '../../types/file';
 import { ITokenBody } from '../../types/auth';
@@ -28,7 +28,7 @@ export async function createDirController(
 
     try {
         validate(data, validationRules);
-        const file = new File({
+        const file = new FileModel({
             _id: new mongoose.Types.ObjectId(),
             name: data.name,
             type: data.type,
@@ -40,7 +40,7 @@ export async function createDirController(
             file.path = data.name;
             dbFile = await FileService.createDir(file);
         } else {
-            const parentFile = await File.findOne({ id: data.parent });
+            const parentFile = await FileModel.findOne({ id: data.parent });
             if (!parentFile) {
                 throw new HttpError(
                     500,
