@@ -13,7 +13,13 @@ export async function listFileController(
     next: NextFunction,
 ) {
     const query = req.query as unknown as IFindQuery;
+    if (query.filter && typeof query.filter == 'string') {
+        const paramArray = [query.filter];
+        query.filter = paramArray;
+    }
     const data = { ...req.body, ...query };
+    data.filter = query.filter;
+
     try {
         const files = await FileService.listFile(data);
         res.json({

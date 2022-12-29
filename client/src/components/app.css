@@ -17,7 +17,7 @@ body {
     align-items: center;
 }
 .wrap {
-    width: 70vw;
+    width: 95vw;
     min-width: 800px;
     display: flex;
     flex-direction: column;

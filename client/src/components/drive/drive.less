@@ -1,76 +1,165 @@
 @import '../../utils/colors';
 
-.drive {
-    min-height: calc(100vh - 50px);
-    padding-top: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
-    z-index: 1;
+.window {
+    display: flex;
+    flex-direction: row;
+    height: min-content;
+    width: 100vw;
+    .left-aside {
+        padding-top: 50px;
+        &__content {
+            flex-direction: row;
+        }
+        &__fieldset {
+            border: 1px solid @font-color;
+            width: 10vw;
+            min-width: 150px;
+            background-color: white;
+            box-shadow: 0px 0px 3px rgba(@font-color, 0.5);
+        }
+        &__label {
+            display: block;
+            position: relative;
+            margin-top: 0.5em;
+            padding-left: 3em;
+            margin-bottom: 1em;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+                height: 0;
+                width: 0;
+            }
+            &:hover input ~ .left-aside__checkmark {
+                background-color: #ccc;
+            }
+            & input:checked ~ .left-aside__checkmark {
+                background-color: #2196f3;
+            }
+            & input:checked ~ .left-aside__checkmark::after {
+                display: block;
+            }
+            .left-aside__checkmark::after {
+                left: 6px;
+                top: 3px;
+                width: 5px;
+                height: 9px;
+                border: solid white;
+                border-width: 0 2px 2px 0;
+                -webkit-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                transform: rotate(45deg);
+            }
+            &:hover input ~ .left-aside__radiomark {
+                background-color: #ccc;
+            }
+            & input:checked ~ .left-aside__radiomark {
+                background-color: #2196f3;
+            }
+            & input:checked ~ .left-aside__radiomark::after {
+                display: block;
+            }
+            .left-aside__radiomark::after {
+                left: 6px;
+                top: 3px;
+                width: 5px;
+                height: 9px;
+                border: solid white;
+                border-width: 0 2px 2px 0;
+                -webkit-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                transform: rotate(45deg);
+            }
+        }
+        &__radiomark {
+            border: 1px solid @font-color;
+            border-radius: 5px;
+            position: absolute;
+            left: 15px;
+            height: 20px;
+            width: 20px;
+            background-color: #eee;
+            &::after {
+                content: '';
+                position: absolute;
+                display: none;
+            }
+        }
+        &__checkmark {
+            border: 1px solid @font-color;
+            border-radius: 5px;
+            position: absolute;
+            left: 15px;
+            height: 20px;
+            width: 20px;
+            background-color: #eee;
+            &::after {
+                content: '';
+                position: absolute;
+                display: none;
+            }
+        }
+        &__text {
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+    }
 
-    &__on-drag {
-        border: 3px dashed rgba(@navbar-color, 0.4);
-        border-radius: 10px;
-        background-color: rgba(@navbar-color, 0.2);
+    .drive {
         min-height: calc(100vh - 50px);
         padding-top: 20px;
         padding-left: 20px;
         padding-right: 20px;
-        z-index: 5;
-    }
+        margin-left: 5vw;
+        width: 70vw;
+        display: block;
 
-    &__btns {
-        display: flex;
-        padding-top: 30px;
-        padding-left: 10px;
-    }
+        &__on-drag {
+            border: 3px dashed rgba(@navbar-color, 0.4);
+            border-radius: 10px;
+            background-color: rgba(@navbar-color, 0.2);
+            min-height: calc(100vh - 50px);
+            padding-top: 20px;
+            padding-left: 20px;
+            padding-right: 20px;
+            z-index: 5;
+        }
 
-    &__create {
-        margin-left: 10px;
-    }
+        &__btns {
+            display: flex;
+            padding-top: 30px;
+            padding-left: 10px;
+        }
 
-    &__upload-input {
-        padding-top: 10px;
-        display: none;
-    }
+        &__create {
+            margin-left: 10px;
+        }
 
-    &__upload-label {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 90px;
-        border: 2px dashed @navbar-color;
-        border-radius: 5px;
-        margin-top: 20px;
-        background-color: rgba(@btn-background-color, 0.5);
-        padding: 5px, 10px;
-        cursor: pointer;
-    }
-    button {
-        padding: 5px 20px;
-    }
-}
+        &__upload-input {
+            padding-top: 10px;
+            display: none;
+        }
 
-.modal.entering {
-    animation: modal-active 5000 forwards;
-}
-
-.modal.entered {
-    animation: modal-active 5000 forwards;
-}
-
-.modal.exiting {
-    opacity: 1;
-}
-.modal.exited {
-    opacity: 0;
-}
-
-@keyframes modal-active {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
+        &__upload-label {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 90px;
+            border: 2px dashed @navbar-color;
+            border-radius: 5px;
+            margin-top: 20px;
+            background-color: rgba(@btn-background-color, 0.5);
+            padding: 5px, 10px;
+            cursor: pointer;
+        }
+        button {
+            padding: 5px 20px;
+        }
     }
 }

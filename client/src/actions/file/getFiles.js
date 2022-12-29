@@ -2,11 +2,22 @@ import axios from 'axios';
 import { setFiles } from '../../reducers/file';
 import { setErrorDisplay } from '../../reducers/modal';
 
-export function getFiles(dirId) {
+export function getFiles(dirId, sort, filter) {
     return async (dispatch) => {
         try {
-            const params = dirId ? `?parent=${dirId}` : '';
-            const URL = process.env.REACT_APP_API_URL + 'drive' + params;
+            let URL = process.env.REACT_APP_API_URL + 'drive?';
+            if (dirId) {
+                URL += `parent=${dirId}&`;
+            }
+            if (sort) {
+                URL += `sort=${sort}&`;
+            }
+            if (filter) {
+                filter.forEach((value) => {
+                    URL += `filter=${value}&`;
+                });
+            }
+            //console.log(filter);
             const token = localStorage.getItem('token');
             console.log(token);
             const response = await axios.get(URL, {

@@ -14,6 +14,8 @@ export interface IFileBody {
 }
 export interface IFindQuery {
     parent: string;
+    sort: string;
+    filter: string[];
 }
 
 export interface IDownloadQuery {
@@ -45,6 +47,7 @@ export const allowedTypes = [
     'xls',
     'xlsx',
     'jpg',
+    'jpeg',
     'png',
     'mp3',
     'wav',
@@ -52,3 +55,6 @@ export const allowedTypes = [
     'm4a',
     'mov',
 ];
+
+export const allowedSort = ['date', 'type', 'name', 'size'];
+export const allowedFilter = ['doc', 'music', 'pic', 'vid'];
