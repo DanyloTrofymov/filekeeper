@@ -2,21 +2,31 @@ import fs from 'fs-extra';
 import FileModel from '../../models/File';
 import { HttpError, ERRORS } from '../../utils/error';
 
-const parents: any[] = [];
 export async function deleteFileService(file: any) {
     const path = `${process.env.STORAGE_PATH}\\${file.user}\\${file.path}`;
     try {
         await fs.remove(path);
         await FileModel.deleteOne({ _id: file._id });
-        if (file.parent != '') {
-            await getParents(file);
-            parents.forEach(async (parent) => {
-                parent.size -= file.size;
-                await FileModel.findByIdAndUpdate(parent._id, parent);
+        if (file.parent) {
+            const parents = await getParents(file.parent);
+            console.log(file.parent);
+            await parents.forEach(async (parent: any) => {
+                if (parent != null) {
+                    await FileModel.updateOne(
+                        { _id: parent._id },
+                        { $inc: { size: -file.size } },
+                    );
+                    await FileModel.updateOne(
+                        { _id: parent._id },
+                        { $pull: { childs: file._id } },
+                    );
+                }
             });
         }
+
         return;
     } catch (e) {
+        console.log(e);
         throw new HttpError(
             500,
             'Internal server error',
@@ -24,12 +34,12 @@ export async function deleteFileService(file: any) {
         );
     }
 }
-async function getParents(file: any) {
-    const parentForThis = await FileModel.findOne({ _id: file.parent });
-    if (parentForThis) {
-        parents.push(parentForThis);
-        if (parentForThis.parent) {
-            await getParents(parentForThis);
-        }
+async function getParents(file: any): Promise<any> {
+    const parent = await FileModel.findOne({ _id: file.parent });
+    const deepParent: any[] = [];
+    if (parent) {
+        const parentParent = await getParents(parent);
+        deepParent.unshift(...parentParent);
     }
+    return [...deepParent, parent];
 }

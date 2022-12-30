@@ -3,7 +3,6 @@ import FileModel, { File } from '../../models/File';
 import { IFile } from '../../types/file';
 import { ERRORS, HttpError } from '../../utils/error';
 
-const parents: any[] = [];
 export async function uploadFileService(dbFile: File, file: IFile) {
     const storagePath = process.env.STORAGE_PATH;
     if (!storagePath) {
@@ -24,11 +23,17 @@ export async function uploadFileService(dbFile: File, file: IFile) {
     try {
         file.mv(path);
         const dbFileRes: File = await FileModel.create(dbFile);
-        if (dbFileRes.parent.toString() != '') {
-            await getParents(dbFileRes);
-            parents.forEach(async (parent) => {
-                parent.size += dbFileRes.size;
-                await FileModel.findByIdAndUpdate(parent._id, parent);
+        if (dbFileRes.parent) {
+            const parents = await getParents(dbFileRes);
+            await parents.forEach(async (parent: File) => {
+                if (parent != null) {
+                    parent.size += dbFileRes.size;
+                    await FileModel.updateOne(
+                        { _id: parent._id },
+                        { $inc: { size: dbFileRes.size } },
+                    );
+                    //await FileModel.findByIdAndUpdate(parent._id, parent);
+                }
             });
         }
         return dbFileRes;
@@ -40,13 +45,12 @@ export async function uploadFileService(dbFile: File, file: IFile) {
         );
     }
 }
-
-async function getParents(file: any) {
-    const parentForThis = await FileModel.findOne({ _id: file.parent });
-    if (parentForThis) {
-        parents.push(parentForThis);
-        if (parentForThis.parent) {
-            await getParents(parentForThis);
-        }
+async function getParents(file: any): Promise<any> {
+    const parent = await FileModel.findOne({ _id: file.parent });
+    const deepParent: any[] = [];
+    if (parent) {
+        const parentParent = await getParents(parent);
+        deepParent.unshift(...parentParent);
     }
+    return [...deepParent, parent];
 }

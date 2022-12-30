@@ -9,6 +9,8 @@ import validate from '../../utils/validator';
 import { dumpFile } from '../../utils/dumps';
 import { Buffer } from 'buffer';
 import { mongoose } from '@typegoose/typegoose';
+import FileModel from '../../models/File';
+import UserModel from '../../models/User';
 
 interface FileBody extends Request {
     body: IUploadFileBody & ITokenBody;
@@ -82,10 +84,18 @@ export async function uploadFileController(
         });
 
         const dbFileRes = await FileService.uploadFile(dbFile, file);
-
-        user.used_space += dbFileRes.size;
-        await user.save();
-
+        if (parent) {
+            await FileModel.updateOne(
+                { _id: parent._id },
+                { $push: { childs: dbFileRes._id } },
+            );
+            //await parent.save()
+            //await FileModel.findByIdAndUpdate(parent._id, parent);
+        }
+        await UserModel.updateOne(
+            { _id: user._id },
+            { $inc: { used_space: dbFileRes.size } },
+        );
         return res.json({
             data: {
                 ...dumpFile(dbFileRes),

@@ -4,12 +4,13 @@ import { IDeleteQuery } from '../../types/file';
 import { ITokenBody } from '../../types/auth';
 import { ERRORS, HttpError } from '../../utils/error';
 import User from '../../models/User';
-import FileModel, { File } from '../../models/File';
+import FileModel from '../../models/File';
+import UserModel from '../../models/User';
 
 interface downloadBody extends Request {
     body: ITokenBody;
 }
-const childs: any = [];
+
 export async function deleteFileController(
     req: downloadBody,
     res: Response,
@@ -39,14 +40,20 @@ export async function deleteFileController(
                 ERRORS.NOT_FOUND('USER'),
             );
         }
+        const childs = await getChilds(file);
         childs.push(file);
-        await getChilds(file);
         await childs.forEach(async (child: any) => {
-            user.used_space -= child.size;
             await FileService.deleteFile(child);
+            if (user.used_space - child.size < 0) {
+                await UserModel.updateOne({ _id: user._id }, { used_space: 0 });
+            } else {
+                await UserModel.updateOne(
+                    { _id: user._id },
+                    { $inc: { used_space: -child.size } },
+                );
+            }
+            user.used_space -= child.size;
         });
-
-        await user.save();
         return res.json({
             data: {
                 ...childs,
@@ -57,12 +64,22 @@ export async function deleteFileController(
         next(e);
     }
 }
-async function getChilds(file: any) {
+
+async function getChilds(file: any): Promise<any> {
+    const children = await FileModel.find({ _id: file.childs });
+    const deepChildren = [];
+    for (const child of children) {
+        const childChildren = await getChilds(child);
+        deepChildren.unshift(...childChildren);
+    }
+    return [...deepChildren, ...children];
+}
+/*async function getChilds(file: any) {
     const childForThis: File[] = await FileModel.find({ _id: file.childs });
     if (childForThis) {
-        childForThis.forEach(async (child) => {
-            childs.push(child);
+
+            childs.unshift(child);
             await getChilds(child);
         });
     }
-}
+}*/
