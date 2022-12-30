@@ -39,9 +39,8 @@ export async function deleteFileController(
                 ERRORS.NOT_FOUND('USER'),
             );
         }
-
-        await getChilds(file);
         childs.push(file);
+        await getChilds(file);
         await childs.forEach(async (child: any) => {
             user.used_space -= child.size;
             await FileService.deleteFile(child);
@@ -61,9 +60,9 @@ export async function deleteFileController(
 async function getChilds(file: any) {
     const childForThis: File[] = await FileModel.find({ _id: file.childs });
     if (childForThis) {
-        childForThis.forEach((child) => {
+        childForThis.forEach(async (child) => {
             childs.push(child);
-            getChilds(child);
+            await getChilds(child);
         });
     }
 }

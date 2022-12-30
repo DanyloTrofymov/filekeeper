@@ -3,13 +3,13 @@ import { setFiles } from '../../reducers/file';
 import { showLoader } from '../../reducers/helper';
 import { setErrorDisplay } from '../../reducers/modal';
 
-export function getFiles(dirId, sort, filter) {
+export function getFiles(dir, sort, filter) {
     return async (dispatch) => {
         try {
             dispatch(showLoader(true));
             let URL = process.env.REACT_APP_API_URL + 'drive?';
-            if (dirId) {
-                URL += `parent=${dirId}&`;
+            if (dir) {
+                URL += `parent=${dir._id}&`;
             }
             if (sort) {
                 URL += `sort=${sort}&`;

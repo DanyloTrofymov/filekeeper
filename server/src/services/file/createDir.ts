@@ -20,7 +20,7 @@ export async function createDirService(file: File) {
         });
     }
     try {
-        await fs.ensureDir(userPath);
+        fs.ensureDir(userPath);
         return await FileModel.create(file);
     } catch (e) {
         throw new HttpError(

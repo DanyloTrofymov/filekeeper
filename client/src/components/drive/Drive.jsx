@@ -17,7 +17,7 @@ import '../../utils/loader.css';
 
 const Drive = () => {
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.user.currentUser);
+    //const user = useSelector((state) => state.user.currentUser);
     const currentDir = useSelector((state) => state.file.currentDir);
     const dirStack = useSelector((state) => state.file.dirStack);
     const file = useSelector((state) => state.modal.yesNoProps);
@@ -41,14 +41,14 @@ const Drive = () => {
     function uploadHandler(event) {
         const files = [...event.target.files];
         files.forEach((file) => {
-            dispatch(uploadFile(file, currentDir));
+            dispatch(uploadFile(file, currentDir._id));
         });
     }
     function dropHandler(event) {
         event.preventDefault();
         event.stopPropagation();
         const files = [...event.dataTransfer.files];
-        files.forEach((file) => dispatch(uploadFile(file, currentDir)));
+        files.forEach((file) => dispatch(uploadFile(file, currentDir._id)));
         setDragEnter(false);
     }
     function dragLeaveHandler(event) {
@@ -62,12 +62,10 @@ const Drive = () => {
         setDragEnter(true);
     }
     /*function getPath(){
-        let path = '';
-        let dirs = useSelector((state) => state.file.dirStack)
-        dirs.forEach(dir => path+=dir + '/')
-        return path;
-                <div>{getPath()}</div>
-
+        console.log(currentDir)
+        if(currentDir){
+            return currentDir.path;
+        }
     }*/
     return (
         <div className="window">
@@ -102,8 +100,11 @@ const Drive = () => {
                         className="drive__upload-input"
                     />
                 </div>
+                <div>
+                    {currentDir != null && search == '' ? currentDir.path : ''}
+                </div>
                 <div className="drive__btns">
-                    {currentDir != user.id ? (
+                    {currentDir ? (
                         <button
                             className="drive__back"
                             onClick={() => backClickHandler()}
@@ -125,7 +126,9 @@ const Drive = () => {
                         <span className="loader"></span>
                     </div>
                 ) : (
-                    <FileList />
+                    <div>
+                        <FileList />
+                    </div>
                 )}
                 <CreateFolderModal />
                 <Uploader />

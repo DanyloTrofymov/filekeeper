@@ -3,6 +3,7 @@ import FileModel, { File } from '../../models/File';
 import { IFile } from '../../types/file';
 import { ERRORS, HttpError } from '../../utils/error';
 
+const parents: any[] = [];
 export async function uploadFileService(dbFile: File, file: IFile) {
     const storagePath = process.env.STORAGE_PATH;
     if (!storagePath) {
@@ -21,8 +22,15 @@ export async function uploadFileService(dbFile: File, file: IFile) {
     }
 
     try {
-        const dbFileRes = await FileModel.create(dbFile);
         file.mv(path);
+        const dbFileRes: File = await FileModel.create(dbFile);
+        if (dbFileRes.parent.toString() != '') {
+            await getParents(dbFileRes);
+            parents.forEach(async (parent) => {
+                parent.size += dbFileRes.size;
+                await FileModel.findByIdAndUpdate(parent._id, parent);
+            });
+        }
         return dbFileRes;
     } catch (e) {
         throw new HttpError(
@@ -30,5 +38,15 @@ export async function uploadFileService(dbFile: File, file: IFile) {
             'Internal server error',
             ERRORS.INTERNAL_ERROR,
         );
+    }
+}
+
+async function getParents(file: any) {
+    const parentForThis = await FileModel.findOne({ _id: file.parent });
+    if (parentForThis) {
+        parents.push(parentForThis);
+        if (parentForThis.parent) {
+            await getParents(parentForThis);
+        }
     }
 }

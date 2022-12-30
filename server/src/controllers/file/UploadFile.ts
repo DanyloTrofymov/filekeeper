@@ -83,12 +83,6 @@ export async function uploadFileController(
 
         const dbFileRes = await FileService.uploadFile(dbFile, file);
 
-        if (parent) {
-            parent.size += dbFileRes.size;
-            parent.childs.push(dbFileRes.id);
-            await parent.save();
-        }
-
         user.used_space += dbFileRes.size;
         await user.save();
 

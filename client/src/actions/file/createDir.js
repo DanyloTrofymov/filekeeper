@@ -2,16 +2,20 @@ import axios from 'axios';
 import { addFile } from '../../reducers/file';
 import { setErrorDisplay } from '../../reducers/modal';
 
-export function createDir(dirId, name) {
+export function createDir(dir, name) {
     return async (dispatch) => {
         try {
             const URL = process.env.REACT_APP_API_URL + 'drive/';
             const token = localStorage.getItem('token');
+            let id;
+            if (dir) {
+                id = dir._id;
+            }
             const response = await axios.post(
                 URL,
                 {
                     name,
-                    parent: dirId,
+                    parent: id,
                     type: 'dir',
                 },
                 {
