@@ -19,7 +19,6 @@ export default async function initDB() {
         setTimeout(() => {
             connect();
         }, 1000);
-        //mongoose.disconnect();
     });
     db.on('connected', () => {
         console.log('MongoDB connected!');

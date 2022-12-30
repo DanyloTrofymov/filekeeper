@@ -77,28 +77,19 @@ function filterProperty(filter: string[]) {
     filter.forEach((prop) => {
         switch (prop) {
             case 'doc': {
-                dbFilter.push('doc');
-                dbFilter.push('docx');
-                dbFilter.push('pdf');
-                dbFilter.push('xls');
-                dbFilter.push('xlsx');
+                dbFilter.push('doc', 'docx', 'pdf', 'xls', 'xlsx');
                 break;
             }
             case 'music': {
-                dbFilter.push('mp3');
-                dbFilter.push('wav');
+                dbFilter.push('mp3', 'wav');
                 break;
             }
             case 'pic': {
-                dbFilter.push('jpg');
-                dbFilter.push('jpeg');
-                dbFilter.push('png');
+                dbFilter.push('jpg', 'jpeg', 'png');
                 break;
             }
             case 'vid': {
-                dbFilter.push('mp4');
-                dbFilter.push('m4a');
-                dbFilter.push('m4a', 'mov');
+                dbFilter.push('mp4', 'm4a', 'mov');
                 break;
             }
         }

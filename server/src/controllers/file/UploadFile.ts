@@ -89,8 +89,6 @@ export async function uploadFileController(
                 { _id: parent._id },
                 { $push: { childs: dbFileRes._id } },
             );
-            //await parent.save()
-            //await FileModel.findByIdAndUpdate(parent._id, parent);
         }
         await UserModel.updateOne(
             { _id: user._id },
