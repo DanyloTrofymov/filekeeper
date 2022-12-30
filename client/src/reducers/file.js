@@ -6,15 +6,16 @@ const DELETE_FILE = 'DELETE_FILE';
 const SET_SORT = 'SET_SORT';
 const SET_FILTER = 'SET_FILTER';
 const SET_SEARCH = 'SET_SEARCH';
+const SET_VIEW = 'SET_VIEW';
 
 const defaultState = {
     files: [],
     currentDir: null,
-    popupDisplay: 'none',
     dirStack: [],
     sort: 'date',
     filter: [],
     search: '',
+    view: 'list',
 };
 
 export default function fileReducer(state = defaultState, action) {
@@ -52,6 +53,8 @@ export default function fileReducer(state = defaultState, action) {
             }
         case SET_SEARCH:
             return { ...state, search: action.payload };
+        case SET_VIEW:
+            return { ...state, view: action.payload };
         default:
             return state;
     }
@@ -69,3 +72,4 @@ export const setFilter = (filter, add) => ({
     add,
 });
 export const setSearch = (name) => ({ type: SET_SEARCH, payload: name });
+export const setView = (type) => ({ type: SET_VIEW, payload: type });

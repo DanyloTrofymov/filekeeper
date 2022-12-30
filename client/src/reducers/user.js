@@ -3,7 +3,7 @@ const LOGOUT = 'LOGOUT';
 
 const defaultState = {
     currentUser: {},
-    isAuth: false,
+    isAuth: undefined,
 };
 
 export default function userReducer(state = defaultState, action) {

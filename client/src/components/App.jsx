@@ -1,42 +1,32 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './app.css';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
-import components from './';
-import { useDispatch, useSelector } from 'react-redux';
 import ErrorModal from '../utils/modal/ErrorModal';
+import Navbar from '../components/navbar/Navbar';
+import Registration from '../components/auth/Registration';
+import Login from '../components/auth/Login';
+import DocView from '../components/views/docs/DocView';
+import Drive from '../components/drive/Drive';
+import ProtectedRoute from './ProtectedRoute';
 //import actions from '../actions';
-import { auth } from '../actions/user/auth';
-import Drive from './drive/Drive';
+//import { auth } from '../actions/user/auth';
+//import { useDispatch, useSelector } from 'react-redux';
 //import {setPopupDisplay} from "../reducers/file";
-//import ErrorModal from '../utils/modal/ErrorModal';
+// import Drive from '../components/drive/Drive';
 
 function App() {
-    const isAuth = useSelector((state) => state.user.isAuth);
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(auth());
-    }, []);
     return (
         <BrowserRouter>
             <div className="app">
-                <components.Navbar />
+                <Navbar />
                 <div className="wrap">
-                    {!isAuth ? (
-                        <Switch>
-                            <Route
-                                path="/registration"
-                                component={components.Registration}
-                            />
-                            <Route path="/login" component={components.Login} />
-                            <Redirect to="/login" />
-                        </Switch>
-                    ) : (
-                        <Switch>
-                            <Route exact path="/drive" component={Drive} />
-                            <Redirect to="/drive" />
-                        </Switch>
-                    )}
+                    <Switch>
+                        <Route path="/registration" component={Registration} />
+                        <Route path="/login" component={Login} />
+                        <ProtectedRoute path="/viewDoc" component={DocView} />
+                        <ProtectedRoute path="/drive" component={Drive} />
+                        <Redirect to="/login" />
+                    </Switch>
                 </div>
                 <ErrorModal />
             </div>

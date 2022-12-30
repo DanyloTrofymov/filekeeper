@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './auth.css';
 import Input from '../../utils/input/Input';
 import { registration } from '../../actions/user/registration';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { auth } from '../../actions/user/auth';
 
 const Registration = () => {
     const [email, setEmail] = useState('');
@@ -10,6 +12,22 @@ const Registration = () => {
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(auth());
+    }, []);
+    const isAuth = useSelector((state) => state.user.isAuth);
+    if (isAuth == undefined) {
+        return (
+            <div className="center">
+                <span className="loader"></span>
+            </div>
+        );
+    }
+    if (isAuth == false) {
+        return <Redirect to="/drive" />;
+    }
+
     return (
         <div className="auth" disabled>
             <div className="auth__header">Registration</div>

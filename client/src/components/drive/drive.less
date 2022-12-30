@@ -96,6 +96,35 @@
                 margin-top: 10px;
             }
         }
+        &__view {
+            display: flex;
+            &__list,
+            &__plate {
+                margin-top: 15px;
+                height: 25px;
+                width: 25px;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                background: no-repeat center center;
+                background-size: contain;
+            }
+            &__list:hover,
+            &__plate:hover {
+                transform: scale(1.1);
+            }
+
+            &__list {
+                margin-left: auto;
+                background-image: url('../../assets/img/list.svg');
+            }
+            &__plate {
+                background-image: url('../../assets/img/plate.svg');
+            }
+            button {
+                padding: 5px 20px;
+            }
+        }
     }
     button {
         padding: 5px 20px;

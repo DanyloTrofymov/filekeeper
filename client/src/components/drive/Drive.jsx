@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getFiles } from '../../actions/file/getFiles';
 import { deleteFile } from '../../actions/file/deleteFile';
 import { uploadFile } from '../../actions/file/uploadFile';
-import { setCurrentDir } from '../../reducers/file';
+import { setView, setCurrentDir } from '../../reducers/file';
 import { setCreateFolderDisplay } from '../../reducers/modal';
 import CreateFolderModal from '../../utils/modal/CreateFolderModal';
 import YesNoModal from '../../utils/modal/YesNoModal';
@@ -17,7 +17,6 @@ import '../../utils/loader.css';
 
 const Drive = () => {
     const dispatch = useDispatch();
-    //const user = useSelector((state) => state.user.currentUser);
     const currentDir = useSelector((state) => state.file.currentDir);
     const dirStack = useSelector((state) => state.file.dirStack);
     const file = useSelector((state) => state.modal.yesNoProps);
@@ -122,6 +121,16 @@ const Drive = () => {
                     >
                         Create folder
                     </button>
+                </div>
+                <div className="drive__view">
+                    <button
+                        className="drive__view__list"
+                        onClick={() => dispatch(setView('list'))}
+                    />
+                    <button
+                        className="drive__view__plate"
+                        onClick={() => dispatch(setView('plate'))}
+                    />
                 </div>
                 {loader ? (
                     <div className="center">

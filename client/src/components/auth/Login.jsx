@@ -1,13 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './auth.css';
 import Input from '../../utils/input/Input';
 import { login } from '../../actions/user/login';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { auth } from '../../actions/user/auth';
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
+    dispatch(auth());
+
+    useEffect(() => {
+        dispatch(auth());
+    }, []);
+    const isAuth = useSelector((state) => state.user.isAuth);
+    if (isAuth == undefined) {
+        return (
+            <div className="center">
+                <span className="loader"></span>
+            </div>
+        );
+    }
+    if (isAuth == true) {
+        return <Redirect to="/drive" />;
+    }
 
     return (
         <div className="auth" disabled>

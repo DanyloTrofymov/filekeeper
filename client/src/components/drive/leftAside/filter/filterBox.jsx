@@ -14,12 +14,9 @@ const FilterBox = () => {
                         Documents
                         <input
                             type="checkbox"
-                            onChange={() =>
+                            onChange={(e) =>
                                 dispatch(
-                                    setFilter(
-                                        event.target.name,
-                                        event.target.checked,
-                                    ),
+                                    setFilter(e.target.name, e.target.checked),
                                 )
                             }
                             name="doc"
@@ -30,12 +27,9 @@ const FilterBox = () => {
                         Music
                         <input
                             type="checkbox"
-                            onChange={() =>
+                            onChange={(e) =>
                                 dispatch(
-                                    setFilter(
-                                        event.target.name,
-                                        event.target.checked,
-                                    ),
+                                    setFilter(e.target.name, e.target.checked),
                                 )
                             }
                             name="music"
@@ -46,12 +40,9 @@ const FilterBox = () => {
                         Photo
                         <input
                             type="checkbox"
-                            onChange={() =>
+                            onChange={(e) =>
                                 dispatch(
-                                    setFilter(
-                                        event.target.name,
-                                        event.target.checked,
-                                    ),
+                                    setFilter(e.target.name, e.target.checked),
                                 )
                             }
                             name="pic"
@@ -62,12 +53,9 @@ const FilterBox = () => {
                         Video
                         <input
                             type="checkbox"
-                            onChange={() =>
+                            onChange={(e) =>
                                 dispatch(
-                                    setFilter(
-                                        event.target.name,
-                                        event.target.checked,
-                                    ),
+                                    setFilter(e.target.name, e.target.checked),
                                 )
                             }
                             name="vid"

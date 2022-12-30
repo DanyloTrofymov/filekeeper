@@ -1,14 +1,16 @@
 @import '../../../../utils/colors';
 
 .file {
-    margin: 10px 0;
-    padding-bottom: 5px;
-    border-bottom: solid 2px rgba(@font-color, 0.5);
+    padding: 5px 0px;
+    border-top: solid 1px rgba(@font-color, 0.5);
+    border-bottom: solid 1px rgba(@font-color, 0.5);
     display: grid;
     grid-template-columns: 1fr 4fr repeat(4, 1fr) repeat(2, 1fr);
     align-items: center;
+    cursor: pointer;
 
     &:hover {
+        background-color: rgba(@navbar-color, 0.1);
         transform: scale(1.01);
     }
     &__img {
@@ -43,5 +45,45 @@
         margin-right: auto;
         align-self: center;
         display: block;
+    }
+}
+.file-plate {
+    &:hover {
+        background-color: rgba(@navbar-color, 0.1);
+        transform: scale(1.02);
+    }
+    width: 150px;
+    height: 165px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0;
+    &__name {
+        width: 130px;
+        overflow: hidden;
+    }
+    &__img {
+        width: 100px;
+        height: 100px;
+    }
+    &__btn {
+        display: flex;
+        padding-top: 10px;
+        button {
+            padding: 0;
+            margin: 0px 5px;
+        }
+    }
+    &__download,
+    &__delete {
+        margin-left: auto;
+        margin-left: auto;
+        align-self: center;
+        display: none;
+    }
+    &:hover &__download,
+    &:hover &__delete {
+        display: flex;
     }
 }

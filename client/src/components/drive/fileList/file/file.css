@@ -1,12 +1,14 @@
 .file {
-    margin: 10px 0;
-    padding-bottom: 5px;
-    border-bottom: solid 2px rgba(34, 31, 31, 0.5);
+    padding: 5px 0px;
+    border-top: solid 1px rgba(34, 31, 31, 0.5);
+    border-bottom: solid 1px rgba(34, 31, 31, 0.5);
     display: grid;
     grid-template-columns: 1fr 4fr repeat(4, 1fr) repeat(2, 1fr);
     align-items: center;
+    cursor: pointer;
 }
 .file:hover {
+    background-color: rgba(34, 31, 31, 0.1);
     transform: scale(1.01);
 }
 .file__img {
@@ -37,4 +39,43 @@
     margin-right: auto;
     align-self: center;
     display: block;
+}
+.file-plate {
+    width: 150px;
+    height: 165px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0;
+}
+.file-plate:hover {
+    background-color: rgba(34, 31, 31, 0.1);
+    transform: scale(1.02);
+}
+.file-plate__name {
+    width: 130px;
+    overflow: hidden;
+}
+.file-plate__img {
+    width: 100px;
+    height: 100px;
+}
+.file-plate__btn {
+    display: flex;
+    padding-top: 10px;
+}
+.file-plate__btn button {
+    padding: 0;
+    margin: 0px 5px;
+}
+.file-plate__download,
+.file-plate__delete {
+    margin-left: auto;
+    align-self: center;
+    display: none;
+}
+.file-plate:hover .file-plate__download,
+.file-plate:hover .file-plate__delete {
+    display: flex;
 }

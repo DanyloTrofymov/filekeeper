@@ -91,6 +91,34 @@
     align-self: flex-end;
     margin-top: 10px;
 }
+.window .drive__view {
+    display: flex;
+}
+.window .drive__view__list,
+.window .drive__view__plate {
+    margin-top: 15px;
+    height: 25px;
+    width: 25px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: no-repeat center center;
+    background-size: contain;
+}
+.window .drive__view__list:hover,
+.window .drive__view__plate:hover {
+    transform: scale(1.1);
+}
+.window .drive__view__list {
+    margin-left: auto;
+    background-image: url('../../assets/img/list.svg');
+}
+.window .drive__view__plate {
+    background-image: url('../../assets/img/plate.svg');
+}
+.window .drive__view button {
+    padding: 5px 20px;
+}
 .window button {
     padding: 5px 20px;
 }
