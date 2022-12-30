@@ -61,12 +61,13 @@ const Drive = () => {
         event.stopPropagation();
         setDragEnter(true);
     }
-    /*function getPath(){
-        console.log(currentDir)
-        if(currentDir){
-            return currentDir.path;
+    function getPath() {
+        let path = '/';
+        if (currentDir) {
+            path += currentDir.path.replaceAll('\\', '/');
         }
-    }*/
+        return path;
+    }
     return (
         <div className="window">
             <div className="left-aside">
@@ -100,8 +101,9 @@ const Drive = () => {
                         className="drive__upload-input"
                     />
                 </div>
-                <div>
-                    {currentDir != null && search == '' ? currentDir.path : ''}
+                <div className="drive__path__title">
+                    <b>Path:</b>
+                    <div className="drive__path">{getPath()}</div>
                 </div>
                 <div className="drive__btns">
                     {currentDir ? (

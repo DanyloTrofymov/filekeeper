@@ -42,8 +42,6 @@ export async function createDirController(
             dbFile = await FileService.createDir(file);
         } else {
             const parentFile = await FileModel.findOne({ _id: data.parent });
-            console.log(data.parent);
-            console.log(parentFile);
             if (!parentFile) {
                 throw new HttpError(
                     500,
@@ -51,10 +49,7 @@ export async function createDirController(
                     ERRORS.INTERNAL_ERROR,
                 );
             }
-            console.log(parentFile.path);
             file.path = `${parentFile.path}\\${data.name}`;
-            console.log(data.name);
-            console.log(file.path);
             dbFile = await FileService.createDir(file);
 
             await FileModel.updateOne(

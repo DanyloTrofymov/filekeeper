@@ -9,7 +9,6 @@ export async function deleteFileService(file: any) {
         await FileModel.deleteOne({ _id: file._id });
         if (file.parent) {
             const parents = await getParents(file.parent);
-            console.log(file.parent);
             await parents.forEach(async (parent: any) => {
                 if (parent != null) {
                     await FileModel.updateOne(
@@ -26,7 +25,6 @@ export async function deleteFileService(file: any) {
 
         return;
     } catch (e) {
-        console.log(e);
         throw new HttpError(
             500,
             'Internal server error',

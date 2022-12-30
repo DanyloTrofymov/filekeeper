@@ -15,9 +15,14 @@ export async function uploadFileService(dbFile: File, file: IFile) {
     const path = `${process.env.STORAGE_PATH}\\${dbFile.user}\\${dbFile.path}`;
     const exists = await fs.pathExists(path);
     if (exists) {
-        throw new HttpError(403, 'File exists', ERRORS.FILE_EXISTS, {
-            file: dbFile.name,
-        });
+        throw new HttpError(
+            403,
+            `File with name ${dbFile.name} exists on path ${dbFile.path}`,
+            ERRORS.FILE_EXISTS,
+            {
+                file: dbFile.name,
+            },
+        );
     }
 
     try {
@@ -32,7 +37,6 @@ export async function uploadFileService(dbFile: File, file: IFile) {
                         { _id: parent._id },
                         { $inc: { size: dbFileRes.size } },
                     );
-                    //await FileModel.findByIdAndUpdate(parent._id, parent);
                 }
             });
         }
