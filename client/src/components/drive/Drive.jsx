@@ -41,14 +41,14 @@ const Drive = () => {
     function uploadHandler(event) {
         const files = [...event.target.files];
         files.forEach((file) => {
-            dispatch(uploadFile(file, currentDir._id));
+            dispatch(uploadFile(file, currentDir));
         });
     }
     function dropHandler(event) {
         event.preventDefault();
         event.stopPropagation();
         const files = [...event.dataTransfer.files];
-        files.forEach((file) => dispatch(uploadFile(file, currentDir._id)));
+        files.forEach((file) => dispatch(uploadFile(file, currentDir)));
         setDragEnter(false);
     }
     function dragLeaveHandler(event) {

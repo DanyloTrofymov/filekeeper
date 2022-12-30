@@ -7,7 +7,7 @@ import {
     addUploadFile,
 } from '../../reducers/upload';
 
-export function uploadFile(file, dirId) {
+export function uploadFile(file, dir) {
     return async (dispatch) => {
         try {
             const type = file.name.toLowerCase().split('.').pop() || '';
@@ -22,10 +22,11 @@ export function uploadFile(file, dirId) {
             }
             const formData = new FormData();
             formData.append('file', file);
-            if (dirId) {
-                formData.append('parent', dirId);
+            if (dir) {
+                formData.append('parent', dir._id);
             }
-            const upload = { name: file.name, progress: 0, id: Date.now() };
+            const id = Date.now() + Math.floor(Math.random() * 100);
+            const upload = { name: file.name, progress: 0, id: id };
             dispatch(showUploader());
             dispatch(addUploadFile(upload));
             const URL = `${process.env.REACT_APP_API_URL}drive/upload/`;
