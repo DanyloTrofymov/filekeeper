@@ -15,14 +15,9 @@ const Login = () => {
     useEffect(() => {
         dispatch(auth());
     }, []);
+    console.log('ok');
     const isAuth = useSelector((state) => state.user.isAuth);
-    if (isAuth == undefined) {
-        return (
-            <div className="center">
-                <span className="loader"></span>
-            </div>
-        );
-    }
+
     if (isAuth == true) {
         return <Redirect to="/drive" />;
     }

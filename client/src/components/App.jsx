@@ -5,9 +5,9 @@ import ErrorModal from '../utils/modal/ErrorModal';
 import Navbar from '../components/navbar/Navbar';
 import Registration from '../components/auth/Registration';
 import Login from '../components/auth/Login';
-import DocView from '../components/views/docs/DocView';
+import PdfView from './views/PDF/PdfView';
 import Drive from '../components/drive/Drive';
-import ProtectedRoute from './ProtectedRoute';
+import ProtectedRoute from './auth/ProtectedRoute';
 //import actions from '../actions';
 //import { auth } from '../actions/user/auth';
 //import { useDispatch, useSelector } from 'react-redux';
@@ -23,7 +23,7 @@ function App() {
                     <Switch>
                         <Route path="/registration" component={Registration} />
                         <Route path="/login" component={Login} />
-                        <ProtectedRoute path="/viewDoc" component={DocView} />
+                        <Route path="/viewPDF" component={PdfView} />
                         <ProtectedRoute path="/drive" component={Drive} />
                         <Redirect to="/login" />
                     </Switch>

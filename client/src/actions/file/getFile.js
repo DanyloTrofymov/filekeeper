@@ -1,10 +1,11 @@
 import axios from 'axios';
+import { setData } from '../../reducers/file';
 import { setErrorDisplay } from '../../reducers/modal';
 
-export function downloadFile(file) {
+export function getFile(fileId) {
     return async (dispatch) => {
         try {
-            const URL = `${process.env.REACT_APP_API_URL}drive/download?id=${file._id}`;
+            const URL = `${process.env.REACT_APP_API_URL}drive/download?id=${fileId}`;
             const token = localStorage.getItem('token');
             const response = await axios.get(URL, {
                 headers: {
@@ -13,14 +14,7 @@ export function downloadFile(file) {
                 responseType: 'blob',
             });
             if (response.status === 200) {
-                const blob = response.data;
-                const downloadUrl = window.URL.createObjectURL(blob);
-                const link = document.createElement('a');
-                link.href = downloadUrl;
-                link.download = blob.name;
-                document.body.appendChild(link);
-                link.click();
-                link.remove();
+                dispatch(setData(response.data));
             }
         } catch (e) {
             dispatch(setErrorDisplay(true, e.response.data.message));

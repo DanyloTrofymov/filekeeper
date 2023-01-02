@@ -17,13 +17,7 @@ const Registration = () => {
         dispatch(auth());
     }, []);
     const isAuth = useSelector((state) => state.user.isAuth);
-    if (isAuth == undefined) {
-        return (
-            <div className="center">
-                <span className="loader"></span>
-            </div>
-        );
-    }
+
     if (isAuth == false) {
         return <Redirect to="/drive" />;
     }

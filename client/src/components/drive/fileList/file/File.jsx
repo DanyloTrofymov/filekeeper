@@ -18,13 +18,13 @@ const File = ({ file }) => {
             dispatch(pushToStack(currentDir));
             dispatch(setCurrentDir(file));
         } else {
-            openFile(file);
+            dispatch(openFile(file));
         }
     }
 
     function downloadClickHandler(e) {
         e.stopPropagation();
-        downloadFile(file);
+        dispatch(downloadFile(file));
     }
 
     function deleteClickHandler(e) {
