@@ -13,8 +13,8 @@ export const registration = (email, username, password, repeatPassword) => {
             };
             const URL = process.env.REACT_APP_API_URL + 'auth/registration/';
             const response = await axios.post(URL, req);
-            dispatch(setUser(response.data.data));
             localStorage.setItem('token', response.data.data.token);
+            dispatch(setUser(response.data.data));
         } catch (e) {
             dispatch(setErrorDisplay(true, e.response.data.message));
         }

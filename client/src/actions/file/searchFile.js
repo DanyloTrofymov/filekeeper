@@ -1,12 +1,12 @@
 import axios from 'axios';
 import { setFiles } from '../../reducers/file';
-import { showLoader } from '../../reducers/helper';
+import { setLoader } from '../../reducers/helper';
 import { setErrorDisplay } from '../../reducers/modal';
 
 export function searchFiles(search) {
     return async (dispatch) => {
         try {
-            dispatch(showLoader(true));
+            dispatch(setLoader(true));
 
             const query = `?search=${search}`;
             let URL = process.env.REACT_APP_API_URL + 'drive/search' + query;
@@ -21,7 +21,7 @@ export function searchFiles(search) {
         } catch (e) {
             dispatch(setErrorDisplay(true, e.response.data.message));
         } finally {
-            dispatch(showLoader(false));
+            dispatch(setLoader(false));
         }
     };
 }

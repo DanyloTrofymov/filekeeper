@@ -13,4 +13,4 @@ export default function helperReducer(state = defaultState, action) {
     }
 }
 
-export const showLoader = (state) => ({ type: SHOW_LOADER, state });
+export const setLoader = (state) => ({ type: SHOW_LOADER, state });

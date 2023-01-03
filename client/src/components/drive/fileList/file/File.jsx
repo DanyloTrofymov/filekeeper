@@ -7,6 +7,7 @@ import { pushToStack, setCurrentDir } from '../../../../reducers/file';
 import { downloadFile } from '../../../../actions/file/downloadFile';
 import { openFile } from '../../../../actions/file/openFile';
 import { setYesNoDisplay } from '../../../../reducers/modal';
+import { setLoader } from '../../../../reducers/helper';
 
 const File = ({ file }) => {
     const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const File = ({ file }) => {
         } else {
             dispatch(openFile(file));
         }
+        dispatch(setLoader(true));
     }
 
     function downloadClickHandler(e) {

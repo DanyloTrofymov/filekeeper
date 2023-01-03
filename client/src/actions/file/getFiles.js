@@ -1,12 +1,12 @@
 import axios from 'axios';
 import { setFiles } from '../../reducers/file';
-import { showLoader } from '../../reducers/helper';
+import { setLoader } from '../../reducers/helper';
 import { setErrorDisplay } from '../../reducers/modal';
 
 export function getFiles(dir, sort, filter) {
     return async (dispatch) => {
         try {
-            dispatch(showLoader(true));
+            dispatch(setLoader(true));
             let URL = process.env.REACT_APP_API_URL + 'drive?';
             if (dir) {
                 URL += `parent=${dir._id}&`;
@@ -30,7 +30,7 @@ export function getFiles(dir, sort, filter) {
         } catch (e) {
             dispatch(setErrorDisplay(true, e.response.data.message));
         } finally {
-            dispatch(showLoader(false));
+            dispatch(setLoader(false));
         }
     };
 }
