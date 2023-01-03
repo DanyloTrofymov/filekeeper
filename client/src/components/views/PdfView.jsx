@@ -50,7 +50,11 @@ const PdfView = () => {
     return (
         <div>
             <center>
-                <Document file={fileURL} onLoadSuccess={onDocumentLoadSuccess}>
+                <Document
+                    file={fileURL}
+                    onLoadSuccess={onDocumentLoadSuccess}
+                    className="docViewer"
+                >
                     <Page
                         scale={scale}
                         pageNumber={pageNumber}
@@ -58,24 +62,38 @@ const PdfView = () => {
                         renderTextLayer={false}
                     />
                 </Document>
-                <p>
-                    {' '}
-                    Page {pageNumber} of {numPages}
-                </p>
-                {pageNumber > 1 && (
-                    <button onClick={() => prevPage()}>Previous Page</button>
-                )}
-                {pageNumber < numPages && (
-                    <button onClick={() => nextPage()}>Next Page</button>
-                )}
-                <input
-                    value={value}
-                    onChange={(e) => changePage(e.target.value)}
-                    type="text"
-                    placeholder="page"
-                />
-                <button onClick={() => changePageScale(-0.15)}>scale -</button>
-                <button onClick={() => changePageScale(+0.15)}>scale +</button>
+                <div className="navigation">
+                    <p>
+                        {' '}
+                        Page {pageNumber} of {numPages}
+                    </p>
+                    <div className="navigation__page">
+                        {pageNumber > 1 && (
+                            <button onClick={() => prevPage()}>
+                                Previous Page
+                            </button>
+                        )}
+                        {pageNumber < numPages && (
+                            <button onClick={() => nextPage()}>
+                                Next Page
+                            </button>
+                        )}
+                    </div>
+                    <input
+                        value={value}
+                        onChange={(e) => changePage(e.target.value)}
+                        type="text"
+                        placeholder="page"
+                    />
+                    <div className="navigation__scale">
+                        <button onClick={() => changePageScale(-0.2)}>
+                            scale -
+                        </button>
+                        <button onClick={() => changePageScale(+0.2)}>
+                            scale +
+                        </button>
+                    </div>
+                </div>
             </center>
         </div>
     );
