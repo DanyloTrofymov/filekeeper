@@ -83,7 +83,11 @@ export async function uploadFileController(
             user: user._id,
         });
 
-        const dbFileRes = await FileService.uploadFile(dbFile, file);
+        const dbFileRes = await FileService.uploadFile(
+            dbFile,
+            file,
+            req.storagePath,
+        );
         if (parent) {
             await FileModel.updateOne(
                 { _id: parent._id },

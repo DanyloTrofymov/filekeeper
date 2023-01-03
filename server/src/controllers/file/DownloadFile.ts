@@ -16,7 +16,7 @@ export async function downloadFileController(
     const data = { ...req.body, ...query };
 
     try {
-        return await FileService.downloadFile(data, res);
+        return await FileService.downloadFile(data, res, req.storagePath);
     } catch (e) {
         next(e);
     }

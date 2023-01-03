@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import useQuery from '../../../utils/useQuery';
+import useQuery from '../../utils/useQuery';
 //import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
 import { Document, Page } from 'react-pdf/dist/esm/entry.webpack5';
-import { getFile } from '../../../actions/file/getFile';
+import { getFile } from '../../actions/file/getFile';
 import { useDispatch, useSelector } from 'react-redux';
 
 const PdfView = () => {

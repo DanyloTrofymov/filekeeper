@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { auth } from '../../actions/user/auth';
 
-const ProtectedRoute = (props) => {
+const ProtectedRoute = ({ children }) => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(auth());
@@ -17,10 +17,10 @@ const ProtectedRoute = (props) => {
         );
     }
     if (isAuth == false) {
-        return <Redirect to="/login" />;
+        return <Navigate to="/login" />;
     }
     if (isAuth == true) {
-        return <Route {...props} />;
+        return children;
     }
 };
 

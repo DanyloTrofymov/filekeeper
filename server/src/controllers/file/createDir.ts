@@ -39,7 +39,7 @@ export async function createDirController(
         let dbFile;
         if (!data.parent) {
             file.path = data.name;
-            dbFile = await FileService.createDir(file);
+            dbFile = await FileService.createDir(file, req.storagePath);
         } else {
             const parentFile = await FileModel.findOne({ _id: data.parent });
             if (!parentFile) {
@@ -50,7 +50,7 @@ export async function createDirController(
                 );
             }
             file.path = `${parentFile.path}\\${data.name}`;
-            dbFile = await FileService.createDir(file);
+            dbFile = await FileService.createDir(file, req.storagePath);
 
             await FileModel.updateOne(
                 { _id: parentFile._id },

@@ -6,12 +6,14 @@ import cookieParser from 'cookie-parser';
 import { cors, errorHandler } from './src/middlewares';
 import fileUpload from 'express-fileupload';
 import initDB from './src/utils/database';
-
+import path from 'path';
+import filePath from './src/middlewares/filepath';
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 app.use(cors);
+app.use(filePath(path.resolve(__dirname, 'storage')));
 app.use(fileUpload({}));
 app.use(bodyParser.json());
 app.use(cookieParser());

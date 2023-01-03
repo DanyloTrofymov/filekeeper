@@ -3,7 +3,7 @@ import './auth.css';
 import Input from '../../utils/input/Input';
 import { login } from '../../actions/user/login';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { auth } from '../../actions/user/auth';
 
 const Login = () => {
@@ -15,11 +15,11 @@ const Login = () => {
     useEffect(() => {
         dispatch(auth());
     }, []);
-    console.log('ok');
+
     const isAuth = useSelector((state) => state.user.isAuth);
 
     if (isAuth == true) {
-        return <Redirect to="/drive" />;
+        return <Navigate to="/drive" />;
     }
 
     return (

@@ -8,12 +8,13 @@ import { ERRORS, HttpError } from '../../utils/error';
 export async function downloadFileService(
     data: ITokenBody & IDownloadQuery,
     res: Response,
+    storagePath: any,
 ) {
     const file = await FileModel.findOne({ _id: data.id, user: data.userId });
     if (!file) {
         throw new HttpError(403, 'File not found', ERRORS.NOT_FOUND('FILE'));
     }
-    const path = `${process.env.STORAGE_PATH}\\${data.userId}\\${file.path}`;
+    const path = `${storagePath}\\${data.userId}\\${file.path}`;
     const exists = await fs.pathExists(path);
     if (exists) {
         return res.download(path);

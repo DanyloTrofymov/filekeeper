@@ -43,7 +43,7 @@ export async function deleteFileController(
         const childs = await getChilds(file);
         childs.push(file);
         await childs.forEach(async (child: any) => {
-            await FileService.deleteFile(child);
+            await FileService.deleteFile(child, req.storagePath);
             if (user.used_space - child.size < 0) {
                 await UserModel.updateOne({ _id: user._id }, { used_space: 0 });
             } else {
@@ -74,12 +74,3 @@ async function getChilds(file: any): Promise<any> {
     }
     return [...deepChildren, ...children];
 }
-/*async function getChilds(file: any) {
-    const childForThis: File[] = await FileModel.find({ _id: file.childs });
-    if (childForThis) {
-
-            childs.unshift(child);
-            await getChilds(child);
-        });
-    }
-}*/

@@ -3,16 +3,12 @@ import FileModel, { File } from '../../models/File';
 import { IFile } from '../../types/file';
 import { ERRORS, HttpError } from '../../utils/error';
 
-export async function uploadFileService(dbFile: File, file: IFile) {
-    const storagePath = process.env.STORAGE_PATH;
-    if (!storagePath) {
-        throw new HttpError(
-            500,
-            'Enviromental variables error',
-            ERRORS.INTERNAL_ERROR,
-        );
-    }
-    const path = `${process.env.STORAGE_PATH}\\${dbFile.user}\\${dbFile.path}`;
+export async function uploadFileService(
+    dbFile: File,
+    file: IFile,
+    storagePath: any,
+) {
+    const path = `${storagePath}\\${dbFile.user}\\${dbFile.path}`;
     const exists = await fs.pathExists(path);
     if (exists) {
         throw new HttpError(

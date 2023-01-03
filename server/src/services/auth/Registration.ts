@@ -8,7 +8,10 @@ import FileService from '../../services/file';
 import File from '../../models/File';
 import { mongoose } from '@typegoose/typegoose';
 
-export async function RegistrationService(data: IRegistrationBody) {
+export async function RegistrationService(
+    data: IRegistrationBody,
+    storagePath: any,
+) {
     const existingEmail = await User.findOne({ email: data.email });
     if (existingEmail)
         throwError(ERRORS.EMAIL_EXISTS, 'User with this email already exists', {
@@ -33,7 +36,10 @@ export async function RegistrationService(data: IRegistrationBody) {
         password: hashPassword,
     });
 
-    await FileService.createDir(new File({ user: user.id, name: user.id }));
+    await FileService.createDir(
+        new File({ user: user.id, name: user.id }),
+        storagePath,
+    );
 
     const token = genetateToken(user);
 

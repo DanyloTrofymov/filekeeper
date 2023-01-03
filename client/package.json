@@ -3,21 +3,21 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
+        "@cyntler/react-doc-viewer": "^1.10.3",
         "@testing-library/jest-dom": "^4.2.4",
         "@testing-library/react": "^9.5.0",
         "@testing-library/user-event": "^7.2.1",
         "axios": "^0.24.0",
-        "react": "^16.13.1",
-        "react-doc-viewer": "^0.1.5",
-        "react-dom": "^16.13.1",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
         "react-pdf": "^6.2.1",
         "react-redux": "^7.2.1",
-        "react-router-dom": "^5.2.0",
+        "react-router-dom": "^6.6.1",
         "react-scripts": "^5.0.1",
         "react-transition-group": "^4.4.5",
-        "redux": "^4.0.5",
-        "redux-devtools-extension": "^2.13.8",
-        "redux-thunk": "^2.3.0"
+        "redux": "^4.2.0",
+        "redux-devtools-extension": "^2.13.9",
+        "redux-thunk": "^2.4.2"
     },
     "scripts": {
         "start": "react-scripts start",

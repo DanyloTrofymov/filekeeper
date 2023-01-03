@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { addFile } from '../../reducers/file';
+import { addDir } from '../../reducers/file';
 import { setErrorDisplay } from '../../reducers/modal';
 
 export function createDir(dir, name) {
@@ -22,7 +22,7 @@ export function createDir(dir, name) {
                     headers: { Authorization: `Bearer ${token}` },
                 },
             );
-            dispatch(addFile(response.data.data));
+            dispatch(addDir(response.data.data));
         } catch (e) {
             dispatch(setErrorDisplay(true, e.response.data.message));
         }

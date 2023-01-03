@@ -3,7 +3,7 @@ import './auth.css';
 import Input from '../../utils/input/Input';
 import { registration } from '../../actions/user/registration';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { auth } from '../../actions/user/auth';
 
 const Registration = () => {
@@ -19,7 +19,7 @@ const Registration = () => {
     const isAuth = useSelector((state) => state.user.isAuth);
 
     if (isAuth == false) {
-        return <Redirect to="/drive" />;
+        return <Navigate to="/drive" />;
     }
 
     return (
