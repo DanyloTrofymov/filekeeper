@@ -1,0 +1,1 @@
+{"version":3,"file":"filepath.js","sourceRoot":"","sources":["../../../src/middlewares/filepath.ts"],"names":[],"mappings":";;AAEA,SAAS,QAAQ,CAAC,IAAS;IACvB,OAAO,UAAU,GAAY,EAAE,GAAa,EAAE,IAAkB;QAC5D,GAAG,CAAC,WAAW,GAAG,IAAI,CAAC;QACvB,IAAI,EAAE,CAAC;IACX,CAAC,CAAC;AACN,CAAC;AAED,kBAAe,QAAQ,CAAC"}
