@@ -9,6 +9,7 @@ import PdfView from './views/PdfView';
 import Drive from '../components/drive/Drive';
 import ProtectedRoute from './auth/ProtectedRoute';
 import DocView from './views/DocView';
+import AudioView from './views/AudioView';
 //import actions from '../actions';
 //import { auth } from '../actions/user/auth';
 //import { useDispatch, useSelector } from 'react-redux';
@@ -27,9 +28,30 @@ function App() {
                             path="/registration"
                             element={<Registration />}
                         />
-                        <Route path="/viewPDF" element={<PdfView />} />
-                        <Route path="/viewDoc" element={<DocView />} />
-                        <Route path="*" element={<Navigate to="/login" />} />
+                        <Route
+                            path="/viewAudio"
+                            element={
+                                <ProtectedRoute>
+                                    <AudioView />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route
+                            path="/viewPDF"
+                            element={
+                                <ProtectedRoute>
+                                    <PdfView />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route
+                            path="/viewDoc"
+                            element={
+                                <ProtectedRoute>
+                                    <DocView />
+                                </ProtectedRoute>
+                            }
+                        />
                         <Route
                             path="/drive"
                             element={
@@ -38,6 +60,7 @@ function App() {
                                 </ProtectedRoute>
                             }
                         />
+                        <Route path="*" element={<Navigate to="/login" />} />
                     </Routes>
                 </div>
                 <ErrorModal />

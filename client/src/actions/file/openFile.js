@@ -5,7 +5,7 @@ import { setErrorDisplay } from '../../reducers/modal';
 const CLICK = 'click';
 const PDF = 'viewPDF';
 const DOC = 'viewDoc';
-const MUSIC = 'viewMusic';
+const MUSIC = 'viewAudio';
 const VIDEO = 'viewVodeo';
 
 export function openFile(file) {

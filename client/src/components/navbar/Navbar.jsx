@@ -11,9 +11,13 @@ const Navbar = () => {
     return (
         <div className="navbar">
             <div className="container">
-                <div alt="FileKeeper" className="navbar__logo">
+                <a
+                    alt="FileKeeper"
+                    className="navbar__logo"
+                    href={location.protocol + '//' + location.host + '/'}
+                >
                     FileKeeper
-                </div>
+                </a>
                 {!isAuth && (
                     <div className="navbar__login">
                         <div className="navbar__login__link">

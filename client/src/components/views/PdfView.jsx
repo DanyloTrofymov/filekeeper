@@ -4,14 +4,16 @@ import useQuery from '../../utils/useQuery';
 import { Document, Page } from 'react-pdf/dist/esm/entry.webpack5';
 import { getFile } from '../../actions/file/getFile';
 import { useDispatch, useSelector } from 'react-redux';
-
+import './view.css';
 const PdfView = () => {
     const dispatch = useDispatch();
     const [fileURL, setFileURL] = useState();
     const query = useQuery();
     const fileId = query.get('file');
     const file = useSelector((state) => state.file.data);
-    dispatch(getFile(fileId));
+    if (fileId && file == '') {
+        dispatch(getFile(fileId));
+    }
 
     if (!fileURL) {
         if (file.length != 0) {

@@ -17,13 +17,7 @@
     flex-direction: row;
 }
 .navbar__login__link {
-    padding-left: 20px;
-}
-.navbar__username {
-    margin-left: auto;
-    color: white;
-}
-.navbar a {
+    margin: 1em;
     color: white;
     border: none;
     background-color: #1abc63;
@@ -31,7 +25,15 @@
     font-weight: 500;
     padding: 7px 10px;
     align-self: flex-end;
-    margin-top: 10px;
+}
+.navbar__login a {
+    color: white;
+}
+.navbar__username {
+    margin-left: auto;
+    padding-right: 2em;
+    align-self: center;
+    color: white;
 }
 .container {
     width: 80vw;

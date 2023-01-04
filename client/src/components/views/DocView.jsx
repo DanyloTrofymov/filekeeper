@@ -6,6 +6,7 @@ import { getFile } from '../../actions/file/getFile';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoader } from '../../reducers/helper';
 import './view.css';
+
 const DocView = () => {
     const dispatch = useDispatch();
     const query = useQuery();
@@ -13,7 +14,7 @@ const DocView = () => {
     const file = useSelector((state) => state.file.data);
     const loader = useSelector((state) => state.hepler.loader);
     const [doc, setDoc] = useState([]);
-    if (fileId) {
+    if (fileId && file == '') {
         dispatch(getFile(fileId));
     }
 
@@ -26,7 +27,6 @@ const DocView = () => {
     }
     if (doc.length != 0) {
         dispatch(setLoader(false));
-        console.log(doc);
     }
 
     if (loader)
@@ -35,12 +35,18 @@ const DocView = () => {
                 <span className="loader"></span>
             </div>
         );
+
     return (
-        <div className="view">
+        <div className="docViewer">
             <DocViewer
                 pluginRenderers={DocViewerRenderers}
                 documents={doc}
                 className="docViewer"
+                config={{
+                    header: {
+                        disableHeader: true,
+                    },
+                }}
             />
         </div>
     );
