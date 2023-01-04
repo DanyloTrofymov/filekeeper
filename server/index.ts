@@ -7,7 +7,7 @@ import { cors, errorHandler } from './src/middlewares';
 import fileUpload from 'express-fileupload';
 import initDB from './src/utils/database';
 import path from 'path';
-import filePath from './src/middlewares/filepath';
+import filePath from './src/middlewares/filePath';
 dotenv.config();
 
 const app = express();
