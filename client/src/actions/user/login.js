@@ -9,7 +9,7 @@ export const login = (username, password) => {
                 username: username,
                 password: password,
             };
-            const URL = process.env.REACT_APP_API_URL + 'auth/login/';
+            const URL = process.env.REACT_APP_API_URL + 'api/v1/auth/login/';
             const response = await axios.post(URL, req);
             localStorage.setItem('token', response.data.data.token);
             dispatch(setUser(response.data.data));

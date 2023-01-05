@@ -7,6 +7,10 @@
     align-items: center;
     cursor: pointer;
 }
+.file__name {
+    margin-right: 30px;
+    overflow: hidden;
+}
 .file:hover {
     background-color: rgba(34, 31, 31, 0.1);
     transform: scale(1.01);

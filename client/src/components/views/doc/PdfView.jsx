@@ -32,7 +32,6 @@ const PdfView = () => {
 
     function changePage(offSet) {
         if (offSet > 0 && offSet <= numPages) {
-            console.log(offSet);
             setPageNumber(Number(offSet));
         }
     }
@@ -48,7 +47,6 @@ const PdfView = () => {
     function changePageScale(offSet) {
         if (scale * offSet > 0.5 && scale * offSet < 3)
             setScale((prevScale) => prevScale * offSet);
-        console.log(scale);
     }
     let value;
     return (

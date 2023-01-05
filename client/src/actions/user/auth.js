@@ -5,7 +5,7 @@ import { logout } from '../../reducers/user';
 export const auth = () => {
     return async (dispatch) => {
         try {
-            const URL = process.env.REACT_APP_API_URL + 'auth/token/';
+            const URL = process.env.REACT_APP_API_URL + 'api/v1/auth/token/';
             const token = localStorage.getItem('token');
             if (token) {
                 const response = await axios.get(URL, {

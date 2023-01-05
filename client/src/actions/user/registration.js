@@ -11,7 +11,8 @@ export const registration = (email, username, password, repeatPassword) => {
                 password: password,
                 confirmPassword: repeatPassword,
             };
-            const URL = process.env.REACT_APP_API_URL + 'auth/registration/';
+            const URL =
+                process.env.REACT_APP_API_URL + 'api/v1/auth/registration/';
             const response = await axios.post(URL, req);
             localStorage.setItem('token', response.data.data.token);
             dispatch(setUser(response.data.data));

@@ -19,6 +19,7 @@ const PORT = process.env.PORT || 5000;
 app.use(middlewares_1.cors);
 app.use((0, filePath_1.default)(path_1.default.resolve(__dirname, 'storage')));
 app.use((0, express_fileupload_1.default)({}));
+app.use(express_1.default.static('storage'));
 app.use(body_parser_1.default.json());
 app.use((0, cookie_parser_1.default)());
 app.use('/api/v1', (0, api_1.initApi)());

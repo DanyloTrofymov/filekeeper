@@ -7,7 +7,7 @@ export function getFiles(dir, sort, filter) {
     return async (dispatch) => {
         try {
             dispatch(setLoader(true));
-            let URL = process.env.REACT_APP_API_URL + 'drive?';
+            let URL = process.env.REACT_APP_API_URL + 'api/v1/drive?';
             if (dir) {
                 URL += `parent=${dir._id}&`;
             }

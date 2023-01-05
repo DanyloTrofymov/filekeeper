@@ -7,7 +7,7 @@ export function getFile(fileId) {
     return async (dispatch) => {
         try {
             dispatch(setLoader(true));
-            const URL = `${process.env.REACT_APP_API_URL}drive/download?id=${fileId}`;
+            const URL = `${process.env.REACT_APP_API_URL}api/v1/drive/download?id=${fileId}`;
             const token = localStorage.getItem('token');
             const response = await axios.get(URL, {
                 headers: {

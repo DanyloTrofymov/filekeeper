@@ -7,7 +7,7 @@ services:
       - 3001:3001
     env_file: ./server/.docker.env
     volumes: 
-      - ./server/storage:/var/lib/serverData/storage
+      - ./server/storage:/app/server/storage
     stdin_open: true
     tty: true
   client: 

@@ -15,6 +15,7 @@ const initFileApi = () => {
     router.get('/search', auth_1.authMiddleware, controllers_1.default.FileController.searchFile);
     router.get('/download', auth_1.authMiddleware, controllers_1.default.FileController.downloadFile);
     router.delete('/', auth_1.authMiddleware, controllers_1.default.FileController.deleteFile);
+    router.get('/getpath', auth_1.authMiddleware, controllers_1.default.FileController.getFilePath);
     return router;
 };
 exports.initFileApi = initFileApi;

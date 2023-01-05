@@ -1,0 +1,24 @@
+.userSpace {
+    background-color: rgba(236, 236, 236, 0.9);
+    padding: 10px 0;
+    width: 200px;
+    min-width: 150px;
+    transition: 0.5s;
+    pointer-events: all;
+}
+.userSpace__space-bar {
+    height: 1.1rem;
+    border-radius: 10px;
+    width: 10vw;
+    background-color: #cecece;
+    display: flex;
+    margin: 3px 0;
+}
+.userSpace__used-bar {
+    display: flex;
+    height: 1.1rem;
+    background-color: rgba(34, 31, 31, 0.6);
+    border-radius: 10px;
+    width: 10vw;
+    z-index: 4;
+}

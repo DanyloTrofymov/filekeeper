@@ -4,7 +4,7 @@ import { setErrorDisplay } from '../../reducers/modal';
 export function downloadFile(file) {
     return async (dispatch) => {
         try {
-            const URL = `${process.env.REACT_APP_API_URL}drive/download?id=${file._id}`;
+            const URL = `${process.env.REACT_APP_API_URL}api/v1/drive/download?id=${file._id}`;
             const token = localStorage.getItem('token');
             const response = await axios.get(URL, {
                 headers: {

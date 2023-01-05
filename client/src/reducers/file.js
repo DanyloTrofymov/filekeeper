@@ -9,6 +9,7 @@ const SET_FILTER = 'SET_FILTER';
 const SET_SEARCH = 'SET_SEARCH';
 const SET_VIEW = 'SET_VIEW';
 const SET_DATA = 'SET_DATA';
+const SET_FILEPATH = 'SET_FILEPATH';
 
 const defaultState = {
     files: [],
@@ -19,6 +20,7 @@ const defaultState = {
     search: '',
     view: 'list',
     data: [],
+    filePath: '',
 };
 
 export default function fileReducer(state = defaultState, action) {
@@ -62,6 +64,8 @@ export default function fileReducer(state = defaultState, action) {
             return { ...state, view: action.payload };
         case SET_DATA:
             return { ...state, data: action.payload };
+        case SET_FILEPATH:
+            return { ...state, filePath: action.payload };
         default:
             return state;
     }
@@ -82,3 +86,4 @@ export const setFilter = (filter, add) => ({
 export const setSearch = (name) => ({ type: SET_SEARCH, payload: name });
 export const setView = (type) => ({ type: SET_VIEW, payload: type });
 export const setData = (data) => ({ type: SET_DATA, payload: data });
+export const setFilepath = (path) => ({ type: SET_FILEPATH, payload: path });

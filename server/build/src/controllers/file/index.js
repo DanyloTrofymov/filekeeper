@@ -6,6 +6,7 @@ const UploadFile_1 = require("./UploadFile");
 const DownloadFile_1 = require("./DownloadFile");
 const DeleteFile_1 = require("./DeleteFile");
 const SearchFile_1 = require("./SearchFile");
+const GetFilePath_1 = require("./GetFilePath");
 class FileController {
     static createDir = CreateDir_1.createDirController;
     static listFiles = ListFile_1.listFileController;
@@ -13,6 +14,7 @@ class FileController {
     static downloadFile = DownloadFile_1.downloadFileController;
     static deleteFile = DeleteFile_1.deleteFileController;
     static searchFile = SearchFile_1.searchFileController;
+    static getFilePath = GetFilePath_1.getFilePathController;
 }
 exports.default = FileController;
 //# sourceMappingURL=index.js.map

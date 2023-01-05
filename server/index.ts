@@ -15,6 +15,7 @@ const PORT = process.env.PORT || 5000;
 app.use(cors);
 app.use(filePath(path.resolve(__dirname, 'storage')));
 app.use(fileUpload({}));
+app.use(express.static('storage'));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use('/api/v1', initApi());

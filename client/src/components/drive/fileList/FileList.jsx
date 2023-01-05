@@ -17,7 +17,7 @@ const FileList = () => {
         </CSSTransition>
     ));
     const loader = useSelector((state) => state.hepler.loader);
-    //const files2 = useSelector((state) => state.file.files)
+
     if (loader) {
         <div className="center">
             <span className="loader"></span>

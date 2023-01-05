@@ -7,13 +7,14 @@ import { setView, setCurrentDir } from '../../reducers/file';
 import { setCreateFolderDisplay } from '../../reducers/modal';
 import CreateFolderModal from '../../utils/modal/CreateFolderModal';
 import YesNoModal from '../../utils/modal/YesNoModal';
-import Uploader from '../../utils/modal/uploader/Uploader';
+import Uploader from './uploader/Uploader';
 import FileList from './fileList/FileList';
 import FilterBox from './leftAside/filter/filterBox';
 import SortBox from './leftAside/sort/sortBox';
 import SearchBar from './leftAside/searchBar/searchBar';
 import './drive.css';
 import '../../utils/loader.css';
+import UserSpace from './leftAside/userSpace/UserSpace';
 
 const Drive = () => {
     const dispatch = useDispatch();
@@ -80,6 +81,7 @@ const Drive = () => {
                     ) : (
                         <div></div>
                     )}
+                    <UserSpace />
                 </div>
             </div>
             <div

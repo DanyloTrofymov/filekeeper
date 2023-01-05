@@ -29,7 +29,7 @@ export function uploadFile(file, dir) {
             const upload = { name: file.name, progress: 0, id: id };
             dispatch(showUploader());
             dispatch(addUploadFile(upload));
-            const URL = `${process.env.REACT_APP_API_URL}drive/upload/`;
+            const URL = `${process.env.REACT_APP_API_URL}api/v1/drive/upload/`;
             const token = localStorage.getItem('token');
             const response = await axios.post(URL, formData, {
                 headers: {

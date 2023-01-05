@@ -10,8 +10,10 @@
         "ecmaVersion": 2020,
         "sourceType": "module"
     },
-    "plugins": ["react"],
+    "plugins": ["react", "no-comments"],
     "rules": {
+        "no-console": "error",
+        "no-comments/disallowComments": "off",
         "react/prop-types": "off"
     },
     "settings": {

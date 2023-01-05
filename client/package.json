@@ -54,6 +54,7 @@
         "@commitlint/cli": "^17.3.0",
         "@commitlint/config-conventional": "^17.3.0",
         "eslint": "^6.6.0",
+        "eslint-plugin-no-comments": "^1.1.10",
         "eslint-plugin-react": "^7.31.11",
         "husky": "^8.0.2",
         "lint-staged": "^13.1.0",

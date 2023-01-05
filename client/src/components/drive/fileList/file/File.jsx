@@ -24,6 +24,19 @@ const File = ({ file }) => {
         dispatch(setLoader(true));
     }
 
+    function convertSize(size) {
+        if (size > 1024 ** 3) {
+            return `${(size / 1024 ** 3).toFixed(1)} gb`;
+        }
+        if (size > 1024 ** 2) {
+            return `${(size / 1024 ** 2).toFixed(1)} mb`;
+        }
+        if (size > 1024) {
+            return `${(size / 1024).toFixed(1)} kb`;
+        }
+        return `${size} bytes`;
+    }
+
     function downloadClickHandler(e) {
         e.stopPropagation();
         dispatch(downloadFile(file));
@@ -96,18 +109,5 @@ const File = ({ file }) => {
         );
     }
 };
-
-function convertSize(size) {
-    if (size > 1024 ** 3) {
-        return `${(size / 1024 ** 3).toFixed(1)} gb`;
-    }
-    if (size > 1024 ** 2) {
-        return `${(size / 1024 ** 2).toFixed(1)} mb`;
-    }
-    if (size > 1024) {
-        return `${(size / 1024).toFixed(1)} kb`;
-    }
-    return `${size} bytes`;
-}
 
 export default File;

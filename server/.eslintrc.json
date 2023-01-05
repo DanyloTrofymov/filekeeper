@@ -10,8 +10,9 @@
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
-    "plugins": ["@typescript-eslint"],
+    "plugins": ["@typescript-eslint", "no-comments"],
     "rules": {
+        "no-comments/disallowComments": ["error"],
         "@typescript-eslint/no-explicit-any": "off"
     }
 }
