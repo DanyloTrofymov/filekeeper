@@ -7,4 +7,4 @@ function filePath(path) {
     };
 }
 exports.default = filePath;
-//# sourceMappingURL=filepath.js.map
+//# sourceMappingURL=filePath.js.map

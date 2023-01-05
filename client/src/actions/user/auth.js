@@ -15,6 +15,9 @@ export const auth = () => {
                 });
                 dispatch(setUser(response.data.data));
                 localStorage.setItem('token', response.data.data.token);
+            } else {
+                localStorage.removeItem('token');
+                dispatch(logout());
             }
         } catch (e) {
             localStorage.removeItem('token');

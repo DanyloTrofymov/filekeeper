@@ -12,7 +12,9 @@ export function deleteFile(file) {
             });
             dispatch(fileDelete(file._id));
         } catch (e) {
-            dispatch(setErrorDisplay(true, e.response.data.message));
+            if (e.response)
+                dispatch(setErrorDisplay(true, e.response.data.message));
+            else dispatch(setErrorDisplay(true, e));
         }
     };
 }

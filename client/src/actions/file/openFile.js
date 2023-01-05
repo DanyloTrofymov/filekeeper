@@ -1,51 +1,35 @@
-import axios from 'axios';
-//import { setData } from '../../reducers/file';
 import { setErrorDisplay } from '../../reducers/modal';
+import { downloadFile } from './downloadFile';
 
 const CLICK = 'click';
 const PDF = 'viewPDF';
 const DOC = 'viewDoc';
 const MUSIC = 'viewAudio';
-const VIDEO = 'viewVodeo';
+const VIDEO = 'viewVideo';
+const PIC = 'viewPhoto';
 
 export function openFile(file) {
     return async (dispatch) => {
         try {
-            const URL = `${process.env.REACT_APP_API_URL}drive/download?id=${file._id}`;
-            const token = localStorage.getItem('token');
-            const response = await axios.get(URL, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-                responseType: 'blob',
-            });
-            if (response.status === 200) {
-                const blob = response.data;
-                const viewer = chooseViewer(file.type);
-                if (viewer == CLICK) {
-                    const downloadUrl = window.URL.createObjectURL(blob);
-                    const link = document.createElement('a');
-                    link.href = downloadUrl;
-                    link.download = file.name;
-                    document.body.appendChild(link);
-                    downloadUrl.click();
-                    downloadUrl.remove();
-                } else {
-                    const viewLink = document.createElement('a');
-                    viewLink.href =
-                        location.protocol +
-                        '//' +
-                        location.host +
-                        '/' +
-                        viewer +
-                        '?file=' +
-                        file._id;
-                    //console.log(viewLink.href);
-                    viewLink.click();
-                }
+            const viewer = chooseViewer(file.type);
+            if (viewer == CLICK) {
+                downloadFile(file);
+            } else {
+                const viewLink = document.createElement('a');
+                viewLink.href =
+                    location.protocol +
+                    '//' +
+                    location.host +
+                    '/' +
+                    viewer +
+                    '?file=' +
+                    file._id;
+                viewLink.click();
             }
         } catch (e) {
-            dispatch(setErrorDisplay(true, e.response.data.message));
+            if (e.response)
+                dispatch(setErrorDisplay(true, e.response.data.message));
+            else dispatch(setErrorDisplay(true, e));
         }
     };
 }
@@ -57,7 +41,9 @@ function chooseViewer(type) {
         }
         case 'jpg':
         case 'jpeg':
-        case 'png':
+        case 'png': {
+            return PIC;
+        }
         case 'doc':
         case 'docx':
         case 'xls':
@@ -68,12 +54,6 @@ function chooseViewer(type) {
         case 'wav': {
             return MUSIC;
         }
-        /*case 'jpg':
-        case 'jpeg':
-        case 'png': {
-            link.click();
-            break;
-        }*/
         case 'mp4':
         case 'm4a':
         case 'mov': {

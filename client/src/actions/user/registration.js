@@ -16,7 +16,9 @@ export const registration = (email, username, password, repeatPassword) => {
             localStorage.setItem('token', response.data.data.token);
             dispatch(setUser(response.data.data));
         } catch (e) {
-            dispatch(setErrorDisplay(true, e.response.data.message));
+            if (e.response)
+                dispatch(setErrorDisplay(true, e.response.data.message));
+            else dispatch(setErrorDisplay(true, e));
         }
     };
 };

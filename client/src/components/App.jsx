@@ -5,16 +5,13 @@ import ErrorModal from '../utils/modal/ErrorModal';
 import Navbar from '../components/navbar/Navbar';
 import Registration from '../components/auth/Registration';
 import Login from '../components/auth/Login';
-import PdfView from './views/PdfView';
 import Drive from '../components/drive/Drive';
+import PdfView from './views/doc/PdfView';
 import ProtectedRoute from './auth/ProtectedRoute';
-import DocView from './views/DocView';
-import AudioView from './views/AudioView';
-//import actions from '../actions';
-//import { auth } from '../actions/user/auth';
-//import { useDispatch, useSelector } from 'react-redux';
-//import {setPopupDisplay} from "../reducers/file";
-// import Drive from '../components/drive/Drive';
+import DocView from './views/doc/DocView';
+import AudioView from './views/audio/AudioView';
+import PicView from './views/doc/PicView';
+import VideoView from './views/video/VideoView';
 
 function App() {
     return (
@@ -53,6 +50,22 @@ function App() {
                             }
                         />
                         <Route
+                            path="/viewVideo"
+                            element={
+                                <ProtectedRoute>
+                                    <VideoView />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route
+                            path="/viewPhoto"
+                            element={
+                                <ProtectedRoute>
+                                    <PicView />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route
                             path="/drive"
                             element={
                                 <ProtectedRoute>
@@ -60,7 +73,7 @@ function App() {
                                 </ProtectedRoute>
                             }
                         />
-                        <Route path="*" element={<Navigate to="/login" />} />
+                        <Route path="*" element={<Navigate to="/drive" />} />
                     </Routes>
                 </div>
                 <ErrorModal />

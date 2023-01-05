@@ -19,7 +19,9 @@ export function getFile(fileId) {
                 dispatch(setData(response.data));
             }
         } catch (e) {
-            dispatch(setErrorDisplay(true, e));
+            if (e.response)
+                dispatch(setErrorDisplay(true, e.response.data.message));
+            else dispatch(setErrorDisplay(true, e));
         } finally {
             dispatch(setLoader(false));
         }

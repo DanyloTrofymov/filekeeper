@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import useQuery from '../../utils/useQuery';
+import useQuery from '../../../utils/useQuery';
 import DocViewer, { DocViewerRenderers } from '@cyntler/react-doc-viewer';
-//import { Document, Page } from 'react-pdf/dist/esm/entry.webpack5';
-import { getFile } from '../../actions/file/getFile';
+import { getFile } from '../../../actions/file/getFile';
 import { useDispatch, useSelector } from 'react-redux';
-import { setLoader } from '../../reducers/helper';
-import './view.css';
+import { setLoader } from '../../../reducers/helper';
+import './docView.css';
 
 const DocView = () => {
     const dispatch = useDispatch();

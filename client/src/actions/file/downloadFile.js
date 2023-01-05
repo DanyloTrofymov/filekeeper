@@ -23,7 +23,9 @@ export function downloadFile(file) {
                 link.remove();
             }
         } catch (e) {
-            dispatch(setErrorDisplay(true, e.response.data.message));
+            if (e.response)
+                dispatch(setErrorDisplay(true, e.response.data.message));
+            else dispatch(setErrorDisplay(true, e));
         }
     };
 }

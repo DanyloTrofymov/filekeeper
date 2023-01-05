@@ -25,15 +25,7 @@ export async function uploadFileController(
         userId: ['required', 'string'],
         parent: ['string'],
     };
-    if (!req.files) {
-        throw new HttpError(
-            400,
-            'File need to be uploaded',
-            ERRORS.NOT_FOUND('FILE'),
-        );
-    }
 
-    const file = { ...req.files.file } as unknown as IFile;
     const data = { ...req.body };
     const parent = await File.findOne({
         user: data.userId,
@@ -42,6 +34,14 @@ export async function uploadFileController(
     const user = await User.findOne({ _id: data.userId });
 
     try {
+        if (!req.files) {
+            throw new HttpError(
+                400,
+                'File need to be uploaded',
+                ERRORS.NOT_FOUND('FILE'),
+            );
+        }
+        const file = { ...req.files.file } as unknown as IFile;
         validate(data, validationRules);
         const type = file.name.toLowerCase().split('.').pop() || '';
         if (!allowedTypes.includes(type)) {
