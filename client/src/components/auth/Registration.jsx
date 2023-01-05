@@ -18,7 +18,7 @@ const Registration = () => {
     }, []);
     const isAuth = useSelector((state) => state.user.isAuth);
 
-    if (isAuth == false) {
+    if (isAuth == true) {
         return <Navigate to="/drive" />;
     }
 
