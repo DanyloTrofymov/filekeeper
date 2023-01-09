@@ -10,14 +10,6 @@ export async function createDirService(file: File, storagePath: string) {
             file: file.name,
         });
     }
-    try {
-        fs.ensureDir(userPath);
-        return await FileModel.create(file);
-    } catch (e) {
-        throw new HttpError(
-            500,
-            'Internal server error',
-            ERRORS.INTERNAL_ERROR,
-        );
-    }
+    fs.ensureDir(userPath);
+    return await FileModel.create(file);
 }
