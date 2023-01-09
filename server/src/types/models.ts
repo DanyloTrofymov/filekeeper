@@ -8,7 +8,7 @@ export interface IUserAttributes {
     email: string;
     username: string;
     password: string;
-    disk_space: number;
+    drive_space: number;
     used_space: number;
     files: [ObjectId];
 }

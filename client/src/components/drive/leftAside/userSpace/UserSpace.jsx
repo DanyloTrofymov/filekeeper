@@ -1,8 +1,7 @@
 import React from 'react';
-import { /* useDispatch, */ useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import './userSpace.css';
 const UserSpace = () => {
-    //const dispatch = useDispatch();
     function convertSize(size) {
         if (size > 1024 ** 3) {
             return `${(size / 1024 ** 3).toFixed(1)} gb`;
@@ -21,14 +20,14 @@ const UserSpace = () => {
         <div className="userSpace">
             <p>
                 used {convertSize(user.used_space)} of{' '}
-                {convertSize(user.disk_space)}
+                {convertSize(user.drive_space)}
             </p>
             <div className="userSpace__space-bar">
                 <div
                     className="userSpace__used-bar"
                     style={{
                         width: Math.round(
-                            (user.used_space * 200) / user.disk_space,
+                            (user.used_space * 200) / user.drive_space,
                         ),
                     }}
                 />

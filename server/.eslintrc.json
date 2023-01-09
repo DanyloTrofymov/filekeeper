@@ -11,6 +11,7 @@
         "sourceType": "module"
     },
     "plugins": ["@typescript-eslint", "no-comments"],
+    "ignorePatterns": ["build"],
     "rules": {
         "no-comments/disallowComments": ["error"],
         "@typescript-eslint/no-explicit-any": "off"

@@ -4,7 +4,7 @@ import { IDeleteQuery } from '../../types/file';
 import { ITokenBody } from '../../types/auth';
 import { ERRORS, HttpError } from '../../utils/error';
 import User from '../../models/User';
-import FileModel from '../../models/File';
+import FileModel, { File } from '../../models/File';
 import UserModel from '../../models/User';
 
 interface downloadBody extends Request {
@@ -42,7 +42,7 @@ export async function deleteFileController(
         }
         const childs = await getChilds(file);
         childs.push(file);
-        await childs.forEach(async (child: any) => {
+        await childs.forEach(async (child: File) => {
             await FileService.deleteFile(child, req.storagePath);
             if (user.used_space - child.size < 0) {
                 await UserModel.updateOne({ _id: user._id }, { used_space: 0 });
@@ -65,7 +65,7 @@ export async function deleteFileController(
     }
 }
 
-async function getChilds(file: any): Promise<any> {
+async function getChilds(file: File): Promise<File[]> {
     const children = await FileModel.find({ _id: file.childs });
     const deepChildren = [];
     for (const child of children) {

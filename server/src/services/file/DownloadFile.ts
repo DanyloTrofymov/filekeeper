@@ -8,7 +8,7 @@ import { ERRORS, HttpError } from '../../utils/error';
 export async function downloadFileService(
     data: ITokenBody & IDownloadQuery,
     res: Response,
-    storagePath: any,
+    storagePath: string,
 ) {
     const file = await FileModel.findOne({ _id: data.id, user: data.userId });
     if (!file) {

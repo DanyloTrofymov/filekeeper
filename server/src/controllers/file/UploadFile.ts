@@ -59,11 +59,11 @@ export async function uploadFileController(
                 ERRORS.NOT_FOUND('USER'),
             );
         }
-        if (user.used_space + file.size > user.disk_space)
+        if (user.used_space + file.size > user.drive_space)
             throw new HttpError(
                 400,
-                `There is no space for this file on your disk`,
-                ERRORS.NO_SPACE_ON_DISK,
+                `There is no space for this file on your drive`,
+                ERRORS.NO_SPACE_ON_DRIVE,
             );
 
         file.name = Buffer.from(file.name, 'ascii').toString('utf8');

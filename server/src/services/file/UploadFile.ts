@@ -6,7 +6,7 @@ import { ERRORS, HttpError } from '../../utils/error';
 export async function uploadFileService(
     dbFile: File,
     file: IFile,
-    storagePath: any,
+    storagePath: string,
 ) {
     const path = `${storagePath}\\${dbFile.user}\\${dbFile.path}`;
     const exists = await fs.pathExists(path);
@@ -47,7 +47,7 @@ export async function uploadFileService(
 }
 async function getParents(file: any): Promise<any> {
     const parent = await FileModel.findOne({ _id: file.parent });
-    const deepParent: any[] = [];
+    const deepParent: File[] = [];
     if (parent) {
         const parentParent = await getParents(parent);
         deepParent.unshift(...parentParent);

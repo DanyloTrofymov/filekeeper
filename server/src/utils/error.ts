@@ -21,7 +21,7 @@ export const ERRORS = {
     BAD_TOKEN: 'BAD_TOKEN',
     SESSION_REQUIRED: 'SESSION_REQUIRED',
     BAD_PASSWORD: 'BAD_PASSWORD',
-    NO_SPACE_ON_DISK: 'BAD_PASSWORD',
+    NO_SPACE_ON_DRIVE: 'NO_SPACE_ON_DRIVE',
     WRONG_TYPE: 'WRONG_TYPE',
     NOT_FOUND: (model: string) => `${model.toUpperCase()}_NOT_FOUND`,
 };

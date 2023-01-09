@@ -16,7 +16,7 @@ export class User {
     public password: string;
 
     @prop({ default: 1024 ** 3 * 10 })
-    public disk_space: number;
+    public drive_space: number;
 
     @prop({ default: 0 })
     public used_space: number;

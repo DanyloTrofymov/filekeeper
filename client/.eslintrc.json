@@ -13,7 +13,7 @@
     "plugins": ["react", "no-comments"],
     "rules": {
         "no-console": "error",
-        "no-comments/disallowComments": "off",
+        "no-comments/disallowComments": "error",
         "react/prop-types": "off"
     },
     "settings": {

@@ -2,7 +2,7 @@ import fs from 'fs-extra';
 import FileModel, { File } from '../../models/File';
 import { ERRORS, HttpError } from '../../utils/error';
 
-export async function createDirService(file: File, storagePath: any) {
+export async function createDirService(file: File, storagePath: string) {
     const userPath = `${storagePath}\\${file.user}\\${file.path}`;
     const exists = await fs.pathExists(userPath);
     if (exists) {

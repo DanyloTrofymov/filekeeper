@@ -10,7 +10,7 @@ import { mongoose } from '@typegoose/typegoose';
 
 export async function RegistrationService(
     data: IRegistrationBody,
-    storagePath: any,
+    storagePath: string,
 ) {
     const existingEmail = await User.findOne({ email: data.email });
     if (existingEmail)

@@ -21,7 +21,7 @@ export async function TokenService(data: ITokenBody) {
         _id: user._id,
         email: user.email,
         username: user.username,
-        disk_space: user.disk_space,
+        drive_space: user.drive_space,
         used_space: user.used_space,
         token: token,
     };

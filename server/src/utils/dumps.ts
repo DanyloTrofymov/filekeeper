@@ -7,7 +7,7 @@ export const dumpUser = (user: User) => {
         email: user.email,
         username: user.username,
         files: user.files,
-        disk_space: user.disk_space,
+        drive_space: user.drive_space,
         used_space: user.used_space,
     };
 };

@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-function filePath(path: any) {
+function filePath(path: string) {
     return function (req: Request, res: Response, next: NextFunction) {
         req.storagePath = path;
         next();

@@ -1,15 +1,15 @@
 import fs from 'fs-extra';
-import FileModel from '../../models/File';
+import FileModel, { File } from '../../models/File';
 import { HttpError, ERRORS } from '../../utils/error';
 
-export async function deleteFileService(file: any, storagePath: any) {
+export async function deleteFileService(file: File, storagePath: string) {
     const path = `${storagePath}\\${file.user}\\${file.path}`;
     try {
         await fs.remove(path);
         await FileModel.deleteOne({ _id: file._id });
         if (file.parent) {
             const parents = await getParents(file.parent);
-            await parents.forEach(async (parent: any) => {
+            await parents.forEach(async (parent: File) => {
                 if (parent != null) {
                     await FileModel.updateOne(
                         { _id: parent._id },
@@ -34,7 +34,7 @@ export async function deleteFileService(file: any, storagePath: any) {
 }
 async function getParents(file: any): Promise<any> {
     const parent = await FileModel.findOne({ _id: file.parent });
-    const deepParent: any[] = [];
+    const deepParent: File[] = [];
     if (parent) {
         const parentParent = await getParents(parent);
         deepParent.unshift(...parentParent);
