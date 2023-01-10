@@ -15,13 +15,8 @@ async function createDirService(file, storagePath) {
             file: file.name,
         });
     }
-    try {
-        fs_extra_1.default.ensureDir(userPath);
-        return await File_1.default.create(file);
-    }
-    catch (e) {
-        throw new error_1.HttpError(500, 'Internal server error', error_1.ERRORS.INTERNAL_ERROR);
-    }
+    fs_extra_1.default.ensureDir(userPath);
+    return await File_1.default.create(file);
 }
 exports.createDirService = createDirService;
 //# sourceMappingURL=CreateDir.js.map

@@ -20,9 +20,8 @@ class User {
     email;
     username;
     password;
-    disk_space;
+    drive_space;
     used_space;
-    files;
 }
 __decorate([
     (0, typegoose_1.prop)(),
@@ -41,17 +40,13 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
 __decorate([
-    (0, typegoose_1.prop)({ default: 1024 ** 3 * 10 }),
+    (0, typegoose_1.prop)({ default: 1024 ** 3 * 20 }),
     __metadata("design:type", Number)
-], User.prototype, "disk_space", void 0);
+], User.prototype, "drive_space", void 0);
 __decorate([
     (0, typegoose_1.prop)({ default: 0 }),
     __metadata("design:type", Number)
 ], User.prototype, "used_space", void 0);
-__decorate([
-    (0, typegoose_1.prop)({ ref: () => 'File' }),
-    __metadata("design:type", Object)
-], User.prototype, "files", void 0);
 exports.User = User;
 const UserModel = (0, typegoose_1.getModelForClass)(User);
 exports.default = UserModel;

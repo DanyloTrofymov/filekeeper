@@ -17,7 +17,6 @@ async function deleteFileService(file, storagePath) {
             await parents.forEach(async (parent) => {
                 if (parent != null) {
                     await File_1.default.updateOne({ _id: parent._id }, { $inc: { size: -file.size } });
-                    await File_1.default.updateOne({ _id: parent._id }, { $pull: { childs: file._id } });
                 }
             });
         }

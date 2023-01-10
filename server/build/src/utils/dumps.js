@@ -6,8 +6,7 @@ const dumpUser = (user) => {
         _id: user._id,
         email: user.email,
         username: user.username,
-        files: user.files,
-        disk_space: user.disk_space,
+        drive_space: user.drive_space,
         used_space: user.used_space,
     };
 };
@@ -22,7 +21,6 @@ const dumpFile = (file) => {
         date: file.date,
         user: file.user,
         parent: file.parent,
-        childs: file.childs,
     };
 };
 exports.dumpFile = dumpFile;

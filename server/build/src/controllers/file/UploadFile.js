@@ -13,7 +13,6 @@ const validator_1 = __importDefault(require("../../utils/validator"));
 const dumps_1 = require("../../utils/dumps");
 const buffer_1 = require("buffer");
 const typegoose_1 = require("@typegoose/typegoose");
-const File_2 = __importDefault(require("../../models/File"));
 const User_2 = __importDefault(require("../../models/User"));
 async function uploadFileController(req, res, next) {
     const validationRules = {
@@ -39,8 +38,8 @@ async function uploadFileController(req, res, next) {
         if (!user) {
             throw new error_1.HttpError(400, `User with id ${data.userId} was not found`, error_1.ERRORS.NOT_FOUND('USER'));
         }
-        if (user.used_space + file.size > user.disk_space)
-            throw new error_1.HttpError(400, `There is no space for this file on your disk`, error_1.ERRORS.NO_SPACE_ON_DISK);
+        if (user.used_space + file.size > user.drive_space)
+            throw new error_1.HttpError(400, `There is no space for this file on your drive`, error_1.ERRORS.NO_SPACE_ON_DRIVE);
         file.name = buffer_1.Buffer.from(file.name, 'ascii').toString('utf8');
         let filePath = file.name;
         if (parent) {
@@ -56,9 +55,6 @@ async function uploadFileController(req, res, next) {
             user: user._id,
         });
         const dbFileRes = await file_2.default.uploadFile(dbFile, file, req.storagePath);
-        if (parent) {
-            await File_2.default.updateOne({ _id: parent._id }, { $push: { childs: dbFileRes._id } });
-        }
         await User_2.default.updateOne({ _id: user._id }, { $inc: { used_space: dbFileRes.size } });
         return res.json({
             data: {

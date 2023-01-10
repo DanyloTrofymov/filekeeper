@@ -9,8 +9,7 @@ const error_1 = require("../../utils/error");
 const User_1 = __importDefault(require("../../models/User"));
 const User_2 = __importDefault(require("../../models/User"));
 const jwt_1 = __importDefault(require("../../utils/jwt"));
-const file_1 = __importDefault(require("../../services/file"));
-const File_1 = __importDefault(require("../../models/File"));
+const fs_extra_1 = __importDefault(require("fs-extra"));
 const typegoose_1 = require("@typegoose/typegoose");
 async function RegistrationService(data, storagePath) {
     const existingEmail = await User_1.default.findOne({ email: data.email });
@@ -29,7 +28,8 @@ async function RegistrationService(data, storagePath) {
         username: data.username,
         password: hashPassword,
     });
-    await file_1.default.createDir(new File_1.default({ user: user.id, name: user.id }), storagePath);
+    const userPath = `${storagePath}\\${user._id}`;
+    fs_extra_1.default.ensureDir(userPath);
     const token = (0, jwt_1.default)(user);
     return {
         user,

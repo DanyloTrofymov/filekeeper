@@ -25,7 +25,6 @@ class File {
     date;
     user;
     parent;
-    childs;
 }
 __decorate([
     (0, typegoose_1.prop)(),
@@ -59,10 +58,6 @@ __decorate([
     (0, typegoose_1.prop)({ ref: () => File }),
     __metadata("design:type", Object)
 ], File.prototype, "parent", void 0);
-__decorate([
-    (0, typegoose_1.prop)({ ref: () => File }),
-    __metadata("design:type", Array)
-], File.prototype, "childs", void 0);
 exports.File = File;
 const FileModel = (0, typegoose_1.getModelForClass)(File);
 exports.default = FileModel;

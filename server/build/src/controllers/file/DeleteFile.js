@@ -24,9 +24,9 @@ async function deleteFileController(req, res, next) {
         if (!user) {
             throw new error_1.HttpError(400, `User with id ${data.userId} was not found`, error_1.ERRORS.NOT_FOUND('USER'));
         }
-        const childs = await getChilds(file);
-        childs.push(file);
-        await childs.forEach(async (child) => {
+        const children = await getChildren(file);
+        children.push(file);
+        await children.forEach(async (child) => {
             await file_1.default.deleteFile(child, req.storagePath);
             if (user.used_space - child.size < 0) {
                 await User_2.default.updateOne({ _id: user._id }, { used_space: 0 });
@@ -38,7 +38,7 @@ async function deleteFileController(req, res, next) {
         });
         return res.json({
             data: {
-                ...childs,
+                ...children,
             },
             status: 1,
         });
@@ -48,11 +48,11 @@ async function deleteFileController(req, res, next) {
     }
 }
 exports.deleteFileController = deleteFileController;
-async function getChilds(file) {
-    const children = await File_1.default.find({ _id: file.childs });
+async function getChildren(file) {
+    const children = await File_1.default.find({ parent: file._id });
     const deepChildren = [];
     for (const child of children) {
-        const childChildren = await getChilds(child);
+        const childChildren = await getChildren(child);
         deepChildren.unshift(...childChildren);
     }
     return [...deepChildren, ...children];
