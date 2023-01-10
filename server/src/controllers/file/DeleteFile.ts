@@ -40,9 +40,9 @@ export async function deleteFileController(
                 ERRORS.NOT_FOUND('USER'),
             );
         }
-        const childs = await getChilds(file);
-        childs.push(file);
-        await childs.forEach(async (child: File) => {
+        const children = await getChildren(file);
+        children.push(file);
+        await children.forEach(async (child: File) => {
             await FileService.deleteFile(child, req.storagePath);
             if (user.used_space - child.size < 0) {
                 await UserModel.updateOne({ _id: user._id }, { used_space: 0 });
@@ -56,7 +56,7 @@ export async function deleteFileController(
         });
         return res.json({
             data: {
-                ...childs,
+                ...children,
             },
             status: 1,
         });
@@ -65,11 +65,11 @@ export async function deleteFileController(
     }
 }
 
-async function getChilds(file: File): Promise<File[]> {
-    const children = await FileModel.find({ _id: file.childs });
+async function getChildren(file: File): Promise<File[]> {
+    const children = await FileModel.find({ parent: file._id });
     const deepChildren = [];
     for (const child of children) {
-        const childChildren = await getChilds(child);
+        const childChildren = await getChildren(child);
         deepChildren.unshift(...childChildren);
     }
     return [...deepChildren, ...children];

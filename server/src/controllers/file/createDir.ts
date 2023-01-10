@@ -51,11 +51,6 @@ export async function createDirController(
             }
             file.path = `${parentFile.path}\\${data.name}`;
             dbFile = await FileService.createDir(file, req.storagePath);
-
-            await FileModel.updateOne(
-                { _id: parentFile._id },
-                { $push: { childs: file._id } },
-            );
         }
         return res.json({
             data: {

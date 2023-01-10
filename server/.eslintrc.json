@@ -13,7 +13,7 @@
     "plugins": ["@typescript-eslint", "no-comments"],
     "ignorePatterns": ["build"],
     "rules": {
-        "no-comments/disallowComments": ["error"],
+        "no-comments/disallowComments": ["off"],
         "@typescript-eslint/no-explicit-any": "off"
     }
 }

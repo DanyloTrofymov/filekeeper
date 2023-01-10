@@ -9,7 +9,6 @@ import validate from '../../utils/validator';
 import { dumpFile } from '../../utils/dumps';
 import { Buffer } from 'buffer';
 import { mongoose } from '@typegoose/typegoose';
-import FileModel from '../../models/File';
 import UserModel from '../../models/User';
 
 interface FileBody extends Request {
@@ -88,12 +87,6 @@ export async function uploadFileController(
             file,
             req.storagePath,
         );
-        if (parent) {
-            await FileModel.updateOne(
-                { _id: parent._id },
-                { $push: { childs: dbFileRes._id } },
-            );
-        }
         await UserModel.updateOne(
             { _id: user._id },
             { $inc: { used_space: dbFileRes.size } },

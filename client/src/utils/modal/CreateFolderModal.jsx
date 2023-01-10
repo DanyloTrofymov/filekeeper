@@ -4,7 +4,6 @@ import './modal.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCreateFolderDisplay } from '../../reducers/modal';
 import { createDir } from '../../actions/file/createDir';
-import { getFiles } from '../../actions/file/getFiles';
 
 const CreateFolderModal = () => {
     const [dirName, setDirName] = useState('');
@@ -16,7 +15,6 @@ const CreateFolderModal = () => {
 
     function createHandler() {
         dispatch(createDir(currentDir, dirName));
-        dispatch(getFiles());
     }
 
     return (

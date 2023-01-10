@@ -26,9 +26,6 @@ export class File {
 
     @prop({ ref: () => File })
     public parent: Ref<File>;
-
-    @prop({ ref: () => File })
-    public childs: Ref<File>[];
 }
 
 const FileModel = getModelForClass(File);

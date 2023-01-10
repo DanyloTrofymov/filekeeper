@@ -15,10 +15,6 @@ export async function deleteFileService(file: File, storagePath: string) {
                         { _id: parent._id },
                         { $inc: { size: -file.size } },
                     );
-                    await FileModel.updateOne(
-                        { _id: parent._id },
-                        { $pull: { childs: file._id } },
-                    );
                 }
             });
         }
