@@ -38,7 +38,6 @@ export async function RegistrationController(
             status: 1,
         });
     } catch (e: unknown) {
-        console.log(e);
         return next(e);
     }
 }
