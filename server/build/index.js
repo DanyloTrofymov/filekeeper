@@ -16,6 +16,7 @@ const filePath_1 = __importDefault(require("./src/middlewares/filePath"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 5000;
+app.disable("x-powered-by");
 app.use(middlewares_1.cors);
 app.use((0, filePath_1.default)(path_1.default.resolve(__dirname, 'storage')));
 app.use((0, express_fileupload_1.default)({}));

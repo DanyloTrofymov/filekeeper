@@ -12,6 +12,7 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+app.disable("x-powered-by");
 app.use(cors);
 app.use(filePath(path.resolve(__dirname, 'storage')));
 app.use(fileUpload({}));

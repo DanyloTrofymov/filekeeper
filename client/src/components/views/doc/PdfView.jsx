@@ -15,13 +15,13 @@ const PdfView = () => {
         dispatch(getFile(fileId));
     }
 
-    if (!fileURL) {
+    useEffect(() => {
         if (file.length != 0) {
             const url = window.URL.createObjectURL(file);
             setFileURL(url);
             setLoader(false);
         }
-    }
+    }, [file.length]);
 
     const [numPages, setNumPages] = useState(null);
     const [pageNumber, setPageNumber] = useState(1);
