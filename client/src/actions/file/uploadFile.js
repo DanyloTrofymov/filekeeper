@@ -6,6 +6,7 @@ import {
     showUploader,
     addUploadFile,
 } from '../../reducers/upload';
+import { v4 as uuid } from 'uuid';
 
 export function uploadFile(file, dir) {
     return async (dispatch) => {
@@ -25,7 +26,7 @@ export function uploadFile(file, dir) {
             if (dir) {
                 formData.append('parent', dir._id);
             }
-            const id = Date.now() + Math.floor(Math.random() * 100);
+            const id = uuid();
             const upload = { name: file.name, progress: 0, id: id };
             dispatch(showUploader());
             dispatch(addUploadFile(upload));

@@ -35,7 +35,6 @@
 .videoPlayer .player .button .play {
     display: block;
     content: '';
-    height: 100%;
     position: absolute;
     cursor: pointer;
     margin-left: 5px;

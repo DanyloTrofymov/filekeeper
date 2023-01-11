@@ -76,6 +76,7 @@
 .file-plate__download,
 .file-plate__delete {
     margin-left: auto;
+    margin-right: auto;
     align-self: center;
     display: none;
 }

@@ -19,9 +19,11 @@ const FileList = () => {
     const loader = useSelector((state) => state.hepler.loader);
 
     if (loader) {
-        <div className="center">
-            <span className="loader"></span>
-        </div>;
+        return (
+            <div className="center">
+                <span className="loader"></span>
+            </div>
+        );
     }
 
     if (files.length == 0) {

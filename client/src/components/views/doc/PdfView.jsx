@@ -10,6 +10,7 @@ const PdfView = () => {
     const query = useQuery();
     const fileId = query.get('file');
     const file = useSelector((state) => state.file.data);
+    const [loader, setLoader] = useState(true);
     if (fileId && file == '') {
         dispatch(getFile(fileId));
     }
@@ -18,6 +19,7 @@ const PdfView = () => {
         if (file.length != 0) {
             const url = window.URL.createObjectURL(file);
             setFileURL(url);
+            setLoader(false);
         }
     }
 
@@ -49,6 +51,15 @@ const PdfView = () => {
             setScale((prevScale) => prevScale * offSet);
     }
     let value;
+
+    if (loader) {
+        return (
+            <div className="center">
+                <span className="loader"></span>
+            </div>
+        );
+    }
+
     return (
         <div className="docViewer">
             <div className="navigation">

@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import useQuery from '../../../utils/useQuery';
 import { getFile } from '../../../actions/file/getFile';
 import { useDispatch, useSelector } from 'react-redux';
-import { setLoader } from '../../../reducers/helper';
 import './audioView.css';
 
 const AudioView = () => {
@@ -10,7 +9,7 @@ const AudioView = () => {
     const query = useQuery();
     const fileId = query.get('file');
     const file = useSelector((state) => state.file.data);
-    const loader = useSelector((state) => state.hepler.loader);
+    const [loader, setLoader] = useState(true);
     const [audio, setAudio] = useState('');
     const [isPlaying, setIsPlaying] = useState(false);
     const [duration, setDuration] = useState(0);
@@ -22,21 +21,15 @@ const AudioView = () => {
     const volumeBar = useRef();
 
     if (fileId && file == '') {
-        dispatch(setLoader(true));
         dispatch(getFile(fileId));
     }
 
-    if (audio == '') {
-        dispatch(setLoader(true));
-        if (file.length != 0) {
+    useEffect(() => {
+        if (audio == '' && file.length != 0) {
             const url = window.URL.createObjectURL(file);
             setAudio(url);
+            setLoader(false);
         }
-    }
-    if (!isNaN(duration)) {
-        dispatch(setLoader(false));
-    }
-    useEffect(() => {
         const seconds = Math.floor(audioPlayer?.current?.duration);
         setDuration(seconds);
         if (progressBar.current) {
@@ -45,6 +38,7 @@ const AudioView = () => {
     }, [
         audioPlayer?.current?.loadedmetadata,
         audioPlayer?.current?.readyState,
+        file.length,
     ]);
 
     if (loader) {

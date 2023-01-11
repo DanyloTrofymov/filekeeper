@@ -6,6 +6,7 @@ import './docView.css';
 const PicView = () => {
     const dispatch = useDispatch();
     const [fileURL, setFileURL] = useState();
+    const [loader, setLoader] = useState(true);
     const query = useQuery();
     const fileId = query.get('file');
     const file = useSelector((state) => state.file.data);
@@ -17,7 +18,16 @@ const PicView = () => {
         if (file.length != 0) {
             const url = window.URL.createObjectURL(file);
             setFileURL(url);
+            setLoader(false);
         }
+    }
+
+    if (loader) {
+        return (
+            <div className="center">
+                <span className="loader"></span>
+            </div>
+        );
     }
 
     return (

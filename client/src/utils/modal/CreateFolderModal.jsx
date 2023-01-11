@@ -14,7 +14,9 @@ const CreateFolderModal = () => {
     const dispatch = useDispatch();
 
     function createHandler() {
+        dispatch(setCreateFolderDisplay(false));
         dispatch(createDir(currentDir, dirName));
+        setDirName('');
     }
 
     return (
@@ -53,9 +55,7 @@ const CreateFolderModal = () => {
                     <button
                         className="modal__button__positive"
                         onClick={() => {
-                            setDirName(''),
-                                createHandler(),
-                                dispatch(setCreateFolderDisplay(false));
+                            createHandler();
                         }}
                     >
                         Create
