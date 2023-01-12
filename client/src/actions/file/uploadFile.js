@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { addFile } from '../../reducers/file';
-import { hideUploader } from '../../reducers/upload';
 import { setErrorDisplay } from '../../reducers/modal';
 import {
     changeUploadFile,
@@ -56,7 +55,6 @@ export function uploadFile(file, dir) {
             });
             dispatch(addFile(response.data.data));
         } catch (e) {
-            dispatch(hideUploader());
             if (e.response)
                 dispatch(setErrorDisplay(true, e.response.data.message));
             else dispatch(setErrorDisplay(true, e));
