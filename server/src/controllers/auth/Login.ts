@@ -17,7 +17,7 @@ export async function LoginController(
 
     const validationRules = {
         username: ['required', 'string', { min_length: 8 }],
-        password: ['required', 'string', { min_length: 8, max_length: 63 }],
+        password: ['required', 'string', { min_length: 8 }],
     };
 
     try {

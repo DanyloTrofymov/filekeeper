@@ -11,7 +11,7 @@ async function RegistrationController(req, res, next) {
     const data = { ...req.body };
     const validationRules = {
         email: ['required', 'email'],
-        username: ['required', 'string', { min_length: 8 }],
+        username: ['required', 'string', { min_length: 8, max_length: 20 }],
         password: ['required', 'string', { min_length: 8, max_length: 63 }],
         confirmPassword: ['required', { equal_to_field: 'password' }],
     };

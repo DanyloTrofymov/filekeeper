@@ -11,7 +11,7 @@ async function LoginController(req, res, next) {
     const data = { ...req.body };
     const validationRules = {
         username: ['required', 'string', { min_length: 8 }],
-        password: ['required', 'string', { min_length: 8, max_length: 63 }],
+        password: ['required', 'string', { min_length: 8 }],
     };
     try {
         (0, validator_1.default)(data, validationRules);
