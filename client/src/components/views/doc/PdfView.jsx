@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useQuery from '../../../utils/useQuery';
 import { Document, Page } from 'react-pdf/dist/esm/entry.webpack5';
 import { getFile } from '../../../actions/file/getFile';

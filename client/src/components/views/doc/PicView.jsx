@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useQuery from '../../../utils/useQuery';
 import { getFile } from '../../../actions/file/getFile';
 import { useDispatch, useSelector } from 'react-redux';
