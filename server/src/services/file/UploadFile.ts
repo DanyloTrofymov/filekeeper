@@ -13,7 +13,7 @@ export async function uploadFileService(
     if (exists) {
         throw new HttpError(
             403,
-            `File with name ${dbFile.name} exists on path ${dbFile.path}`,
+            `File with name ${dbFile.name} exists in this directory`,
             ERRORS.FILE_EXISTS,
             {
                 file: dbFile.name,
