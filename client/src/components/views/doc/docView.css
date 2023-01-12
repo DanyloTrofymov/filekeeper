@@ -31,8 +31,10 @@
     width: 260px;
 }
 .docViewer img {
-    margin-top: auto;
-    margin-bottom: auto;
+    display: flex;
+    margin-top: 15vh;
+    margin-right: auto;
+    margin-left: auto;
     min-height: 10em;
     min-width: 20em;
     max-height: 55em;

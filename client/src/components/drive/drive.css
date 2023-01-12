@@ -14,7 +14,7 @@
     display: flex;
     flex-direction: row;
     height: min-content;
-    width: 100vw;
+    width: 90vw;
 }
 .window .left-aside {
     padding-top: 50px;
